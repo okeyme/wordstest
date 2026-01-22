@@ -1,0 +1,49 @@
+.container {
+  width: 100%;
+  background-color: #f5f5f5;
+  min-height: 100vh;
+}
+
+.list {
+  width: 100%;
+  overflow: hidden; /* 关键：隐藏超出容器的菜单部分 */
+}
+
+.list-item {
+  display: flex;
+  position: relative;
+  transition: transform 0.3s ease;
+  background-color: #fff;
+  margin-bottom: 10rpx;
+}
+
+/* 主内容区域 - 占满屏幕宽度 */
+.item-content {
+  width: 100vw;
+  padding: 30rpx;
+  box-sizing: border-box;
+  border-bottom: 1px solid #eee;
+}
+
+/* 菜单区域 - 默认隐藏在屏幕右侧 */
+.item-menu {
+  display: flex;
+  height: 100%;
+}
+
+.menu-btn {
+  width: 180rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  height: 140rpx; /* 与内容区域高度一致 */
+}
+
+.collect {
+  background-color: #007aff;
+}
+
+.delete {
+  background-color: #ff3b30;
+}

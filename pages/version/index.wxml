@@ -1,0 +1,77 @@
+<!--pages/version/index.wxml-->
+<view class="flex-container">
+	<header title="单词学习"></header>
+	<!--//tab滑动-->
+	<view class="bottom-section-flex">
+		<view class="tabcontainer nested-container">
+		<!-- 标签栏 -->
+		<scroll-view class="tab-scroll" scroll-x="true" scroll-left="{{scrollLeft}}" scroll-with-animation="true" scroll-with-animation="true">
+			<view class="tab-item-wrapper">
+				<view class="tab-item {{currentTab === index ? 'active' : ''}}" 
+					wx:for="{{stagetab}}" 
+					wx:key="index" 
+					bindtap="switchTab" 
+					data-index="{{index}}"
+				>{{item}}
+					<view class="indicator {{currentTab === index ? 'show' : ''}}"></view>
+				</view>
+			</view>
+		</scroll-view>
+		<!-- 内容区域 -->
+		<swiper class="content-swiper" current="{{currentTab}}" bindchange="swiperChange" duration="300">
+			<swiper-item wx:for="{{stagetab}}" wx:key="unique" wx:for-index="idx" wx:for-item="val">
+				<!--//小初高-->
+				<view class="flex version-content {{idx}}" wx:if="{{idx<=2}}">
+					<view class="item2 version-txtlist" style="width:40%;">
+						<scroll-view scroll-y style="width: 100%; height: 100%;" type="custom" scroll-into-view="{{scrollIntoViewId}}"	scroll-with-animation='true'>
+							<view class="version-txtitem" wx:for="{{stage[idx]}}" wx:key="unique">
+								<view id="version{{item.version_id}}" catchtap="gotoVersion" data-versionid="{{item.version_id}}" class="txtversion txtversion{{item.version_id}} {{tabVersionID==item.version_id ? 'active' : ''}}">{{item.version_name}}</view>
+								<image class="new" src="http://bossbell.com/public/images/xin.png" mode="widthFix" wx:if="{{modeJS.ArrIndexOf(newVersionID,versionidList[item.version_id])}}"></image>
+							</view>
+						</scroll-view>
+					</view>
+					<view class="item2" style="width:60%;">
+						<scroll-view scroll-y style="width: 100%; height: 100%;" type="custom">
+							<view class="listen-content">
+									<view class="flex-row-wrap version-list">
+										<block wx:for="{{list[tabVersionID]}}" wx:key="unique" wx:for-index="index" wx:for-item="item">
+
+												<view class="flex-view-item version-item {{currectVg_id==item.vg_id ? 'selected' : ''}}" data-stageindex="{{idx}}" data-vg_id="{{item.vg_id}}" data-versionid="{{item.version_id}}" data-vindex="{{index}}" data-wordscount="{{item.wordscount}}" bindtap="changeVersion">
+													<view class="picveiw {{item.vg_id==vg_id ? 'selected' : ''}}"><image src="https://bossbell.com/{{item.picurl}}" mode="widthFix"></image>
+														<view class="new" wx:if="{{item.vg_id>=491}}">新版教材</view>
+													</view>
+													<view>{{item.grade_name}}{{partArr[item.part_id]}}</view>
+												</view>
+
+										</block>
+									</view>
+
+
+							</view>
+						</scroll-view>
+
+					</view>
+				</view>
+				<!--//小初高-->
+				<view class="flex version-content {{idx}}" wx:else>
+					<scroll-view scroll-y style="width: 100%; height: 100%;" type="custom">
+						<view class="listen-content">
+							<view class="flex-row-wrap version-list">
+								<block wx:for="{{stage[idx]}}" wx:key="unique">
+										<view class="flex-view-item version-item {{tabVersionID==item.version_id ? 'selected' : ''}}" data-vg_id="0" data-versionid="{{item.version_id}}" data-stageindex="{{idx}}" data-vindex="{{index}}" bindtap="changeVersion">
+											<view class="picveiw"><image src="https://bossbell.com/{{item.picurl}}" mode="widthFix"></image>
+											</view>
+											<view>{{item.version_name}}</view>
+										</view>
+								</block>
+							</view>
+						</view>
+					</scroll-view>
+				</view>
+			</swiper-item>
+	
+		</swiper>
+		</view>
+	</view>
+	<!--//tab滑动-->
+</view>

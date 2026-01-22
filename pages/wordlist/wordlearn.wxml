@@ -1,0 +1,293 @@
+<wxs src="../../utils/array.wxs" module="array" />
+<view class="flex-container page-background">
+	<header headerName="单词学习"></header>
+	<view class="bottom-section-flex">
+		<view class="tabcontainer nested-container">
+			<!-- 单词标签栏 -->
+			<view class="nested-top-section" style="height: 110rpx;">
+				<scroll-view class="tab-scroll" scroll-x="true" show-scrollbar="false" scroll-left="{{scrollLeft}}" scroll-with-animation="true">
+					<view class="tab-item-wrapper">
+						<view class="tab-item {{wc_id == index ? 'active' : ''}}" 
+							wx:for="{{list}}" 
+							wx:key="index" 
+							bindtap="switchTab" 
+							data-index="{{index}}"
+						>
+							{{item.word}}
+							<view class="wordhide" wx:if="{{wc_id == index && modelsTab>=3}}"></view>
+							<view class="indicator {{wc_id == index ? 'show' : ''}}"></view>
+						</view>
+					</view>
+				</scroll-view>
+			</view>
+			
+			<!-- 内容区域 -->
+			<view class="nested-bottom-section" style="{{changeClass}}">
+				
+				<!-- 训练步骤进度条 -->
+				<view class="container-layout">
+					<view class="progress-container">
+						<view class="step-item" wx:for="{{models}}" wx:key="index" catch:tap="stepClickChange" data-index="{{index}}">
+							<view class="step-icon {{item.isDone || modelsTab==index ? 'done' : ''}}">
+								<text class="iconfont {{item.isDone ? 'icon-wancheng-zhifuwancheng' : 'icon-simobuzhou'}}"></text>
+							</view>
+							<view class="step-text">{{item.text}}</view>
+							<view class="guide-line {{item.isDone ? 'done-line' : ''}}" wx:if="{{index !== models.length - 1}}"></view>
+						</view>
+					</view>
+				</view>
+				
+				<!-- 训练内容轮播 -->
+				<swiper class="content-swiper" current="{{modelsTab}}" bindchange="stepChange" duration="300">
+					
+					<!-- 步骤1: 学习 -->
+					<swiper-item>
+						<scroll-view scroll-y class="scrollview" scroll-top="{{scrollTop}}" style="width: 100%; height:100%;" type="custom">
+							<view class="container learn-container" style="padding-bottom: 66px;">
+								
+								<!-- 单词展示组件 -->
+								<word-display 
+									word="{{wordItem.word}}"
+									phonogram="{{wordItem.ying}}"
+									translation="{{wordItem.attribute}} {{wordItem.translate}}"
+									show-collect="true"
+									show-detail="true"
+									is-collect="{{array.includes(wordCollect, wordItem.wc_id)}}"
+									is-playing="{{isPlaying && letterIndex==-1}}"
+									word-letter="{{wordLetter}}"
+									active-index="{{letterIndex}}"
+									bind:playaudio="playWordAudio"
+									bind:collect="addCollectWord"
+									bind:detail="goDetail"
+								/>
+								
+								<!-- 音标拼读组件 -->
+								<phonogram-practice 
+									wx:if="{{phonogram_letter.length}}"
+									phonogram="{{phonogram_letter}}"
+									syllable-phonogram="{{syllable_phonogram}}"
+									syllable-letters="{{syllable_letters}}"
+									syllable-phonogram-map="{{syllable_phonogram_map}}"
+									phonogram-map="{{phonogram_map}}"
+									word-letters="{{wordLetter}}"
+									active-index="{{letterIndex}}"
+									is-playing="{{isPlaying}}"
+									active-group="{{phonogram_btngroup}}"
+									bind:letterplay="onLetterPlay"
+									bind:letterplayall="onLetterPlayAll"
+									bind:syllableplay="onSyllablePlay"
+									bind:syllableall="onSyllableAll"
+									bind:playend="onPhonogramPlayEnd"
+								/>
+								
+								<!-- 例句展示组件 -->
+								<example-display 
+									wx:if="{{examples.length}}"
+									examples="{{examples}}"
+									current-index="{{exampleIndex}}"
+									is-playing="{{isPlaying}}"
+									active-audio-index="{{letterIndex}}"
+									bind:examplechange="onExampleChange"
+									bind:playexample="onPlayExampleAudio"
+									bind:openspeak="openSpeakModal"
+								/>
+								
+								<view class="exam-btn">
+									<button class="button accent iconfont icon-lianxi" catchtap="nextStep"> 开始练习</button>
+								</view>
+							</view>
+						</scroll-view>
+					</swiper-item>
+					
+					<!-- 步骤2: 读（语音测评） -->
+					<swiper-item>
+						<view class="speak-container nested-container">
+							<view class="nested-bottom-section">
+								<scroll-view scroll-y class="scrollview" style="width: 100%; height:100%;" type="custom">
+									<!-- 单词展示组件（简版） -->
+									<view class="word-txt">
+										{{wordItem.word}}
+									</view>
+									
+									<!-- 语音测评相关代码 -->
+									<view class="loading-container" wx:if="{{isRecording}}" style="margin:0 auto;">
+										<view class="wave-animation">
+											<view class="wave-bar bar1"></view>
+											<view class="wave-bar bar2"></view>
+											<view class="wave-bar bar3"></view>
+											<view class="wave-bar bar4"></view>
+											<view class="wave-bar bar5"></view>
+										</view>
+									</view>
+									<view class="loading-text">{{loadingText}}</view>
+									
+									<view class="result-container" wx:if="{{!isRecording && showLoading}}">
+										<view class="panel">
+											<view class="panel-head">
+												总分
+												<view class="legend">
+													<text class="bg-green">优</text>
+													<text class="bg-blue">良</text>
+													<text class="bg-purple">中</text>
+													<text class="bg-red">差</text>
+												</view>
+											</view>
+											<view class="panel-body">
+												<view class="star-rating">
+													<block wx:for="{{evaluationResult.starRating.stars}}" wx:key="index">
+														<text class="iconfont {{item.type === 'full' ? 'icon-bankexingxing' : item.type === 'half' ? 'icon-bankexingxing1' : 'icon-bankexingxing-copy'}} {{item.color || 'bg-gray'}}"></text>
+													</block>
+													<text class="score-text {{evaluationResult.starRating.color}}">{{evaluationResult.starRating.score}}分</text>
+												</view>
+											</view>
+										</view>
+									</view>
+								</scroll-view>
+							</view>
+							
+							<!-- 录音控制部分 -->
+							<view class="record-content text-center nested-top-section">
+								<view class="record-btn" style="width: 100%;">
+									<view class="flex flex-center" style="width: 100%;align-items:flex-end;">
+										<view class="flex-item flex-average" bindtap="playWordAudio">
+											<text class="iconfont {{letterIndex==-1 && isPlaying ? 'icon-yinliang-F' : 'icon-yinliang-L'}}"></text>
+											<text class="text-small">原音</text>
+										</view>
+										<view class="flex-item flex-average" bindlongpress="startRecord" bindtouchend="stopRecord">
+											<text class="iconfont {{isRecording ? 'icon-app_yinpin_luyinzhong' : 'icon-luyin2'}} record"></text>
+											<text class="text-small">{{isRecording ? '松手测评' : '长按录音'}}</text>
+										</view>
+										<view class="flex-item flex-average" bindtap="playMyRecord">
+											<text class="iconfont icon-pindu"></text>
+											<text class="text-small">我的录音</text>
+										</view>
+									</view>
+								</view>
+							</view>
+						</view>
+					</swiper-item>
+					
+					<!-- 步骤3: 选（选择题） -->
+					<swiper-item>
+						<scroll-view scroll-y class="scrollview" style="width: 100%; height:100%;" type="custom">
+							<view class="select-container">
+								<view class="word-txt">
+									{{wordItem.word}}
+								</view>
+								
+								<!-- 选择题部分 -->
+								<view class="translate-select">
+									<view class="translate-item {{index==selectedOptionIndex ? 'active' : ''}}" 
+										wx:for="{{selectOptions}}" 
+										wx:key="unique" 
+										catchtap="handleSelectOption" 
+										data-index="{{index}}">
+										{{item.translate}}
+										<text wx:if="{{index==selectedOptionIndex}}" class="iconfont {{selectStatus==1 ? 'icon-duicuo1' : 'icon-duicuo2'}}"></text>
+									</view>
+								</view>
+							</view>
+						</scroll-view>
+					</swiper-item>
+					
+					<!-- 步骤4: 拼读 -->
+					<swiper-item>
+						<scroll-view scroll-y class="scrollview" style="width: 100%; height:100%;" type="custom">
+							<view class="chafen-content text-center nested-container">
+								<view class="chafen-letter nested-top-section" style="display: block;height:auto;">
+									<!-- 拼读练习组件 -->
+									<spell-practice 
+										word="{{wordItem.word}}"
+										letters="{{wordLetter}}"
+										translation="{{wordItem.attribute}} {{wordItem.translate}}"
+										show-delete-button="true"
+										show-progress="true"
+										show-options-title="false"
+										show-action-buttons="false"
+										allow-result-edit="false"
+										bind:complete="onSpellComplete"
+										bind:delete="onSpellDelete"
+										bind:select="onSpellSelect"
+										bind:reset="onSpellReset"
+									/>
+								</view>
+							</view>
+						</scroll-view>
+					</swiper-item>
+					
+					<!-- 步骤5: 拆分 -->
+					<swiper-item>
+						<scroll-view scroll-y class="scrollview" style="width: 100%; height:100%;" type="custom">
+							<view class="chafen-content text-center nested-container">
+								<view class="chafen-letter nested-top-section" style="display: block;height:auto;">
+									<!-- 拆分练习组件（复用spell-practice） -->
+									<spell-practice 
+										word="{{wordItem.word}}"
+										letters="{{syllable_letters}}"
+										translation="{{wordItem.attribute}} {{wordItem.translate}}"
+										show-delete-button="true"
+										show-progress="true"
+										show-options-title="false"
+										show-action-buttons="false"
+										allow-result-edit="false"
+										bind:complete="onSyllableComplete"
+										bind:delete="onSyllableDelete"
+										bind:select="onSyllableSelect"
+										bind:reset="onSyllableReset"
+									/>
+								</view>
+							</view>
+						</scroll-view>
+					</swiper-item>
+					
+					<!-- 步骤6: 拼写 -->
+					<swiper-item>
+						<view class="write-container text-center nested-foot-section" style="height: 100%;flex-direction: column;">
+							<view class="write-value nested-bottom-section" style="display: block;width:100%;">
+								<view class="container">
+									<text class="write-input">{{writeValue}}</text>
+								</view>
+								<view class="translate text-center margin-top">
+									{{wordItem.attribute}} {{wordItem.translate}}
+								</view>
+							</view>
+							
+							<view class="write-keybord nested-top-section align-end" style="height: 220px;width:100%;">
+									<view style="height: 220px;display: block;width:100%;">
+										<!-- 展示自定义键盘 -->
+										<custom-keyboard 
+											bind:backspace="onBackspace"
+											bind:space="onSpace"
+											bind:keyClick="onKeyClick"
+											bind:close="onClose"
+											bind:complete="onComplete"
+										></custom-keyboard>
+									</view>
+							</view>
+						</view>
+					</swiper-item>
+				</swiper>
+			</view>
+			
+			<!-- 底部按钮 -->
+			<view class="foot nested-foot-section">
+				<view class="flex flex-center" style="height: 100%;">
+					<view class="flex-item flex-average">
+						<button class="button button-small" style="width:70%" catchtap="prevWord">上一词</button>
+					</view>
+					<view class="flex-item flex-average">
+						<button class="button button-small" style="width:70%" catchtap="nextWord">下一词</button>
+					</view>
+				</view>
+			</view>
+		</view>
+	</view>
+</view>
+
+<!-- 跟读弹窗组件 -->
+<wordspeak 
+    visible="{{wordspeak_visible}}" 
+    speak-word="{{wordspeak_word}}" 
+    speak-audio="{{wordspeak_audio}}"
+    bind:close="onModalClose"
+/>

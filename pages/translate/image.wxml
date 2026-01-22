@@ -1,0 +1,65 @@
+<!--pages/translate/image.wxml-->
+<view class="flex-container page-background">
+	<header headerName="翻译"></header>
+	<view class="bottom-section-flex">
+		<view class="container">
+		<scroll-view scroll-y class="scrollview" style="width: 100%;" type="custom">
+			<view class="text-center">
+				<view style="height: 20rpx;"></view>
+				<view class="view-group">
+					<view class="view-button" bindtap="gotextTranslate">文本翻译</view>
+					<view class="view-button" bindtap="govoiceTranslate">语音翻译</view>
+					<view class="view-button active" bindtap="goimageTranslate">图片翻译</view>
+				</view>
+			</view>
+			<view class="translate text-center">
+				<view class="voice-btn radius-circle {{tempFilePath!='' ? 'undis' : ''}}" bindtap="chooseImage"><text class="iconfont icon-xiangji"></text></view>
+				<view class="{{tempFilePath!='' ? '' : 'undis'}}" bindtap="chooseImage"><image src="{{tempFilePath}}" mode="heightFix"></image></view>
+				<view class="tips text-center text-gray"><text class="iconfont icon-a1"></text> {{tiptxt}}</view>
+			</view>
+			<view class="flex dobtn margin-top">
+				<block wx:if="{{translateStatus==1}}"><button><text class="icon-refresh rotate"></text> 识图中...</button></block>
+				<block wx:else><button class="button" bindtap="doTranslate"><text class="icon-retweet"></text> 识图翻译</button></block>
+			</view>
+
+			<view class="margin-big-top {{result.length ? '' : 'undis'}}">
+				<view class="container text-bold"><text class="icon-language"></text> 翻译结果</view>
+				<view class="container result" wx:if="{{resultMsg==''}}">
+					<block wx:for="{{result}}" wx:key="unique">
+						<view class="result-item {{(audioidx==-1 && audioIndex==index) ? 'active' : ''}}">
+							<view class="context">{{item.context}}
+								<text class="image" wx:if="{{item.lang=='en'}}" data-index="{{index}}" bindtap="wordAudio"></text>
+							</view>
+							<view class="tranContent">{{item.tranContent}}
+								<text class="image" wx:if="{{item.lang=='zh-CHS'}}" data-index="{{index}}" bindtap="wordAudio"></text>
+							</view>
+						</view>
+					</block>
+				</view>
+				<view wx:else>{{resultMsg}}</view>
+			</view>
+
+			<view class="history margin-big-top {{ImageHistory.length>0 ? '' : 'undis'}}">
+				<view class="container text-bold"><text class="icon-history"></text> 历史记录</view>
+				<block wx:for="{{ImageHistory}}" wx:for-index="idx" wx:for-item="itemName" wx:key="unique">
+				<view class="text-center text-gray">{{HistoryTime[idx]}}</view>
+				<view class="result container">
+					<block wx:for="{{itemName}}" wx:key="unique">
+						<view class="result-item {{(audioidx==idx && audioIndex==index) ? 'active' : ''}}">
+							<view class="context">{{item.context}}
+								<text class="image" wx:if="{{item.lang=='en'}}" data-idx="{{idx}}" data-index="{{index}}" bindtap="wordAudio2"></text>
+							</view>
+							<view class="tranContent">{{item.tranContent}}
+								<text class="image" wx:if="{{item.lang=='zh-CHS'}}" data-idx="{{idx}}" data-index="{{index}}" bindtap="wordAudio2"></text>
+							</view>
+						</view>
+					</block>
+				</view>
+				</block>
+			</view>
+
+		</scroll-view>
+	 </view>
+	</view>
+</view>
+

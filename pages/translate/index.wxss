@@ -1,0 +1,66 @@
+/* pages/translate/index.wxss */
+.header{background-color: #2fc6a6;height:170rpx;}
+/**==button group==**/
+.view-group .view-button{ border: solid 1px #ddd;
+	background: transparent;
+	border-radius: 16px;
+	font-size: 16px;
+	padding: 10px 15px;
+	margin: 0;
+	display: inline-block;
+	line-height: 20px;
+	transition: all 1s cubic-bezier(0.175,0.885,0.32,1) 0s;
+}
+.view-group .view-button:first-child {
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
+}
+.view-group .view-button:last-child {
+	border-top-left-radius: 0;
+	border-bottom-left-radius: 0;
+}
+.view-group .view-button:last-child {
+	border-top-left-radius: 0;
+	border-bottom-left-radius: 0;
+}
+.view-group .view-button:not(:first-child):not(:last-child) {
+	border-radius: 0;border-left:0;border-right:0;
+}
+/**==button group==**/
+.view-group .view-button.active{ background-color: #2fc6a6;color:white;}
+.textarea textarea{ padding:5px; border: 1px solid #ddd; width: calc(100% - 10px); height: 300rpx; background-color: white;}
+.translate button{ display: block;border: 1px solid #ddd; background-color: #2fc6a6;color:white;}
+.translate button::after{	border: 1px;}
+.translate .selectlanguage button{background-color:white; color:black;}
+.selectlanguage .padding-big{padding-left:0;}
+.totranslate .padding-big{padding-right:0;}
+
+.result{ border: 1px solid #ddd;background-color: white; border-radius: 32rpx; margin-top: 8rpx; margin-bottom: 20rpx;}
+.result .result-item{ padding:10rpx 0; }
+.result-item .context,.result-item .tranContent{position: relative; padding-right: 60rpx;}
+.result-item .image{ position:absolute; right:0;top:4rpx; width:58rpx;height:48rpx;display:inline-block;background:url(https://bossbell.com/public/images/sound_black.png) no-repeat center; vertical-align:middle;}
+.result-item .image.active{ background-image:url(https://bossbell.com/public/images/sound.gif);}
+
+.picker-mask{ position: fixed; width:100%; height:100%;left:0; top:0; background-color: rgba(12, 12, 12, 0.349);z-index: 99998;}
+.picker-content{
+	position: fixed; z-index: 99999; bottom: 0; left: 0;
+	width: 100%;
+	height: 250px; background-color:white;
+}
+.picker {
+	width: 100%; height: 200px;
+  text-align: center; /* 设置文字水平居中 */
+  line-height: 50px; /* 设置文字垂直居中 */
+}
+.picker view{ line-height: 40px; height:40px}
+.picker-content button{ display: inline-block;}
+.bg-gray{background-color: #e0e0e0;}
+.bg-green{background-color: #2fc6a6;color:white;}
+
+.showtranslate{margin-top:10rpx; border: 1px solid #2fc6a6; border-radius: 32rpx;padding:20rpx;}
+.showtranslate .transalte-item{ line-height: 60rpx}
+
+.transalte-item .wordtext{width:90%;}
+.transalte-item .wordaudio{width:10%;text-align: center;}
+.transalte-item .wordaudio .image{ width:58rpx;height:48rpx;display:inline-block;background:url(https://bossbell.com/public/images/sound_black.png) no-repeat center; vertical-align:middle;}
+.transalte-item.active .wordaudio .image{ background-image:url(https://bossbell.com/public/images/sound.gif);}

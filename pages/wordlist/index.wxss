@@ -1,0 +1,76 @@
+/* pages/wordlist/index.wxss */
+
+/*==tab导航样式==*/
+.tab-scroll {
+  height: 100rpx;
+  width: 100%;
+  background-color: #fff;
+	border-bottom: 1rpx solid #eee;
+	white-space: nowrap;
+	z-index: 100;
+
+  display: flex;
+  justify-content: center;
+	align-items: center;
+}
+::-webkit-scrollbar{
+  display: none;
+  color: transparent;
+  height: 0;
+  width: 0;
+}
+.tab-item-wrapper {
+  display: inline-flex;
+  padding: 0;
+}
+.tab-item {
+  display: inline-block;
+	height: 100rpx;
+	max-width: 306rpx; overflow-x: hidden;
+	text-overflow: ellipsis; /* 超出部分显示省略号 */
+  line-height: 100rpx;
+  padding: 0 30rpx;
+  position: relative;
+  font-size: 32rpx;
+  color: #666;
+}
+
+.tab-item.active {
+  color: #11beaa;
+  font-weight: bold;
+}
+.indicator {
+  display: none;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60rpx;
+  height: 6rpx;
+  border-radius: 3rpx;
+  background-color: #11beaa;
+}
+
+.indicator.show {
+  display: block;
+}
+
+.content-swiper{width:100%;height:100%;}
+/**wordlist**/
+.wordlist-list{ padding:0 20rpx;}
+.wordlist-item{text-indent: 10px; border-bottom: 1px solid #cccccc;padding:10px 0;}
+.wordlist-item.active{  color: #11beaa; background-color:#eefaff;}
+.wordlist-item .wordtext{width:90%;}
+.wordlist-item .wordtext .word{ font-weight: bold; font-size: 16px;}
+.wordlist-item .wordtext .translate{font-size: 12px;}
+.wordlist-item .wordright{width:10%;text-align: center;display: grid;
+  align-items: center; /* 垂直居中 */}
+.wordlist-item .wordaudio .image{ width:58rpx;height:48rpx;display:inline-block;background:url(https://w.360e.cn/miniapi/Public/images/sound_black.png) no-repeat center; vertical-align:middle;}
+.wordlist-item.active .wordaudio.play .image{ background-image:url(https://w.360e.cn/miniapi/Public/images/sound.gif);}
+.wordlist-item .wordright .checkboxitem{width:100%; display: flex; align-items: center; justify-content:center;}
+.wordlist-item .isrecored{color:#11beaa; margin-left:15px;}
+
+
+.tool{z-index:2; background-color: white; height: 116rpx; justify-content:center;}
+.tool .button-small{ background: none; color:black;border: 1px solid #11beaa;}
+.tool .button-small.icon-yanjing_xianshi_o{background: linear-gradient(135deg, #99f3c3, #2fc6a6); /* 从浅绿到深绿的渐变 */}

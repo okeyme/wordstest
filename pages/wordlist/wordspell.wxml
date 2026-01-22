@@ -1,0 +1,35 @@
+<wxs src="../../utils/array.wxs" module="array" />
+<view class="flex-container page-background">
+	<header headerName="看词择义"></header>
+	<view class="bottom-section-flex">
+		<view class="container">
+				<view class="model-progress grid margin-big-bottom">
+					<view class="">当前：{{currentIndex+1}}/{{shufflist.length}}</view>
+					<view class="">错误：{{errorCount}}</view>
+					<view class="">用时：{{formattedTime}}</view>
+				</view>
+				<!-- 出题-->
+				<view class="item-container" wx:if="{{showResult ? '' : 'undis'}}">
+					<view class="item-title height-large text-center"><text class="word-text">{{displayWord}}</text></view>
+				</view>
+
+				<view class="result-container" wx:if="{{showResult ? 'undis' : ''}}">
+					<view class="result-list" wx:for="{{shufflist}}" wx:key="unique" wx:for-index="idx" wx:for-item="val">
+						{{val.word}} <text class="text-gray">{{val.translate}}</text> <text class="iconfont {{array.includes(errorList, idx) ? 'icon-duicuo2' : 'icon-duicuo1'}}"></text>
+					</view>
+					<button class="button" bindtap="tryAgain">再练一次</button>
+				</view>
+
+				<view class="mykeyboard {{showkeyboard ? '' : 'showkeyboard'}}" style="height: 220px;display: {{showResult ? 'none' : 'block'}};width:100%;position: fixed;left:0;bottom:0;">
+							<!-- 展示自定义键盘 -->
+							<custom-keyboard 
+								bind:backspace="onBackspace"
+								bind:space="onSpace"
+								bind:keyClick="onKeyClick"
+								bind:close="onClose"
+								bind:complete="onComplete"></custom-keyboard>
+				</view>
+
+		</view>
+	</view>
+</view>

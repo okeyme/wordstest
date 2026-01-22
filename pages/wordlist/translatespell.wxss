@@ -1,0 +1,6 @@
+/* pages/wordlist/wordspell.wxss */
+.item-title{ height: 100rpx; line-height: 100rpx; border: 1px solid #e9ecf4; background-color: white;}
+.word-text {
+  font-size: 48rpx;
+  color: #ff6700;
+}

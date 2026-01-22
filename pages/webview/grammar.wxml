@@ -1,0 +1,6 @@
+<!--pages/webview/grammar.wxml-->
+<view class="page-body">
+  <view class="page-section page-section-gap">
+    <web-view src="{{weburl}}"></web-view>
+  </view>
+</view>

@@ -1,0 +1,3 @@
+/* pages/wordlist/listenword.wxss */
+.item-title{ width:80rpx; height: 80rpx; border-radius: 40rpx; border: 1px solid black; margin:30rpx auto;}
+.item-options-button{ font-size: 28rpx;}

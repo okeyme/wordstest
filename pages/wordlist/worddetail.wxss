@@ -1,0 +1,236 @@
+/* pages/wordlist/wordlearn.wxss */
+/* pages/wordlist/index.wxss */
+
+/*==tab导航样式==*/
+.tab-scroll {
+  height: 100rpx;
+  width: 100%;
+  background-color: #fff;
+	border-bottom: 1rpx solid #eee;
+	white-space: nowrap;
+	z-index: 100;
+
+  display: flex;
+  justify-content: center;
+	align-items: center;
+}
+::-webkit-scrollbar{
+  display: none;
+  color: transparent;
+  display: none;
+  height: 0;
+  width: 0;
+}
+.content-swiper {
+	width: 100%; height: 100%;
+  /*flex: 1; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-y: auto;  */
+}
+.tab-item-wrapper {
+  display: inline-flex;
+  padding: 0;
+}
+.tab-item {
+  display: inline-block;
+	height: 100rpx;
+	width: 88px; overflow-x: hidden;
+	text-overflow: ellipsis; /* 超出部分显示省略号 */
+  line-height: 100rpx;
+  position: relative;
+  font-size: 32rpx;
+	color: #666;
+	text-align: center;
+}
+
+.tab-item.active {
+  color: #2fc6a6;
+  font-weight: bold;
+}
+.indicator {
+  display: none;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60rpx;
+  height: 6rpx;
+  border-radius: 3rpx;
+  background-color: #2fc6a6;
+}
+
+.indicator.show {
+  display: block;
+}
+
+/* ===步骤进度条=== */
+/* 容器样式，设置为横向布局 */
+.progress-container {
+  display: flex;
+  border-radius: 20px;
+  padding: 10px 20px;
+  /* 隐藏超出部分，避免引导线溢出 */
+  overflow: hidden; 
+}
+
+.step-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 10px;
+  position: relative; 
+  /* 固定宽度，确保引导线对齐 */
+  width: 50px; 
+}
+
+.step-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+	background-color: #bde2de;
+	border:1px solid #bde2de;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-size: 14px;
+}
+.step-icon.active{border-color: #069e8c;}
+.step-icon.done {background-color: #069e8c;border-color: #069e8c;}
+.step-text {font-size: 12px;margin-top: 5px;color: #666; }
+
+.guide-line {
+  position: absolute;
+  top: 15px;
+  left: 100%;
+  transform: translateY(-50%);
+  width: 20px; 
+  height: 2px;
+  background-color: #bde2de;
+}
+
+.guide-line.done-line {
+  background-color: #069e8c;
+}
+/* ===步骤进度条=== */
+
+/*===拼写本格式===*/
+.word-info{ position: relative;}
+.word-btn .word-shoucang,.word-btn .word-detail{color: #2fc6a6; border:1px solid #2fc6a6;background-color: #e4fdfa; border-radius: 8px; padding:0 3px; font-size: 12px; display: inline-block;}
+.word-btn .word-shoucang{ border-color:#ccc; background-color: rgb(250, 250, 250); color:rgb(167, 165, 165); margin-right: 16rpx;}
+.word-btn .hasCollect{ color: #f8d303; border-color:#f8d303;}
+
+/* 拼写本容器，模拟四线格背景 */
+.spelling-book {
+	display: inline-block;
+	margin:0 auto; 
+  border-top: 1px solid #2fc6a6;
+  border-bottom: 1px solid #2fc6a6;
+  padding: 5px 20px;
+  position: relative;
+}
+/* 生成中间两条虚线 */
+.spelling-book::before,
+.spelling-book::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  /* 使用线性渐变创建虚线效果 */
+  background-image: linear-gradient(to right, #c5e9e5 50%, transparent 50%);
+  background-size: 8px 1px; /* 虚线宽度和间隔 */
+  background-repeat: repeat-x;
+}
+
+.spelling-book::before {
+  top: 33%;
+}
+.spelling-book::after {
+  top: 66%;
+}
+/* 单词所在行，让单词水平居中 */
+.word-line {
+  text-align: center;
+}
+/* 单词文本样式，可按需调整字体、大小等 */
+.word-text {
+	position: relative; /* 开启层级控制 */
+  z-index: 1;         /* 文字层级高于虚线 */
+  font-size: 30px;
+  font-weight: bold;
+  color: #000;
+  font-family: Arial, sans-serif;
+}
+.word-text text{font-size: 30px;}
+.word-text text.active{color:#2fc6a6;}
+/*===拼写本格式===*/
+
+.learn-container .translate{margin-top:40rpx;}
+
+.yinbiao .yinbiao-item {margin-right:20px;color:rgb(133, 131, 131);}
+
+.capsule-group-container{ display: inline-block; }
+.capsule-group-container .capsule-btn{line-height: 26px;height: 28px; font-size: 12px;}
+
+.phonogram_item{ margin-top:20px; margin-bottom: 20px; padding:20px 10px; border: 1px solid #e4fdfa; border-radius: 32rpx; background-color: #f9f9f9;}
+.phonogram_letters .letter,.syllable_letters .letter{background-color: #e4fdfa; padding: 4px 5px;margin:2px;}
+.phonogram_letters .letter.active,.syllable_letters .letter.active{background-color: #2fc6a6; color:white;}
+.phonogram_btngroup .capsule-btn.right-btn{border-left:1px solid #584747;}
+.phonogram_btngroup .capsule-btn.right-btn {
+	border-left: none;
+}
+
+.content-section{margin-top:40px;}
+/**==例句==*/
+.example-container{ margin-top:20px;}
+.nav-title {
+  display: flex;
+  align-items: center;
+	justify-content: flex-start; /* 让内容从左开始排列 */
+	margin-bottom:10px;
+}
+.nav-title .guide-symbol {width:5px;height:14px; border-radius: 25px;background-color:#2fc6a6;margin-right: 5px; /* 与后面“例句”保持间距 */}
+.nav-title .nav-text {font-size: 15px;font-weight: bold;}
+.nav-title .operate-group {align-items: center;margin-left: auto; /* 让操作区域（跟读 + 话筒）靠右 */
+	border: 1px solid #2fc6a6;
+  border-radius: 20px; padding: 2px; font-size: 12px;background-color: #e4fdfa; padding-right:5px;
+}
+.nav-title .operate-group text{	font-size: 15px;}
+
+.example-swiper-container {
+	margin-top:10px; background-color: #f7f6f6; border-radius: 10px; padding: 10px;
+}
+.example-swiper-container .swiper{height:80px;}
+.example-swiper-container .swiper-item-box {
+  display: flex;
+  flex-direction: column;
+}
+.example-swiper-container .example-content,
+.example-swiper-container .translation-content {
+  margin-top: 5px;
+  color: #666;
+  line-height: 1.2; font-size: 13px;
+}
+.example-swiper-container .translation-content {padding-left:18px;}
+
+/**底部操作按钮***/
+.foot{background: none;align-items:center; padding:10px;}
+
+
+/*==jfyc==*/
+.jfyc-main .cates{width:100%; font-weight: bold;}
+.jfyc-main .items{ margin-right:30rpx; display: inline-block; color:#2fc6a6;} 
+
+.affix-main .cates{width:100%; font-weight: bold;}
+.affix-main .items{ margin-right:30rpx;} 
+.affix-container .word-wrap {
+  white-space: pre-line; /* 识别\n并换行，自动忽略多余空格 */
+  font-size: 28rpx;
+  line-height: 1.6;
+}
+.affix-container .words-txt{vertical-align: top;color:#2fc6a6;}
+.affix-container .translate-txt{ display:inline-block; padding-left: 10px;}

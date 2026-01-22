@@ -1,0 +1,155 @@
+<wxs src="../../utils/array.wxs" module="array" />
+<view class="flex-container">
+  <header title="单词学习"></header>
+  <view class="bottom-section-flex">
+    <scroll-view scroll-y class="scrollview" 
+                 style="width: 100%; height:100%;" 
+                 scroll-top="{{scrollTop}}"
+                 bindscroll="onContentScroll">
+      <view class="container">
+        <!-- 单词展示组件 -->
+        <word-display 
+          word="{{wordItem.word}}"
+          phonogram="{{wordItem.ying}}"
+          translation="{{wordItem.attribute}} {{wordItem.translate}}"
+          show-collect="true"
+          show-detail="false"
+          is-collect="{{array.includes(wordCollect, wordItem.wc_id)}}"
+          is-playing="{{isPlaying && letterIndex==-1}}"
+          word-letter="{{wordLetter}}"
+          active-index="{{letterIndex}}"
+          bind:playaudio="playWordAudio"
+          bind:collect="addCollectWord"
+        />  
+        
+        <!-- 音标拼读组件 -->
+        <phonogram-practice 
+          wx:if="{{phonogram_letter.length}}"
+          phonogram="{{phonogram_letter}}"
+          syllable-phonogram="{{syllable_phonogram}}"
+          syllable-letters="{{syllable_letters}}"
+          syllable-phonogram-map="{{syllable_phonogram_map}}"
+          phonogram-map="{{phonogram_map}}"
+          word-letters="{{wordLetter}}"
+          active-index="{{letterIndex}}"
+          is-playing="{{isPlaying}}"
+          active-group="{{phonogram_btngroup}}"
+          bind:letterplay="onLetterPlay"
+          bind:letterplayall="onLetterPlayAll"
+          bind:syllableplay="onSyllablePlay"
+          bind:syllableall="onSyllableAll"
+          bind:playend="onPhonogramPlayEnd"
+        />
+        
+        <!-- 标签导航 -->
+        <scroll-view class="tab-scroll" scroll-x="true" show-scrollbar="false" scroll-left="{{scrollLeft}}" scroll-with-animation="true">
+          <view class="tab-item-wrapper">
+            <view class="tab-item {{activeTab === item.id ? 'active' : ''}}" 
+              wx:for="{{tablist}}" 
+              wx:key="id" 
+              catchtap="switchTab" 
+              data-index="{{index}}" 
+              data-id="{{item.id}}"
+            >
+              {{item.name}}
+              <view class="indicator {{activeTab === item.id ? 'show' : ''}}"></view>
+            </view>
+          </view>
+        </scroll-view>
+        
+        <!-- 单词例句 -->
+        <view id="example" class="content-section" style="margin-top: 0;">
+          <example-display 
+            wx:if="{{examples.length}}"
+            examples="{{examples}}"
+            current-index="{{exampleIndex}}"
+            is-playing="{{isPlaying}}"
+            active-audio-index="{{letterIndex}}"
+            bind:examplechange="onExampleChange"
+            bind:playexample="onPlayExampleAudio"
+            bind:openspeak="openSpeakModal"
+          />
+        </view>
+        
+        <!-- 词汇搭配 -->
+        <view id="chdp" class="content-section" wx:if="{{chdpData.length}}">
+          <view class="nav-title">
+            <text class="guide-symbol"></text>
+            <text class="nav-text">词汇搭配</text>
+          </view>
+          <view class="chdp-container">
+            <block wx:for="{{chdpData}}" wx:key="index">
+              <view wx:if="{{index === 0 || chdpData[index-1].cx !== item.cx}}" 
+                    class="category-title">{{item.cx}}</view>
+              <view class="chdp-item">
+                {{item.example}} {{item.translate}}
+              </view>
+            </block>
+          </view>
+        </view>
+        
+        <!-- 词根扩展 -->
+        <view id="tgc" class="content-section" wx:if="{{cyyfTgc}}">
+          <view class="nav-title">
+            <text class="guide-symbol"></text>
+            <text class="nav-text">词根扩展</text>
+          </view>
+          <view class="tgc-container">
+            <rich-text nodes="{{cyyfTgc}}"></rich-text>
+          </view>
+        </view>
+        
+        <!-- 同近义词 -->
+        <view id="jfyc" class="content-section" wx:if="{{cyyfJfyc.length}}">
+          <view class="nav-title">
+            <text class="guide-symbol"></text>
+            <text class="nav-text">同近义词</text>
+          </view>
+          <view class="jfyc-container">
+            <view class="jfyc-main" wx:for="{{cyyfJfyc}}" wx:key="index">
+							<view class="jfyc-translate">{{item.translate}}</view>
+              <view class="jfyc-wordlist">
+                <text class="items" wx:for="{{item.wordlist}}" wx:key="idx" wx:for-index="idx" wx:for-item="itx"  bindtap="onWordClick" data-word="{{itx}}">{{itx}}</text>
+              </view>
+            </view>
+          </view>
+        </view>
+
+				<!-- 派生词 -->
+				<view id="affix" class="content-section" wx:if="{{cffyAffix}}">
+					<view class="nav-title">
+					<text class="guide-symbol"></text>
+					<text class="nav-text">派生词</text>
+					</view>
+					<view class="affix-container">
+					<view class="affix-main" wx:for="{{cffyAffix}}" wx:key="index">
+						<view class="word-wrap"><text class="words-txt" bindtap="onWordClick" data-word="{{item[0]}}">{{item[0]}}</text><text class="translate-txt">{{item[1]}}</text></view>
+					</view>
+					</view>
+				</view>
+
+      </view>
+    </scroll-view>
+  </view>
+  
+  <!-- 底部按钮 -->
+  <view class="foot nested-foot-section flex-valign-center">
+    <button class="button iconfont icon-lianxi" catchtap="goWordLearn">继续练习</button>
+  </view>
+</view>
+
+<!-- 跟读弹窗组件 -->
+<wordspeak 
+  visible="{{wordspeak_visible}}" 
+  speak-word="{{wordspeak_word}}" 
+  speak-audio="{{wordspeak_audio}}"
+  bind:close="onModalClose"
+/>
+<!-- 单词弹窗组件 -->
+<word-search
+  id="wordSearch"
+  searchWord="{{selectedWord}}"
+  visible="{{showWordSearch}}"
+  userId="{{userId}}"
+  bind:close="onCloseWordSearch"
+/>

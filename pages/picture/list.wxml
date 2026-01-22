@@ -1,0 +1,53 @@
+<!--pages/picture/list.wxml-->
+<!--pages/picture/index.wxml-->
+<import src="../wordlearn/header.wxml"/>
+<template is="wordlearn_header" data="{{headerName:headerName}}"/>
+<scroll-view scroll-y="true" style="width: 100%; height: 100vh;" type="custom">
+<view style="height: {{scrollTop}}px;"></view>
+<view style="padding:10rpx;">
+	<view class="list flex-row-wrap text-center">
+		<view class="flex-view-item3" wx:for="{{listArr}}" wx:key="unique">
+			<view class="picture-item" bindtap="detailWord" data-index="{{index}}" data-id="{{item}}">
+				<view class="picture-item-content">
+					<view class="pic"><image src="https://bossbell.com/{{picArr['list'][item].imgurl}}" mode="widthFix"></image></view>
+					<view class="name">{{picArr['list'][item].title}}</view>
+				</view>
+			</view>
+		</view>
+	</view>
+</view>
+<view style="height: 96rpx;"></view>
+</scroll-view>
+
+<view class="xunlian text-center"><button class="button radius-bigger bg-main">识图训练</button></view>
+
+<view class="categoryShadow {{wordItemActive ? '' : 'undis'}}"></view>
+<view class="popup {{wordItemActive ? 'active' : ''}}">
+		<view class="popup-content">
+			<view class="container">
+				<view class="popup-title flex">
+					<text class="item3 text-left text-small">{{audioIndex+1}}/{{listArr.length}}</text>
+					<text class="item3">{{picArr['list'][pid].title}}</text>
+					<text class="item3"></text>
+					<view class="popup-close icon-times" catchtap="popupClose"></view>
+				</view>
+			</view>
+			<view class="flex popup-main">
+				<view class="item2 popup-image" style="width:40%;"><image src="https://bossbell.com/{{picArr['list'][pid].imgurl}}" mode="widthFix"></image></view>
+				<view class="item2 popup-translate" style="width:60%;">
+					<view class="height">/{{picArr['list'][pid].phonogram}}/</view>
+					<view>{{picArr['list'][pid].translate}}{{wordItem['translate']}}</view>
+					<view class="flex popup-control">
+						<view class="item3"><text class="icon-arrow-circle-left" catchtap="popupPrev"></text></view>
+						<view class="item3"><text class="icon-volume-up {{webAudioStatus ? 'active' : ''}}" catchtap="popupAudio"></text></view>
+						<view class="item3"><text class="icon-arrow-circle-right" catchtap="popupNext"></text></view>
+					</view>
+				</view>
+			</view>
+			<!--//例句-->
+			<view wx:if="{{picArr['list'][pid].example!=''}}" class="popup-example">
+				<view class="example">{{picArr['list'][pid].example}}  <text class="exampleaudio2 icon-volume-up {{exampleAudioStatus ? 'active' : ''}}" catchtap="exampleAduio"></text></view>
+				<view class="example_translate">{{picArr['list'][pid].example_translate}}</view>
+			</view>
+		</view>
+</view>

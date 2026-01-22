@@ -1,0 +1,54 @@
+<!--pages/wordlist/index.wxml-->
+<view class="flex-container">
+	<header title="单词学习"></header>
+	<view class="bottom-section-flex">
+		<!--//tab滑动-->
+		<view class="nested-container">
+			<view class="tabcontainer nested-bottom-section">
+				<!-- 标签栏 -->
+				<scroll-view class="tab-scroll" scroll-x="true" show-scrollbar="false" scroll-left="{{scrollLeft}}" scroll-with-animation="true">
+					<view class="tab-item-wrapper">
+						<view class="tab-item {{currentTab === index ? 'active' : ''}}" 
+							wx:for="{{unitList}}" 
+							wx:key="index" 
+							bindtap="switchTab" 
+							data-index="{{index}}"
+						>{{item.category_name}}
+							<view class="indicator {{currentTab === index ? 'show' : ''}}"></view>
+						</view>
+					</view>
+				</scroll-view>
+				<!-- 内容区域 -->
+				
+				<swiper class="content-swiper" current="{{currentTab}}" bindchange="swiperChange" duration="300">
+					<swiper-item wx:for="{{unitList}}" wx:key="unique" wx:for-index="idx" wx:for-item="val">
+						<scroll-view scroll-y class="scrollview" style="width: 100%; height:100%;" type="custom">
+							<checkbox-group bindchange="handleCheckboxChange">
+							<view class="wordlist-list" wx:for="{{currentUnitData.list}}" wx:key="unique">
+								<view class="wordlist-item flex {{wc_id==item.wc_id ? 'active' : ''}}" data-index="{{index}}">
+									<view class="item2 wordtext" bindtap="{{model=='default' ? 'goThisWord' : ''}}" data-index="{{index}}">
+										<view class="word">{{displayWord ? '--' : item.word}}</view>
+										<view class="translate text-gray">{{displayTranslate ? '--' : item.attribute}} {{displayTranslate ? '' : item.translate}}</view>
+									</view>
+									<view class="item2 wordright">
+										<view wx:if="{{model=='default'}}" class="wordaudio {{webAudioStatus ? 'play' : ''}}" catchtap="wordAudio" data-index="{{index}}" data-wc_id="{{item.wc_id}}"><view class="image"></view></view>
+									</view>
+								</view>
+							</view>
+							</checkbox-group>
+						</scroll-view>
+					</swiper-item>
+				</swiper>		
+			</view>
+			<!--//tab滑动-->
+			<!--//工具栏-->
+			<view class="tool nested-top-section">
+				<view class="flex flex-between flex-valign-center">
+					<view class="flex-item flex-padding" catchtap="displayWord"><text class="button button-small iconfont {{displayWord ? 'icon-yanjing_xianshi_o' : 'icon-yanjing_yincang_o'}}">{{displayWord ? '显示' : '隐藏'}}单词</text></view>
+					<view class="flex-item"><button class="button" catchtap="{{modelList[model].url}}">{{modelList[model].txt}}</button></view>
+					<view class="flex-item flex-padding" catchtap="displayTranslate"><text class="button button-small iconfont {{displayTranslate ? 'icon-yanjing_xianshi_o' : 'icon-yanjing_yincang_o'}}">{{displayTranslate ? '显示' : '隐藏'}}词义</text></view>
+				</view>
+			</view>
+		</view>
+	</view>
+</view>

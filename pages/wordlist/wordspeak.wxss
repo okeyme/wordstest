@@ -1,0 +1,194 @@
+.item-title{ font-size: 20px; font-weight: bold;margin-top:15px;}
+.result-list{ position: relative; text-align: left;}
+.result-list.text-red{ color: red;}
+.result-list .play-icon{ position:absolute; right:20rpx; top: 10rpx;}
+.result-list .icon-pindu.text-yellow{ color:#fb0;}
+/***录音***/
+.model-progress{margin-top:20rpx;}
+.container-main .nested-top-section{height:80rpx;}
+.container-main{padding:0 20rpx;width:100%;}
+.record-result{ align-items: center; }
+.record-content{  width: 100%; height: 100px;}
+.record-content .record-detail{padding:10px ;padding-bottom:20px;}
+.record-content .record-btn{ width: 100%;}
+.record-content .record-btn .flex-item{ font-size: 13px;}
+.record-content .record-btn .flex-item text{ width:100%; display:inline-block; font-size:50rpx;text-align: center;}
+.record-content .record-btn .flex-item text.text-small{ line-height: 40rpx;}
+.record-content .record-btn text.record{font-size:90rpx;}
+.record-content .record-btn .flex-item{flex-direction: column;}
+.record-content .record-btn .flex-item .text-small{ font-size: 12px;}
+.loading-text{ color:#fb0; margin-top:20rpx;}
+.thisword{ font-size: 50rpx;}
+
+/* 波浪动画区域 */
+.wave-animation {
+  width: 172rpx;
+  height: 160rpx;
+  display: flex;
+  align-items: center;
+	justify-content: space-around;
+	margin:0 auto;
+  margin-bottom: 20rpx;
+}
+
+/* 波浪条样式 */
+.wave-bar {
+  width: 16rpx;
+  background-color: #fb0; /* 绿色波浪 */
+  border-radius: 8rpx;
+  /* 动画参数：名称、时长、速度曲线、延迟、循环次数、方向 */
+  animation: wave 0.8s ease-in-out 0s infinite alternate;
+}
+
+/* 每个波浪条可单独调整时长和延迟，保持错落感 */
+.bar1 { animation-duration: 0.8s; animation-delay: 0.1s; }
+.bar2 { animation-duration: 0.7s; animation-delay: 0.2s; }
+.bar3 { animation-duration: 0.9s; animation-delay: 0.3s; }
+.bar4 { animation-duration: 0.6s; animation-delay: 0.4s; }
+.bar5 { animation-duration: 0.8s; animation-delay: 0.5s; }
+
+/* 波浪动画关键帧（高度变化） */
+@keyframes wave {
+  0% {
+    height: 10rpx;
+  }
+  100% {
+    height: 70rpx;
+  }
+}
+
+
+/* 加载动画样式保持不变 */
+
+/* 面板样式 */
+.panel {
+  margin: 20rpx;
+  border-radius: 12rpx;
+  background: #fff;
+  box-shadow: 0 2rpx 6rpx rgba(0,0,0,0.1);
+}
+
+.panel-head {
+  padding: 20rpx;
+  font-weight: bold;
+  border-bottom: 1rpx solid #f5f5f5;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.panel-body {
+  padding: 20rpx;
+}
+
+.legend {
+  display: flex;
+  font-size: 24rpx;
+}
+
+.legend text {
+  margin-left: 15rpx;
+  padding: 2rpx 8rpx;
+  border-radius: 4rpx;
+  color: white;
+}
+
+/* 星级评分 */
+.star-rating {
+  display: flex;
+  align-items: center;
+}
+
+.star-rating .iconfont {
+  margin-right: 8rpx;width:40rpx;height: 40rpx;
+}
+
+.score-text {
+  margin-left: 20rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+}
+
+/* 字符和评分条布局 */
+.chars-line, .score-bars {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 10rpx;
+}
+
+.char-item {
+  text-align: center;
+  width: 60rpx;
+  position: relative;
+}
+
+.tip-icon {
+  position: absolute;
+  top: -20rpx;
+  right: -5rpx;
+  font-size: 20rpx;
+}
+
+.score-bar {
+  width: 40rpx;
+  height: 100rpx;
+  position: relative;
+  background: #f5f5f5;
+  border-radius: 4rpx;
+}
+
+.bar-inner {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  border-radius: 4rpx;
+  transition: height 0.3s;
+}
+
+/* 重音评分 */
+.stress-line {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15rpx;
+}
+
+.stress-line .label {
+  width: 80rpx;
+  font-size: 26rpx;
+  color: #666;
+}
+
+.stress-char {
+  flex: 1;
+  text-align: left;
+}
+
+/* 播放按钮 */
+.play-btn {
+  margin: 30rpx;
+  padding: 20rpx;
+  background: #f5f5f5;
+  border-radius: 40rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.play-btn icon {
+  margin-right: 10rpx;
+}
+
+/* 颜色定义 */
+.bg-green { background-color: #09BB07; }
+.bg-blue { background-color: #10AEFF; }
+.bg-purple { background-color: #8B00FF; }
+.bg-red { background-color: #E64340; }
+.iconfont.bg-green,.score-text.bg-green,.char-item.bg-green{ color: #09BB07;  background: none;}
+.iconfont.bg-blue,.score-text.bg-blue,.char-item.bg-blue { color: #10AEFF;  background: none; }
+.iconfont.bg-purple,.score-text.bg-purple,.char-item.bg-purple { color: #8B00FF;  background: none; }
+.iconfont.bg-red,.score-text.bg-red,.char-item.bg-red { color: #E64340;   background: none;}
+.iconfont.bg-gray,.score-text.bg-gray,.char-item.bg-gray { color: #d3d3d3;   background: none;}
+.score-text{background: none;}
+
+.word-display span{display:inline-block;}
+

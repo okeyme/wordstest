@@ -1,0 +1,157 @@
+<view class="flex-container page-background">
+	<header title="单词学习"></header>
+	<view class="bottom-section-flex">
+		<view class="container-main nested-container border-box">
+      <view class="record-result nested-bottom-section text-center">
+				<scroll-view class="tab-scroll" style="width: 100%;height: 100%;" scroll-y="auto" scroll-with-animation="true">
+        <view class="item-title height-large text-center {{fadeClass}}" wx:if="{{!showResult}}">
+					<!-- 单词显示 -->
+					<view class="word-display" wx:if="{{currentWord.displayText}}">
+            <rich-text nodes="{{currentWord.displayText}}"></rich-text>
+          </view>
+					<view wx:else>{{currentWord.text}}</view>
+          <view class="thisword" catch:tap="playCurrentWord" data-wc_id="{{idlist[currentIndex]}}"><text class="iconfont {{isPlaying ? 'icon-yinliang-F' : 'icon-yinliang-L'}}"></text></view>
+        </view>
+        <view class="record-mytest" wx:if="{{!showResult}}">
+          
+
+
+            <!-- 加载状态 -->
+            <view class="loading-container" wx:if="{{isRecording}}">
+              <view class="wave-animation">
+								<view class="wave-bar bar1"></view>
+								<view class="wave-bar bar2"></view>
+								<view class="wave-bar bar3"></view>
+								<view class="wave-bar bar4"></view>
+								<view class="wave-bar bar5"></view>
+							</view>
+            </view>
+						<view class="loading-text">{{loadingText}}</view>
+
+            <!-- 评测结果 -->
+            <view class="result-container" wx:if="{{!isRecording && showLoading}}">
+              <!-- 总分面板 -->
+              <view class="panel">
+                <view class="panel-head">
+                  总分
+                  <view class="legend">
+                    <text class="bg-green">优</text>
+                    <text class="bg-blue">良</text>
+                    <text class="bg-purple">中</text>
+                    <text class="bg-red">差</text>
+                  </view>
+                </view>
+                <view class="panel-body">
+                  <view class="star-rating">
+                    <block wx:for="{{evaluationResult.starRating.stars}}" wx:key="index">
+                      <text class="iconfont {{item.type === 'full' ? 'icon-bankexingxing' : item.type === 'half' ? 'icon-bankexingxing1' : 'icon-bankexingxing-copy'}} {{item.color || 'bg-gray'}}"></text>
+                    </block>
+                    <text class="score-text {{evaluationResult.starRating.color}}">{{evaluationResult.starRating.score}}分
+                    </text>
+                  </view>
+                </view>
+              </view>
+              
+              <!-- 动态生成评分面板 -->
+              <block wx:for="{{evaluationResult.scorePanels}}" wx:key="type">
+                <view class="panel">
+                  <view class="panel-head">{{item.title}}</view>
+                  <view class="panel-body">
+                    <!-- 漏读/重复读 -->
+                    <view wx:if="{{item.type === 'missing'}}" class="missing-read">
+                      {{item.content}}
+                    </view>
+                    
+                    <!-- 音节评分 -->
+                    <view wx:if="{{item.type === 'syllable'}}" class="syllable-section">
+                      <view class="chars-line">
+                        <block wx:for="{{item.content}}" wx:key="char">
+                          <view class="char-item {{item.color}}">{{item.char}}</view>
+                        </block>
+                      </view>
+                      <view class="score-bars">
+                        <block wx:for="{{item.content}}" wx:key="char">
+                          <view class="score-bar">
+                            <view class="bar-inner {{item.color}}" style="height: {{item.score}}%;"></view>
+                          </view>
+                        </block>
+                      </view>
+                    </view>
+                    
+                    <!-- 音素评分 -->
+                    <view wx:if="{{item.type === 'phone'}}" class="phone-section">
+                      <view class="chars-line">
+                        <block wx:for="{{item.content}}" wx:key="char">
+                          <view class="char-item" bindtap="showPhoneDetail" data-char="{{item.originalChar}}">
+                            <view wx:if="{{item.showTip}}" class="tip-icon"></view>
+                            {{item.char}}
+                          </view>
+                        </block>
+                      </view>
+                      <view class="score-bars">
+                        <block wx:for="{{item.content}}" wx:key="char">
+                          <view class="score-bar">
+                            <view class="bar-inner {{item.color}}" style="height: {{item.score}}%;"></view>
+                          </view>
+                        </block>
+                      </view>
+                    </view>
+                    
+                    <!-- 重音评分 -->
+                    <view wx:if="{{item.type === 'stress'}}" class="stress-section">
+                      <view class="stress-line">
+                        <text class="label">音节</text>
+                        <block wx:for="{{item.content}}" wx:key="char">
+                          <text class="stress-char">{{item.char}}</text>
+                        </block>
+                      </view>
+                      <view class="stress-line">
+                        <text class="label">重音</text>
+                        <block wx:for="{{item.content}}" wx:key="char">
+                          <text>{{item.hasStress ? '是' : '否'}}</text>
+                        </block>
+                      </view>
+                      <view class="stress-line">
+                        <text class="label">结果</text>
+                        <block wx:for="{{item.content}}" wx:key="char">
+                          <icon type="{{item.isCorrect ? 'success' : 'cancel'}}" size="16"></icon>
+                        </block>
+                      </view>
+                    </view>
+                  </view>
+                </view>
+              </block>
+            </view>
+
+
+
+
+
+
+
+        </view>
+				<!--//结果展示-->
+				<view class="result-container" wx:if="{{showResult}}">
+					<view class="result-list {{resList[idx].score<60 ? 'text-red' : ''}}" wx:for="{{idlist}}" wx:key="unique" wx:for-index="idx" wx:for-item="val">
+						{{list[val].word}} <text class="text-gray">{{resList[idx].score}}分</text> <text class="margin-left iconfont icon-pindu {{playIndex==idx && isPlaying ? 'text-yellow' : ''}}" bindtap="playResAudio" data-index="{{idx}}"></text> <text class="iconfont {{playIndex==idx && isPlaying ? 'icon-yinliang-F' : 'icon-yinliang-L'}} play-icon" catchtap="playCurrentWord" data-index="{{idx}}" data-wc_id="{{val}}"></text>
+					</view>
+					<button class="button" bindtap="tryAgain">再练一次</button>
+				</view>
+				</scroll-view>
+      </view>
+      <!--//录音-->
+      <view class="record-content nested-foot-section">
+        <view class="record-btn {{currentIndex==idlist.length-1 && resList.length==idlist.length ? 'undis' : ''}}">
+          <view class="flex flex-center" style="width: 100%;align-items:flex-end;">
+            <view class="flex-item flex-average" bindtap="playMyRecord"><text class="iconfont icon-pindu"></text><text class="text-small">我的录音</text></view>
+            <view class="flex-item flex-average" bindlongpress="startRecord" bindtouchend="stopRecord"><text class="iconfont {{isRecording ? 'icon-app_yinpin_luyinzhong text-red' : 'icon-luyin2'}} record"></text><text class="text-small">{{isRecording ? '松手测评' : '长按录音'}}</text></view>
+            <view class="flex-item flex-average" bindtap="nextword"><text class="iconfont icon-youjiantou"></text><text class="text-small">下一个</text></view>
+          </view>
+        </view>
+				<button wx:if="{{!showResult && currentIndex==idlist.length-1 && resList.length==idlist.length}}" class="button margin-top" bindtap="showResult">查看练习结果</button>
+      </view>
+      <!--//录音-->
+
+		</view>
+	</view>
+</view>

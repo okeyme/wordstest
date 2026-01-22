@@ -1,0 +1,30 @@
+<view class="container">
+  <view class="list">
+    <!-- 列表项循环 -->
+    <view 
+      wx:for="{{list}}" 
+      wx:key="index"
+      class="list-item"
+      style="width: calc(100% + {{menuWidth}}px); transform: translateX({{itemTranslate[index]}}px);"
+      bindtouchstart="touchStart" 
+      bindtouchmove="touchMove" 
+      bindtouchend="touchEnd"
+      data-index="{{index}}"
+    >
+      <!-- 主内容区域 -->
+      <view class="item-content">
+        <text>{{item.text}}</text>
+      </view>
+      
+      <!-- 右滑菜单区域 -->
+      <view class="item-menu">
+        <view class="menu-btn collect" bindtap="handleCollect" data-index="{{index}}">
+          收藏
+        </view>
+        <view class="menu-btn delete" bindtap="handleDelete" data-index="{{index}}">
+          删除
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

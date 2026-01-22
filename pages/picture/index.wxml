@@ -1,0 +1,16 @@
+<!--pages/picture/index.wxml-->
+<import src="../wordlearn/header.wxml"/>
+<template is="wordlearn_header" data="{{headerName:headerName}}"/>
+<scroll-view scroll-y="true" style="width: 100%; height:100vh;" type="custom">
+<view style="height: {{scrollTop}}px;"></view>
+<view style="padding: 10rpx;">
+	<view class="picture-content flex-row-wrap text-center">
+		<view class="flex-view-item4" wx:for="{{classArr}}" wx:key="unique">
+			<view class="picture-item" data-index="{{item.id}}" bindtap="golist">
+				<view class="pic"><image src="https://bossbell.com/miniprogram/360e/static/icon/{{item.pic}}" mode="heightFix"></image></view>
+				<view>{{item.name}}</view>
+			</view>
+		</view>
+	</view>
+</view>
+</scroll-view>

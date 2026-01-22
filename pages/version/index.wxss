@@ -1,0 +1,121 @@
+/* pages/version/index.wxss */
+.header{background-color: #2bd9c5;height:170rpx;}
+
+.version-content{ height: 100%;}
+.version-txtlist .version-txtitem view{padding:8rpx 10rpx;}
+.version-txtitem .active{
+	background-image: linear-gradient(to right,#2bd9c5, #ffffff);
+  height: 100%; /* 设置为100%或者你需要的高度 */
+  width: 92%; /* 设置为100%或者你需要的宽度 */
+	 text-indent: 10rpx;
+}
+.item2{ display: flex; height: 100%;}
+.version-txtitem{ position: relative;}
+.version-txtitem .new{ position:absolute; right: 8px;top:50%;margin-top:-8px; height: 16px; width:16px;}
+.flex-row-wrap{align-content: flex-start;}
+.version-block{margin-bottom: 20px; }
+.version-title{font-weight: bold;}
+.version-item image{width:100%;}
+.version-item{margin-bottom:30rpx; text-align: center;}
+.version-item .picveiw{position: relative;width:95%;border:2px solid white;}
+.version-item.selected .picveiw{border-color:#2bd9c5;}
+.version-item .picveiw .new{ position: absolute;bottom:0;width:100%;text-align:center; background-color:#6f04fa; color: white;font-size: 12px;padding:2px 0;}
+
+/*==tab导航样式==*/
+.tab-scroll {
+  height: 100rpx;
+  width: 100%;
+  background-color: #fff;
+	border-bottom: 1rpx solid #eee;
+	white-space: nowrap;
+	z-index: 100;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.content-swiper {
+	width: 100%;
+  flex: 1; /* 占据剩余空间 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-y: auto; /* 如果内容超出，允许滚动 */
+}
+.tab-item-wrapper {
+  display: inline-flex;
+  padding: 0 30rpx;
+}
+.tab-item {
+  display: inline-block;
+  height: 100rpx;
+  line-height: 100rpx;
+  padding: 0 30rpx;
+  position: relative;
+  font-size: 32rpx;
+  color: #666;
+}
+
+.tab-item.active {
+  color: #2bd9c5;
+  font-weight: bold;
+}
+.indicator {
+  display: none;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60rpx;
+  height: 6rpx;
+  border-radius: 3rpx;
+  background-color: #2bd9c5;
+}
+
+.indicator.show {
+  display: block;
+}
+
+
+/* 骨架屏样式 */
+.skeleton-header {
+  height: 80rpx;
+  background: linear-gradient(90deg, #f2f2f2 25%, #e6e6e6 50%, #f2f2f2 75%);
+  background-size: 400% 100%;
+  border-radius: 8rpx;
+  margin-bottom: 30rpx;
+  animation: skeleton-loading 1.5s infinite;
+}
+
+.skeleton-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.skeleton-item {
+  width: 48%;
+  margin-bottom: 30rpx;
+}
+
+.skeleton-img {
+  height: 200rpx;
+  background: linear-gradient(90deg, #f2f2f2 25%, #e6e6e6 50%, #f2f2f2 75%);
+  background-size: 400% 100%;
+  border-radius: 8rpx;
+  animation: skeleton-loading 1.5s infinite;
+}
+
+.skeleton-text {
+  height: 40rpx;
+  margin-top: 20rpx;
+  background: linear-gradient(90deg, #f2f2f2 25%, #e6e6e6 50%, #f2f2f2 75%);
+  background-size: 400% 100%;
+  border-radius: 4rpx;
+  animation: skeleton-loading 1.5s infinite;
+}
+
+@keyframes skeleton-loading {
+  0% { background-position: 100% 50%; }
+  100% { background-position: 0 50%; }
+}

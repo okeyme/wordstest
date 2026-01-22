@@ -1,0 +1,30 @@
+<view class="flex-container page-background">
+	<header title="单词学习"></header>
+	<view class="bottom-section-flex">
+		<view class="container">
+			<view class="model-progress grid">
+				<view class="">当前：{{currentIndex+1}}/{{shufflist.length}}</view>
+				<view class="">错误：{{errorCount}}</view>
+				<view class="">用时：{{formattedTime}}</view>
+			</view>
+			<!-- 出题-->
+			<view class="item-container" wx:if="{{showResult ? '' : 'undis'}}">
+				<view class="item-list">
+					<view class="item-title height-large text-center {{fadeClass}}">{{shufflist[currentIndex].word}}</view>
+					<view class="item-options-button flex-nowidth {{shufflist[currentIndex].selected==item ? 'selected' : ''}} {{shufflist[currentIndex].audio==item ? 'correct' : 'wrong'}}" wx:for="{{optionList}}" wx:key="index" data-index="{{index}}" data-item="{{item}}" >
+						<view class="flex-item wordaudio" catchtap="playCurrentWord" data-index="{{index}}" data-item="{{item}}"><text class="iconfont {{playIndex==index && isPlaying ? 'icon-yinliang-F' : 'icon-yinliang-L'}}"></text></view>
+						<view class="flex-item flex-average" data-index="{{index}}" data-item="{{item}}" catchtap="selectOption">{{abcList[index]}}</view>
+					</view>
+				</view>
+			</view>
+
+			<view class="result-container" wx:if="{{showResult ? 'undis' : ''}}">
+				<view class="result-list" wx:for="{{shufflist}}" wx:key="unique" wx:for-index="idx" wx:for-item="val">
+					{{val.word}} <text class="text-gray">{{val.translate}}</text><text class="iconfont {{playIndex==idx && isPlaying ? 'icon-yinliang-F' : 'icon-yinliang-L'}} margin-left" catchtap="playCurrentWord" data-index="{{idx}}" data-item="{{val.audio}}"></text> <text class="iconfont {{(val.selected!=='' && val.selected==val.audio) ? 'icon-duicuo1' : 'icon-duicuo2'}}"></text>
+				</view>
+				<button class="button" bindtap="tryAgain">再练一次</button>
+			</view>
+
+		</view>
+	</view>
+</view>

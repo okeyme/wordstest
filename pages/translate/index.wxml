@@ -1,0 +1,47 @@
+<!--pages/translate/index.wxml-->
+<view class="flex-container page-background">
+	<header headerName="翻译"></header>
+	<view class="bottom-section-flex">
+			<scroll-view scroll-y class="scrollview" style="width: 100%;" type="custom">
+				<view class="text-center">
+					<view style="height: 20rpx;"></view>
+					<view class="view-group">
+						<view class="view-button active" bindtap="gotextTranslate">文本翻译</view>
+						<view class="view-button" bindtap="govoiceTranslate">语音翻译</view>
+						<view class="view-button" bindtap="goimageTranslate">图片翻译</view>
+					</view>
+				</view>
+				<view class="container translate">
+					<view class="textarea margin-top"><textarea placeholder="输入中文或英文..." maxlength="200" class="radius-big" bindblur="getTextarea"></textarea></view>
+					<view class="margin-top"><button class="button" bindtap="doTranslate"><text class="icon-retweet"></text> 翻译</button></view>
+				</view>
+
+				<view class="container margin-top {{dataList.length>0 ? '' : 'undis'}}">
+					<view class="showtranslate">
+						<view class="transalte-item flex {{audioidx==-1 && audioIndex==index ? 'active' : ''}}" wx:for="{{dataList}}" wx:key="unique">
+							<view class="item2 wordtext">{{item.translate}}</view>
+							<view class="item2 wordaudio" catchtap="wordAudio" data-index="{{index}}"><view class="image"></view></view>
+						</view>
+					</view>
+				</view>
+
+				<view class="container {{TextHistory.length>0 ? '' : 'undis'}}">
+				<view class="history margin-top">
+						<view class="container text-bold"><text class="icon-history"></text> 历史记录</view>
+						<block wx:for="{{TextHistory}}" wx:for-index="idx" wx:for-item="itemName" wx:key="unique">
+						<view class="result container">
+								<view wx:for="{{itemName}}" wx:key="unique" class="result-item">
+									<view class="context">{{item.content}}
+										<text wx:if="{{item.lang=='en2zh-CHS'}}" data-idx="{{idx}}" data-index="{{index}}" class="image {{(audioidx==idx && audioIndex==index) ? 'active' : ''}}" data-index="{{index}}" bindtap="wordAudio2"></text>
+									</view>
+									<view class="tranContent">{{item.translate}}
+										<text wx:if="{{item.lang=='zh-CHS2en'}}" data-idx="{{idx}}" data-index="{{index}}" class="image {{(audioidx==idx && audioIndex==index) ? 'active' : ''}}" data-index="{{index}}" bindtap="wordAudio2"></text>
+									</view>
+								</view>
+						</view>
+						</block>
+				</view>
+				</view>
+			</scroll-view>
+	</view>
+</view>

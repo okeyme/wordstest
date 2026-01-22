@@ -1,0 +1,48 @@
+<view class="flex-container page-background">
+	<header headerName="翻译"></header>
+	<view class="bottom-section-flex">
+		<view class="nested-container">
+			<view class="nested-bottom-section">
+			<scroll-view id="scroll-content"
+				scroll-top="{{scroll_top}}"
+				scroll-y="true"
+				class="dialog-part"
+				scroll-into-view="translate-{{toView}}"
+				enable-back-to-top="true"
+				scroll-with-animation="true" style="width: 100%;height:100%;">
+				<view class="text-center">
+					<view style="height: 20rpx;"></view>
+					<view class="view-group">
+						<view class="view-button" bindtap="gotextTranslate">文本翻译</view>
+						<view class="view-button active" bindtap="govoiceTranslate">语音翻译</view>
+						<view class="view-button" bindtap="goimageTranslate">图片翻译</view>
+					</view>
+				</view>
+				<view class="dialog-wrap" id="translate-empty" wx:if="{{!recording && dialogList.length == 0}}">
+					<result-bubble item="{{initTranslate}}" record-status="0"></result-bubble>
+				</view>
+				<view wx:for="{{dialogList}}" wx:key="id" class="dialog-wrap" data-index="{{index}}" catchmodaldelete="deleteItem">
+					<result-bubble item="{{item}}"
+						edit-show="{{index==dialogList.length-1}}"
+						index="{{index}}"
+						current-translate-voice="{{currentTranslateVoice}}"
+						bindtranslate="translateTextAction"
+						bindexpired="expiredAction"></result-bubble>
+				</view>
+				<view class="dialog-wrap" id="translate-recording" wx:if="{{recording}}">
+					<result-bubble item="{{currentTranslate}}" record-status="{{recordStatus}}"></result-bubble>
+				</view>
+				<view id="translate-fake"></view>
+
+			</scroll-view>
+			</view>
+			<view class="nested-top-section">
+				<view class="foot-group" catchlongpress="catchTapEvent">
+					<bottom-button button-disabled="{{bottomButtonDisabled}}"
+						bindrecordstart="streamRecord"
+						bindrecordend="streamRecordEnd"></bottom-button>
+				</view>
+			</view>
+		</view>
+	</view>
+</view>

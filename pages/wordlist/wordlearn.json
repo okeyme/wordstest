@@ -1,0 +1,11 @@
+{
+	"usingComponents": {
+		"header": "/components/header/index",
+		"word-display": "/components/word-display/word-display",
+    "spell-practice": "/components/spell-practice/spell-practice",
+    "custom-keyboard": "/components/custom-keyboard/custom-keyboard",
+    "phonogram-practice": "/components/phonogram-practice/phonogram-practice",
+    "example-display": "/components/example-display/example-display",
+		"wordspeak": "/components/wordspeak/wordspeak"
+	}
+}

@@ -1,0 +1,35 @@
+<wxs src="../../utils/array.wxs" module="array" />
+<view class="flex-container">
+	<header title="单词学习"></header>
+	<view class="bottom-section-flex">
+		<view class="container">
+			<!-- 游戏说明 -->
+			<view class="desc text-center">点击单词，再点击对应释义，配对成功则消除，错误则提示~</view>
+
+			<!-- 单词 & 释义卡片容器 -->
+			<view class="card-container grid" wx:if="{{!showResult}}">
+				<view 
+					wx:for="{{mixedList}}" 
+					wx:key="index" 
+					class="card {{item.type === 'word' ? 'word-card' : 'trans-card'}} {{item.status}} {{item.selected ? 'selected' : ''}} {{item.showValue=='' ? 'noValue' : ''}}"
+					bindtap="handleCardTap"
+					data-type="{{item.type}}"
+					data-value="{{item.value}}"
+					data-index="{{index}}">
+					<text>{{item.showValue}}</text>
+				</view>
+			</view>
+
+			<!-- 结果弹窗 -->
+			<view class="result-container" wx:if="{{showResult}}">
+				<block wx:for="{{mixedList}}" wx:key="unique" wx:for-index="idx" wx:for-item="val">
+				<view class="result-list" wx:if="{{val.type=='word'}}">
+					{{val.value}} <text class="text-gray">{{list[val.originalIndex].translate}}</text> <text class="iconfont {{array.includes(errorList, idx) ? 'icon-duicuo2' : 'icon-duicuo1'}}"></text>
+				</view>
+				</block>
+				<button class="button" bindtap="restartGame">再练一次</button>
+			</view>
+
+		</view>
+	</view>
+</view>
