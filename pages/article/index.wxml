@@ -1,0 +1,46 @@
+<!--pages/article/index.wxml-->
+<wxs src="../../utils/replaceBr.wxs" module="filter" />
+<view class="header header{{classid}}">
+		<view class="header-top"></view>
+		<view class="flex header-center header-nav">
+				<view class="item3 text-left"><text class="icon-chevron-left text-center" bindtap="goBack"></text><text class="icon-home text-center" bindtap="goHome"></text></view>
+				<view class="item3 text-center">英语文库</view>
+				<view class="item3"></view>
+		</view>
+	</view>
+<!--内容-->
+	<view style="height: {{scrollTop}}px;"></view>
+	<view class="flex-row-wrap text-center article-title">
+		<view class="flex-view-item3 {{currentTab==index ? 'active' : ''}}" wx:for="{{orderArr}}" wx:key="unique" bindtap="swiperChange2" data-index="{{index}}">{{item.name}}</view>
+	</view>
+	<view style="height:20rpx;background-color: #efeff4;"></view>
+  <swiper current="{{currentTab}}" style="height: {{scrollHeight}}px;" bindchange="swiperChange">
+		<block wx:for="{{orderArr}}" wx:for-index="idx" wx:for-item="itm" wx:key="unique">
+		<swiper-item>
+			<scroll-view scroll-y="true" style="width: 100%; height: {{scrollHeight}}px;" type="custom">
+				<view class="article-list container padding-big-top {{articleIndex>=0 ? 'undis' : ''}}">
+					<view class="itemlist flex-row-wrap" wx:for="{{articleArr[itm.id]}}" wx:key="unique" bindtap="showDetail" data-index="{{index}}">
+						<view class="flex-view-item picurl"><image src="https://bossbell.com/{{item.picurl}}" mode="widthFix"></image></view>
+						<view class="flex-view-item description">
+							<view class="h3">{{item.title}}</view>
+							<view class="height">{{item.description}}</view>
+						</view>
+					</view>
+				</view>
+				<!--//detail-->
+				<view class="detail padding-big {{(articleIndex>=0 && currentTab==idx) ? '' : 'undis'}}">
+						<view class="detail-title text-big text-bold text-center padding-big-top padding-big-bottom">{{articleArr[idx][articleIndex].title}}</view>
+						<view class="detail-title border-bottom padding-bottom text-gray"><text>阅读：</text><text>{{articleArr[idx][articleIndex].hits}}</text>
+						<text class="icon-mail-reply back" bindtap="showList"> 返回列表</text>
+						</view>
+						<view class="detail-content margin-big-top" style="color: #333333;">
+							<rich-text nodes="{{filter.replaceHtml(articleArr[idx][articleIndex].content)}}"></rich-text
+>
+						</view>
+				</view>
+				<!--//detail-->
+			</scroll-view>
+		</swiper-item>
+		</block>
+	</swiper>
+  <!--内容-->

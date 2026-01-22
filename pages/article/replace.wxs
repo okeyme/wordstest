@@ -1,0 +1,9 @@
+var replaceHtml = function(str){
+	let regex = '/\/>/g';  // 匹配所有数字的正则表达式
+	let replacedStr = str.replace(regex, '>');
+	return replacedStr;
+}
+
+module.exports = {
+  replaceHtml: replaceHtml
+}

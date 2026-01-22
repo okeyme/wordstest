@@ -1,0 +1,17 @@
+/* pages/article/index.wxss */
+.header{background-color: #f57d7c;}
+.article-title{border-bottom:1px solid #ccc;}
+.article-title .flex-view-item3{ height: 80rpx; line-height: 80rpx;}
+.article-title .flex-view-item3.active{color: #f57d7c;
+	border-bottom: 2px solid #f57d7c; font-weight: bold;}
+.itemlist{border-bottom: 1px solid #ccc; padding:20rpx 0;}
+.itemlist .picurl{width:30%;}
+.itemlist .picurl image{width:100%;}
+.itemlist .description{width:70%;}
+.itemlist .description .h3,.itemlist .description .height{ padding-left:20rpx;}
+.itemlist .description .h3{ font-weight: bold;}
+.itemlist .description .height{ color: #807e7e; font-size: 13px;}
+
+.detail-title{ position: relative; line-height: 64rpx;}
+.detail-title .back{ position: absolute; right:0;top:0; background-color:#f57d7c; border-radius: 32rpx; color: white; font-size: 13px; padding: 10rpx 15rpx; line-height: 46rpx;}
+.detail-content img{max-width: 100%;}
