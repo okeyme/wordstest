@@ -1,0 +1,9 @@
+var replaceHtml = function(str){
+	var reg = getRegExp('/<img/', 'gi');
+	str = str.replace(reg,'<img style="max-width:100%"');
+	return str;
+}
+
+module.exports = {
+  replaceHtml: replaceHtml
+}

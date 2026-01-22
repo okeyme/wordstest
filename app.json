@@ -1,0 +1,118 @@
+{
+	"pages": [
+		"pages/index/index",
+		"pages/my/index",
+		"pages/version/index",
+		"pages/wordlist/index",
+		"pages/translate/index",
+		"pages/translate/voice",
+		"pages/translate/image",
+		"components/testc/index",
+		"components/home-icon/index",
+		"components/headers/header",
+		"components/header/index",
+		"pages/wordlist/wordlearn",
+		"pages/wordlist/worddetail",
+		"pages/wordlist/wordwrite",
+		"pages/wordlist/wordanipop",
+		"pages/wordlist/wordaudio",
+		"pages/wordlist/translateword",
+		"pages/wordlist/test",
+		"pages/my/datetime",
+		"pages/my/wordrecord",
+		"pages/my/worderror",
+		"pages/my/wordcollect",
+		"pages/wordlist/wordtranslate",
+		"pages/my/execrecord",
+		"pages/my/myplan",
+		"pages/my/reviseword",
+		"pages/my/wordrevise",
+		"pages/index/models",
+		"pages/index/search",
+		"pages/my/member",
+		"pages/wordlist/category",
+		"pages/wordlist/translateaudio",
+		"pages/wordlist/listenword",
+		"pages/wordlist/listentranslate",
+		"pages/wordlist/wordspell",
+		"pages/wordlist/translatespell",
+		"pages/wordlist/listenspell",
+		"pages/listen/index",
+		"pages/listen/listen",
+		"pages/listen/text",
+		"pages/listen/image",
+		"pages/yinbiao/abc",
+		"pages/yinbiao/pindu",
+		"pages/yinbiao/yinbiao",
+		"pages/yinbiao/pindudetail",
+		"pages/yinbiao/yinbiaodetail",
+		"pages/wordlist/wordspeak",
+		"pages/my/invite",
+		"pages/my/memberconvert",
+		"pages/login/index",
+		"pages/index/searchdetail",
+		"pages/wordlist/singlespeak",
+		"pages/translate/voiceedit",
+		"pages/listen/title",
+		"pages/my/feedback",
+		"components/word-display/word-display",
+		"components/spell-practice/spell-practice",
+		"components/phonogram-practice/phonogram-practice",
+		"components/example-display/example-display",
+		"components/word-search/word-seach"
+	],
+	"tabBar": {
+		"color": "#000000",
+		"selectedColor": "#2fc6a6",
+		"borderStyle": "white",
+		"backgroundColor": "#ffffff",
+		"list": [
+			{
+				"pagePath": "pages/index/index",
+				"text": "首页",
+				"iconPath": "static/images/index.png",
+				"selectedIconPath": "static/images/index_active.png"
+			},
+			{
+				"pagePath": "pages/index/models",
+				"text": "训练",
+				"iconPath": "static/images/models.png",
+				"selectedIconPath": "static/images/models_active.png"
+			},
+			{
+				"pagePath": "pages/my/index",
+				"text": "我的",
+				"iconPath": "static/images/my.png",
+				"selectedIconPath": "static/images/my_active.png"
+			}
+		]
+	},
+	"window": {
+		"backgroundTextStyle": "light",
+		"navigationBarBackgroundColor": "#fff",
+		"navigationBarTitleText": "同步英语",
+		"navigationBarTextStyle": "black"
+	},
+	"renderer": "skyline",
+	"rendererOptions": {
+		"skyline": {
+			"enableExperimentalFeatures": []
+		}
+	},
+	"componentFramework": "glass-easel",
+	"lazyCodeLoading": "requiredComponents",
+	"sitemapLocation": "sitemap.json",
+	"useExtendedLib": {
+		"kbone": true,
+		"weui": true
+	},
+	"requiredBackgroundModes": [
+		"audio"
+	],
+	"plugins": {
+		"WechatSI": {
+			"version": "0.3.6",
+			"provider": ""
+		}
+	}
+}

@@ -1,0 +1,19 @@
+// 定义WXS工具函数
+var arrayUtil = {
+  // 判断数组是否包含指定元素
+  includes: function(arr, value) {
+    if (!arr || arr.length === 0) return false;
+    for (var i = 0; i < arr.length; i++) {
+      // 注意：这里使用严格相等===，需确保类型一致
+      if (arr[i] === value) {
+        return true;
+      }
+    }
+    return false;
+  }
+};
+
+// 导出工具函数
+module.exports = {
+  includes: arrayUtil.includes
+};
