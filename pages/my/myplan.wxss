@@ -1,0 +1,58 @@
+/* pages/index/index.wxss */
+.panel{ border-radius: 32rpx;}
+.panel-head,.panel-foot{ background-color: white; border: none; padding: 20rpx 0; border-radius: 32rpx;}
+.panel-head{ position: relative;}
+.title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+.panel-head .title{ text-indent: 10px;}
+.ratio-text {
+  font-size: 14px; 
+	color: #999; 
+}
+.panel-head .rage{color:#2fc6a6;}
+.pop .active{background-color:#2fc6a6; color:white;}
+.picker-container {
+  height: 150px; /* 控制可见区域高度 */
+	position: relative;
+	background-color: rgb(235, 235, 235);
+	border:solid 1px #ddd; margin:0 10px;
+}
+.picker-view{ height: 100%;}
+
+.option-item {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 40px; /* 与 indicator 高度一致 */
+}
+
+
+.word-count text:first-child {
+  font-size: 12px;
+  color: #999;
+}
+
+.word-count .value {
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+}
+
+.footer {
+  margin-top: 20px;
+  padding-top: 10px;
+  border-top: 1px solid #eee;
+  font-size: 14px;
+  color: #666;
+}
+
+.date-value {
+  color: #333;
+  font-weight: 500;
+}
+
+.pop{ position: absolute; top: 40px; padding: 10px; background-color:white; border: 1px solid #ddd; z-index: 2;right: 0;}
+.pop text{background-color: rgb(230, 227, 227); border: 1px solid #ddd;padding:0 5px; }

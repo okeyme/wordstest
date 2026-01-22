@@ -1,0 +1,67 @@
+<view class="container">
+  <!-- 顶部导航栏 -->
+  <view class="navbar flex flex-center">
+    <view class="flex-item flex-average flex-left"><text class="iconfont icon-fanhui text-center margin-left" bindtap="goBack"></text></view>
+    <view class="flex-item navbar-title">开通会员</view>
+    <view class="flex-item flex-average"></view>
+  </view>
+
+  <!-- 会员卡片 -->
+  <view class="membership-card">
+    <view class="card-header">
+      <view class="card-badge">年度会员</view>
+      <view class="card-price">
+        <text class="price-number">¥98</text>
+        <text class="price-period">/年</text>
+      </view>
+      <view class="price-saving">
+        平均每月仅¥8.16。
+      </view>
+    </view>
+    
+    <view class="card-divider"></view>
+    
+    <view class="card-benefits">
+      <view class="benefits-title">会员专享权益</view>
+      <view class="benefits-list">
+        <view class="benefit-item">
+          <icon class="benefit-icon" type="success" color="#07C160"></icon>
+          <text class="benefit-text">全部内容无限制使用</text>
+        </view>
+        <view class="benefit-item">
+          <icon class="benefit-icon" type="success" color="#07C160"></icon>
+          <text class="benefit-text">加入学习群享专业教师解惑答疑</text>
+        </view>
+        <view class="benefit-item">
+          <icon class="benefit-icon" type="success" color="#07C160"></icon>
+          <text class="benefit-text">会员专属活动优先参与</text>
+        </view>
+        <view class="benefit-item">
+          <icon class="benefit-icon" type="success" color="#07C160"></icon>
+          <text class="benefit-text">新功能抢先体验</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 支付按钮 -->
+  <button 
+    class="pay-button" 
+    bindtap="handlePay"
+    loading="{{isLoading}}"
+  >
+    {{btnDesc}}
+  </button>
+
+  <!-- 说明信息 -->
+  <view class="info-text">
+    <text>支付即表示同意</text>
+    <navigator url="/pages/agreement/agreement" class="link-text">《会员服务协议》</navigator>
+    <text>和</text>
+    <navigator url="/pages/privacy/privacy" class="link-text">《隐私政策》</navigator>
+  </view>
+  
+  <view class="wechat-pay-logo">
+    <image src="https://w.360e.cn/miniapi/Public/images/wechat_pay.png" mode="widthFix" class="logo-img" />
+  </view>
+</view>

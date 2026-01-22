@@ -1,0 +1,36 @@
+<view class="page-background flex-container">
+	<header headerName="邀请好友"></header>
+	<view class="bottom-section" style="width: 100%;">
+		<view class="invite-friend">
+			<view class="text-left desc">
+				<text class="text-bold">邀请好友得会员：</text>
+				<text>1、邀请好友注册，你将获得3天会员奖励</text>
+				<text>2、好友购买会员，你将获取30天会员奖励</text>
+			</view>
+			<view class="text-center margin-top">
+				<button class="button" open-type="share">邀请好友</button>
+			</view>
+		</view>
+		<view class="myinvite" style="width:100%;">
+			<view class="myinvite-title"><text class="guide-symbol"></text> 我的邀请</view>
+			<view class="myinvite-count flex flex-between">
+				<view class="flex-item">累计邀请：{{invite.counts}}人</view>
+				<view class="flex-item">开通会员：{{invite.members}}人</view>
+				<view class="flex-item">累计奖励：{{invite.reward_days}}天</view>
+			</view>
+
+			<view class="myinvite-title margin-big-top"><text class="guide-symbol"></text> 我的奖励</view>
+			<view class="invitelist border-bottom text-gray flex flex-between">
+				<view class="flex-item">邀请的好友</view>
+				<view class="flex-item">奖励时长</view>
+			</view>
+			<view class="invitelist flex flex-between" wx:for="{{invite.list}}" wx:key="unique">
+				<view class="flex-item">{{item.invite_nickname}}</view>
+				<view class="flex-item">{{item.reward_type==1 ? '注册' : '开通会员'}}，+{{item.reward_days}}天</view>
+			</view>
+			<view class="text-center margin-top" wx:if="{{invite.list.length==0}}">暂无</view>
+		</view>
+		
+
+	</view>
+</view>

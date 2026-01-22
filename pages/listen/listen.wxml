@@ -1,0 +1,40 @@
+<!--pages/listen/image.wxml-->
+<view class="gradient-background">
+	<view class="header">
+		<view class="header-top"></view>
+		<view class="flex header-center header-nav">
+				<view class="item3 text-left"><text class="icon-chevron-left text-center" bindtap="goBack"></text><text class="icon-home text-center" bindtap="goHome"></text></view>
+				<view class="item3 text-center">课文听力Title</view>
+				<view class="item3"></view>
+		</view>
+	</view>
+	<!--//内容区-->
+	<scroll-view scroll-y style="width: 100%; height: {{scrollHeight}}px;" type="custom">
+		<view class="listen-content">
+			<view style="height: {{scrollTop}}px;"></view>
+			<view class="container">
+					<view wx:for="{{titleArr}}" wx:key="unique" class="title-item {{audioIndex==index ? 'on' : ''}}" data-index="{{index}}" bindtap="playAudio"><text class="icon-play-circle"></text> {{item}}</view>
+			</view>
+		</view>
+	</scroll-view>
+	<!--//播放器-->
+	<view class="playlist">
+			<view class="playprogress"><progress class="music-progress" percent="{{currentTime / duration * 100}}" activeColor="#f29ec2" bindchange="onProgressChange" /></view>
+			<view class="flex playcontrol">
+				<view class="item4 autopage">
+					<image src="/static/images/{{autopage ? 'autopage-auto.png' : 'autopage.png'}}" mode="scaleToFill" bindtap="autoPage"></image>
+				</view>
+				<view class="item4"><image src="/static/images/24gl-previousCircle.png" bindtap="backgroundAudioManagerPrev" mode="scaleToFill"></image></view>
+				<view class="item4">
+					<image src="/static/images/{{backgroundAudioStatus ? '24gl-pauseCircle.png' : '24gl-playCircle.png'}}" bindtap="playAudio2" mode="scaleToFill"></image>
+				</view>
+				<view class="item4"><image src="/static/images/24gl-nextCircle.png" bindtap="backgroundAudioManagerNext" mode="scaleToFill"></image></view>
+			</view>
+		<view>
+		</view>	
+	</view>
+</view>
+
+<view class="loading {{loading ? '' : 'undis'}}">
+	<text class="icon-spinner rotate"></text> 加载音频..
+</view>

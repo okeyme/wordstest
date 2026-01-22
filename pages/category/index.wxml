@@ -1,0 +1,22 @@
+<!--pages/category/index.wxml-->
+	<view class="header header{{classid}}">
+		<view class="header-top"></view>
+		<view class="flex header-center header-nav">
+				<view class="item3 text-left"><text class="icon-chevron-left text-center" bindtap="goBack"></text><text class="icon-home text-center" bindtap="goHome"></text></view>
+				<view class="item3 text-center">单元列表</view>
+				<view class="item3"></view>
+		</view>
+	</view>
+<!--内容-->
+	<view style="height: {{scrollTop}}px;"></view>
+  <scroll-view scroll-y="true" style="width: 100%; height: {{scrollHeight}}px;" type="custom">
+			<view class="container category-list">
+				<block wx:for="{{catearray}}" wx:key="unique">
+					<view class="category-item" data-cid="{{index}}" bindtap="goWordlist"><text class="icon-book"></text> {{item}}</view>
+				</block>
+			</view>
+  </scroll-view>
+  <!--内容-->
+
+
+

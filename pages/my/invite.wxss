@@ -1,0 +1,19 @@
+
+.profile-header {
+  /* 核心：渐变背景 + 底部弧度 */
+  background: linear-gradient(135deg, #99f3c3, #2fc6a6); /* 从浅绿到深绿的渐变 */
+	height:162rpx;
+	font-size: 18px;
+	font-weight: 600;
+  color: #fff; 
+}
+.profile-header .profile-title{ margin-top:90rpx;}
+
+.invite-friend{padding:50rpx; width:100%; box-sizing: border-box;}
+.invite-friend text{width:100%; display: block;}
+.invite-friend .button{ display: inline-block; background: linear-gradient(135deg, rgb(255, 157, 92), #f60);}
+
+.myinvite{width:100%; box-sizing: border-box; padding:20rpx;}
+.myinvite-title{ font-weight: bold;}
+.myinvite-title .guide-symbol {width:5px;height:13px; border-radius: 25px;background-color:#2fc6a6;margin-right: 5px; display: inline-block;}
+.invitelist{margin:10rpx 0;}

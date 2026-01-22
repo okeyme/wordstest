@@ -1,0 +1,28 @@
+<view class="page-background flex-container">
+	<view class="profile-header top-section">
+			<text class="profile-title">训练模块</text>
+	</view>
+	<view class="bottom-section" style="width: 100%;">
+		<view style="width: 100%;"><image src="https://w.360e.cn/miniapi/Public/images/banner1.jpg" mode="widthFix" style="width: 100%;"></image></view>
+		<view class="models-main">
+				<view class="models">
+					<view class="grid">
+						<view class="grid-item" catchtap="goWordWrite"><text class="iconfont icon-lianxi_"></text><text class="txts">报听写</text></view>
+						<view class="grid-item" catchtap="goWordSpeak"><text class="iconfont icon-maikefeng-XDY"></text><text class="txts">发音测评</text></view>
+						<view class="grid-item" catchtap="goWordAnipop"><text class="iconfont icon-lianliankan"></text><text class="txts">单词消消乐</text></view>
+						<view class="grid-item" catchtap="goWordTranslate"><text class="iconfont clip1 icon-kancixuanze"></text><text class="txts">看词择义</text></view>
+						<view class="grid-item" catchtap="goWordAudio"><text class="iconfont clip1 icon-kanyixuanyin"></text><text class="txts">看词选音</text></view>
+						<view class="grid-item" catchtap="goWordSpell"><text class="iconfont clip1 icon-pincou"></text><text class="txts">滚动拼词</text></view>
+						<view class="grid-item" catchtap="goTranslateWord"><text class="iconfont clip2 icon-xuancizhushouchazhao"></text><text class="txts">看义选词</text></view>
+						<view class="grid-item" catchtap="goTranslateAudio"><text class="iconfont clip2 icon-wodeluyin"></text><text class="txts">看义选音</text></view>
+						<view class="grid-item" catchtap="goTranslateSepll"><text class="iconfont clip2 icon-pincou"></text><text class="txts">看义拼词</text></view>
+						<view class="grid-item" catchtap="goListenWord"><text class="iconfont clip3 icon-erji"></text><text class="txts">听音选词</text></view>
+						<view class="grid-item" catchtap="goListenTranslate"><text class="iconfont clip3 icon-zhongwenmingcheng"></text><text class="txts">听音择义</text></view>
+						<view class="grid-item" catchtap="goListenSpell"><text class="iconfont clip3 icon-pincou"></text><text class="txts">听音拼词</text></view>
+						<view class="grid-item"><button class="share-btn" catchtap="btnShare" open-type="share"><text class="iconfont icon-weixinfenxiang"></text><text class="txts">分享班群</text></button></view>
+					</view>
+				</view>
+		
+		</view>
+	</view>
+</view>

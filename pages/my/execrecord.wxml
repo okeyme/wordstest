@@ -1,0 +1,31 @@
+<view class="flex-container">
+	<header headerName="学习日历"></header>
+	<view class="bottom-section-flex">
+		<scroll-view scroll-y class="scrollview" style="width: 100%; height:100%;" type="custom" scroll-with-animation="true" scroll-into-view="{{activeTabId}}">
+		<view class="container">
+			<view class="mytoday"><text class="guide-symbol"></text> {{learn_time}}</view>
+			<view class="recordlist container">
+				<view class="recordlist-item" wx:for="{{recordlist}}" wx:key="index" wx:for-index="idx" wx:for-item="itx">
+					<view class="wordlist-title grid text-center">
+						<view class="">模块：{{modelList[itx.model].name}}</view>
+						<view class="">正确/总数：{{itx.correct+'/'+itx.count}}</view>
+						<view class="">用时：{{itx.exec_time}}</view>
+					</view>
+					<view class="wordlist grid">
+						<view wx:for="{{itx.wordexeclist}}" wx:key="unique" class="wordlist-item {{audioIndex==index ? 'active' : ''}}" data-index="{{index}}">
+							<view class="wordtext {{item.status==0 ? 'text-red' : ''}}"  data-index="{{index}}">
+								<view class="word {{showWord==false ? 'undis' : ''}}">{{list[item.wc_id].word}} </view>
+								<view class="translate text-gray {{showTranslate==false ? 'undis' : ''}}">{{list[item.wc_id].attribute}} {{list[item.wc_id].translate}}</view>
+							</view>
+							<view class="wordright">
+								<view class="wordaudio {{webAudioStatus ? 'play' : ''}}" catchtap="wordAudio" data-index="{{index}}"><view class="image"></view></view>
+							</view>
+						</view>
+					</view>
+					<view class="wordlist-btn text-center"><button class="button" catchtap="goThisWord" data-index="{{idx}}">去学习</button></view>
+				</view>
+			</view>
+		</view>
+		</scroll-view>
+	</view>
+</view>

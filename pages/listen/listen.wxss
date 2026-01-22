@@ -1,0 +1,13 @@
+/* pages/listen/listen.wxss */
+.header{background-color: #f29ec2;}
+
+.title-item {padding:20rpx 10rpx;margin-top:30rpx;line-height: 50rpx;border:1px solid #efeeee;border-radius:20rpx;background-color:white;
+	box-shadow: 2px 6px 10px 3px rgba(190, 190, 190, 0.5); }
+.title-item.on{ background-color: #f29ec2;}
+
+.playlist{position: fixed;width:100%;left:0;bottom:0;}
+.playcontrol{margin-top:10rpx;}
+.playcontrol .item4{ text-align:center;}
+.playcontrol image{width:88rpx; height: 88rpx;}
+
+.loading{ position: fixed; z-index: 999; top: 50%;left:50%; margin-left:-50px;}

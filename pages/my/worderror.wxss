@@ -1,0 +1,209 @@
+/* pages/my/wordrecord.wxss */
+/**wordlist**/
+.recordlist-item{ width: 100%; overflow: hidden;}
+.wordlist-list{ padding:0 20rpx;}
+.wordlist-item{text-indent: 10px; border-bottom: 1px solid #cccccc;padding:10px 0; transition: transform 0.3s ease;position: relative;}
+.wordlist-item .wordlist-item-content{width: 100vw;box-sizing: border-box;}
+.wordlist-item.active{  color: #11beaa; background-color:#eefaff;}
+.wordlist-item .wordtext{flex: 1;}
+.wordlist-item .wordtext .word{ font-weight: bold; font-size: 16px;}
+.wordlist-item .wordtext .translate{font-size: 12px;}
+.wordlist-item .wordright{width:70rpx;text-align: center;align-items: center; /* 垂直居中 */}
+.wordlist-item .wordaudio .image{ width:58rpx;height:48rpx;display:inline-block;background:url(https://w.360e.cn/miniapi/Public/images/sound_black.png) no-repeat center; vertical-align:middle;}
+.wordlist-item.active .wordaudio.play .image{ background-image:url(https://w.360e.cn/miniapi/Public/images/sound.gif);}
+.wordlist-item .wordright .checkboxitem{width:100%; display: flex; align-items: center; justify-content:center;}
+.wordlist-item .menu{padding-right: 10rpx;}
+
+
+
+.word-list {
+  padding: 0;
+  background: #f5f5f5;
+}
+
+/* 滑动容器 */
+.swipe-container {
+  position: relative;
+  width: 100%;
+  height: 160rpx;
+  overflow: hidden;
+  background: #fff;
+  border-bottom: 1rpx solid #e0e0e0;
+}
+
+/* 内容区域（可滑动） */
+.word-item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 30rpx;
+  box-sizing: border-box;
+  z-index: 10;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.05);
+}
+
+.word-item.disabled {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.word-item.active {
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.1);
+}
+
+/* 单词内容 */
+.word-content {
+  flex: 1;
+  padding-right: 30rpx;
+}
+
+.word {
+  font-size: 36rpx;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 8rpx;
+  line-height: 1.3;
+}
+
+.translate {
+  font-size: 28rpx;
+  color: #666;
+  line-height: 1.3;
+}
+
+/* 拖动提示 */
+.drag-hint {
+  display: flex;
+  align-items: center;
+  padding: 12rpx 20rpx;
+  /*background: rgba(0, 0, 0, 0.04);*/
+  border-radius: 30rpx;
+  font-size: 24rpx;
+  color: #999;
+  white-space: nowrap;
+}
+
+.arrow-icon {
+  margin-left: 8rpx;
+  font-size: 20rpx;
+  color: #999;
+  transform: rotate(180deg);
+  animation: arrow-blink 1.5s infinite;
+}
+
+@keyframes arrow-blink {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+
+/* 删除按钮 */
+.delete-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 120rpx;
+  height: 100%;
+  background: linear-gradient(135deg, #FF6B6B, #FF4757);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28rpx;
+  font-weight: 500;
+  z-index: 5;
+  transform: translateX(120rpx); /* 初始隐藏 */
+}
+
+.delete-text {
+  font-weight: 500;
+  letter-spacing: 1rpx;
+}
+
+/* 加载状态 */
+.loading,
+.load-more,
+.no-more,
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60rpx 0;
+  color: #999;
+  font-size: 28rpx;
+  background: #f5f5f5;
+}
+
+.empty {
+  margin-top: 100rpx;
+}
+
+/* 刷新按钮 */
+.refresh-btn {
+  position: fixed;
+  bottom: 60rpx;
+  right: 40rpx;
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #4CAF50, #45a049);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26rpx;
+  font-weight: 500;
+  box-shadow: 0 6rpx 30rpx rgba(76, 175, 80, 0.4);
+  z-index: 1000;
+}
+
+
+/* 滑动时的背景色变化 */
+.swipe-container {
+  transition: background-color 0.3s ease;
+}
+
+.swipe-container:active {
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+/* 删除动画 */
+@keyframes delete-animation {
+  0% {
+    transform: translateX(0) scale(1);
+    opacity: 1;
+    height: 160rpx;
+  }
+  50% {
+    transform: translateX(-100%) scale(0.95);
+    opacity: 0.7;
+    height: 160rpx;
+  }
+  100% {
+    transform: translateX(-100%) scale(0.95);
+    opacity: 0;
+    height: 0;
+    padding: 0;
+    margin: 0;
+  }
+}
+
+.deleting {
+  animation: delete-animation 0.3s forwards;
+}
+
+
+.total-count {
+	margin-top:15rpx;
+	text-align: center;
+  border-radius: 50rpx;
+  font-size: 26rpx;
+  color: #666;
+}
+.word-content .image{ margin-left:15rpx;width:58rpx;height:48rpx;display:inline-block;background:url(https://w.360e.cn/miniapi/Public/images/sound_black.png) no-repeat center; vertical-align:top;}

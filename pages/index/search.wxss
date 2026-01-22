@@ -1,0 +1,26 @@
+/* pages/index/search.wxss */
+.search_view{ position: relative; z-index: 1;}
+.search_view .icon-cuowu{ position: absolute; right: 20rpx; top: 16rpx; z-index: 2;}
+
+.search-input {
+  flex: 1;
+  font-size: 16px;
+  height: 38px; color:#2fc6a6;
+  line-height: 38px; border-radius: 16px; border: 1px solid #ccc; padding-left: 20px;
+}
+
+.search-item{ padding:0 20rpx;}
+.search-item{text-indent: 10px; border-bottom: 1px solid #cccccc;padding:10px 0;}
+.search-item.active{  color: #2fc6a6; background-color:#eefaff;}
+.search-item .wordtext .word{ font-weight: bold; font-size: 16px;}
+.search-item .wordtext .translate{font-size: 12px;}
+.search-item .wordright{align-items: center; /* 垂直居中 */}
+
+.wordaudio .image{ width:58rpx;height:48rpx;display:inline-block;background:url(https://w.360e.cn/miniapi/Public/images/sound_black.png) no-repeat center; vertical-align:middle;}
+.wordaudio.play .image{ background-image:url(https://w.360e.cn/miniapi/Public/images/sound.gif);}
+
+.searchHistory{margin-top:20px;}
+.searchHistory .tips{text-align: center; font-size: 13px; color: #cccccc;margin-bottom: 8px; position: relative;}
+.searchHistory .tips .clearhistory{position: absolute;right:5px;top:-2px;}
+.searchHistory .worditem{padding-right:10px; display:inline-block; line-height: 48px;}
+.searchHistory .worditem .word{padding:10px; height: 38px; border: 1px solid #cccccc; border-radius: 16px;}

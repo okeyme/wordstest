@@ -1,0 +1,18 @@
+/* pages/listen/text.wxss */
+.category-item {
+  display: flex;
+  align-items: center;
+  background-color: white; padding: 20rpx 0; border: 1px solid #e9ecf4; border-radius: 32rpx;margin-bottom: 20rpx;
+}
+.category-item .category-name{padding-left:10px;flex: 1; /* 占据剩余空间 */}
+.category-item .iconfont{padding:0 10px;}
+/* 选中状态的样式，可根据实际需求调整颜色等 */
+.category-item.active {
+	background-color: #2fc6a6; /* 选中时的边框颜色，可换成你想要的主题色 */
+	color:white;
+}
+.playlist{width:100%;}
+.playcontrol{padding:10rpx 0;}
+.playcontrol image{width:88rpx; height: 88rpx;}
+
+.playprogress{ width:100%; margin-bottom: 16rpx;}

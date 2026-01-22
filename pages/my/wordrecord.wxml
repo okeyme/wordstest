@@ -1,0 +1,23 @@
+<view class="flex-container">
+	<header headerName="学习记录"></header>
+	<view class="bottom-section-flex">
+		<scroll-view scroll-y class="scrollview" style="width: 100%; height:100%;" type="custom" scroll-with-animation="true" scroll-into-view="{{activeTabId}}">
+		<view class="container">
+			<view class="mytoday"><text class="guide-symbol"></text> {{learn_time}}</view>
+			<view class="recordlist">
+					<view class="recordlist-item" wx:for="{{recordlist}}" wx:key="index">
+						<view class="wordlist-item flex {{audioIndex==index ? 'active' : ''}}" data-index="{{index}}">
+							<view class="item2 wordtext" bindtap="goThisWord"  data-index="{{index}}">
+								<view class="word {{showWord==false ? 'undis' : ''}}">{{list[item.wc_id].word}} </view>
+								<view class="translate text-gray {{showTranslate==false ? 'undis' : ''}}">{{list[item.wc_id].attribute}} {{list[item.wc_id].translate}}</view>
+							</view>
+							<view class="item2 wordright">
+								<view class="wordaudio {{webAudioStatus ? 'play' : ''}}" catchtap="wordAudio" data-index="{{index}}"><view class="image"></view></view>
+							</view>
+					</view>
+				</view>
+			</view>
+		</view>
+		</scroll-view>
+	</view>
+</view>

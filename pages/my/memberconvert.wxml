@@ -1,0 +1,27 @@
+<view class="page-background flex-container">
+	<header headerName="会员兑换码"></header>
+	<view class="bottom-section" style="width: 100%; padding: 20rpx; box-sizing: border-box;">
+		<view class="covert-info panel">
+			<view class="text-left desc">
+				<text class="text-bold height-big">输入你在其它电商平台获得的会员码：</text>
+				<view class="search_view">
+        <input 
+        class="search-input" 
+        placeholder="请输入会员兑换码" 
+        placeholder-class="placeholder-style"
+        value="{{searchValue}}"
+        bindinput="onInputChange"></input>
+      </view>
+			</view>
+			<view class="text-center margin-top">
+				<button class="button" bindtap="memberConvert">兑换会员</button>
+			</view>
+		</view>
+		<view class="myinvite" style="width:100%;">
+			<view class="myinvite-title margin-big-top border-bottom"><text class="guide-symbol"></text> 兑换记录</view>
+			<view class="text-center margin-top">暂无</view>
+		</view>
+		
+
+	</view>
+</view>

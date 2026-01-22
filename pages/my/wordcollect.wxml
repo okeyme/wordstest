@@ -1,0 +1,89 @@
+<view class="flex-container" bindtouchstart="onPageTouchStart">
+  <header headerName="收藏本"></header>
+  <view class="bottom-section-flex">
+    <!-- 加载状态 -->
+    <view wx:if="{{isRefreshing}}" class="loading">
+      <text>刷新中...</text>
+    </view>
+    
+    <!-- 收藏列表 -->
+    <scroll-view 
+      scroll-y 
+      style="height: calc(100vh - 200rpx);"
+      class="word-list"
+      bindscrolltolower="onReachBottom"
+      lower-threshold="100"
+      refresher-enabled="{{true}}"
+      bindrefresherrefresh="onPullDownRefresh"
+      refresher-triggered="{{isRefreshing}}"
+    >
+      <!-- 总数量显示 -->
+      <view wx:if="{{totalWords > 0}}" class="total-count">
+        <text>共 {{totalWords}} 个收藏单词</text>
+      </view>
+      
+      <!-- 单词项 - 使用滑动布局 -->
+      <view 
+        wx:for="{{displayWords}}" 
+        wx:key="wc_id" 
+        class="swipe-container"
+        data-index="{{index}}"
+        data-wc_id="{{item.wc_id}}"
+      >
+        <!-- 内容区域（可滑动） -->
+        <view 
+          class="word-item {{isDeleting ? 'disabled' : ''}} {{swipedIndex === index ? 'active' : ''}}"
+          style="transform: translateX({{currentIndex === index ? slideX : (swipedIndex === index ? -deleteWidth : 0)}}rpx); transition: {{isSwiping ? 'none' : 'transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)'}}" 
+          bindtouchstart="onTouchStart" 
+          catchtouchmove="onHorizontalTouchMove"
+          bindtouchend="onTouchEnd" 
+          bindtap="onItemClick" 
+          data-index="{{index}}" 
+          data-wc_id="{{item.wc_id}}"
+        >
+          <view class="word-content">
+            <view class="word">{{item.word}}</view>
+            <view class="translate">{{item.translate}}</view>
+          </view>
+          <view class="drag-hint">
+            <!-- 音频图标 -->
+            <view 
+              class="wordaudio {{audioIndex == index ? 'play' : ''}}" 
+              catchtap="onAudioClick" 
+              data-index="{{index}}"
+            >
+              <view class="image"></view>
+            </view>
+            <view class="iconfont icon-youjiantou"></view>
+          </view>
+        </view>
+        
+        <!-- 删除按钮（隐藏在内容区域下方） -->
+        <view 
+          class="delete-btn" 
+          bindtap="onDeleteClick" 
+          data-index="{{index}}" 
+          data-wc_id="{{item.wc_id}}"
+          style="transform: translateX({{swipedIndex === index ? 0 : deleteWidth}}rpx); transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)"
+        >
+          <text class="delete-text">移除</text>
+        </view>
+      </view>
+      
+      <!-- 加载更多提示 -->
+      <view wx:if="{{isLoadingMore}}" class="load-more">
+        <text>加载中...</text>
+      </view>
+      
+      <view wx:if="{{!hasMore && displayWords.length > 0}}" class="no-more">
+        <text>没有更多收藏单词了</text>
+      </view>
+      
+      <!-- 空状态 -->
+      <view wx:if="{{displayWords.length === 0 && !isRefreshing && !isLoadingMore}}" class="empty">
+        <image src="https://w.360e.cn/miniapi/Public/images/empty.png" style="width: 200rpx; height: 200rpx;" />
+        <text style="margin-top: 20rpx; color: #999;">暂无收藏单词，快去收藏喜欢的单词吧~</text>
+      </view>
+    </scroll-view>
+  </view>
+</view>

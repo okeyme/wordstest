@@ -1,0 +1,35 @@
+<view class="flex-container">
+	<header headerName="单词查询"></header>
+	<view class="bottom-section-flex">
+		<view class="container">
+      <view class="search_view">
+        <input 
+        class="search-input" 
+				auto - focus="true"
+        placeholder="请输入搜索单词" 
+        value="{{searchValue}}"
+        bindinput="onInputChange"
+        bindconfirm="handleSearch"
+      ></input>
+				<text catchtap="clearSearch" class="iconfont {{searchValue=='' ? '' : 'icon-cuowu'}}"></text>
+      </view>
+      <view class="searchlist {{showResult ? '' : 'undis'}}">
+        <view class="search-item flex flex-between" wx:for="{{searchResult}}" wx:key="index">
+          <view class="wordtext flex-item flex-average flex-direction-column flex-left" bindtap="goThisWord"  data-index="{{index}}">
+            <view class="word">{{item.word}} </view>
+            <view class="translate text-gray">{{item.tranintro}}</view>
+          </view>
+          <view class="wordright flex-item">
+            <view class="wordaudio {{isPlaying==index ? 'play' : ''}}"  catchtap="wordAudio" data-index="{{index}}"><view class="image"></view></view>
+          </view>
+        </view>
+      </view>
+			<view class="searchHistory" wx:if="{{searchHistory!=null && searchValue==''}}">
+				<view class="tips">-- 历史搜索 --<view class="clearhistory" bindtap="clearHistory"><text class="iconfont icon-Group-"></text></view></view>
+				<block wx:for="{{searchHistory}}" wx:key="unique">
+					<text class="worditem"><text class="word" bindtap="historySearch" data-keyword="{{item}}">{{item}}</text></text>
+				</block>
+			</view>
+		</view>
+	</view>
+</view>

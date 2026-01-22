@@ -1,0 +1,62 @@
+<view class="page-background flex-container">
+	<header headerName="会员兑换码"></header>
+	<view class="bottom-section" style="width: 100%; padding: 20rpx; box-sizing: border-box;">
+		<view class="feedback-container">
+			<!-- 问题描述区域 -->
+			<view class="feedback-item">
+				<view class="item-title">
+					<text>描述</text>
+					<text class="required">*</text>
+				</view>
+				<textarea 
+					class="description-input" 
+					placeholder="请详细描述您遇到的问题..." 
+					bindinput="onInput"
+					maxlength="500"
+					value="{{description}}"
+				></textarea>
+				<view class="char-count">{{charCount}}/500</view>
+			</view>
+			
+			<!-- 图片上传区域 -->
+			<view class="feedback-item">
+				<view class="item-title">
+					<text>截图</text>
+					<text class="tips">(最多3张)</text>
+				</view>
+				
+				<view class="upload-area">
+					<!-- 已上传图片 -->
+					<view class="image-item" wx:for="{{images}}" wx:key="index">
+						<image src="{{item}}" mode="aspectFill" class="uploaded-image"></image>
+						<view class="delete-btn" bindtap="deleteImage" data-index="{{index}}">
+							<icon type="clear" size="16"></icon>
+						</view>
+					</view>
+					
+					<!-- 上传按钮 -->
+					<view class="upload-btn" wx:if="{{images.length < 3}}" bindtap="chooseImage">
+						<icon type="add" size="24" color="#999"></icon>
+						<text class="upload-text">上传图片</text>
+					</view>
+				</view>
+			</view>
+			
+			<!-- 提交按钮 -->
+			<button class="button" bindtap="submitFeedback">提交意见反馈</button>
+		</view>
+
+		<!-- 成功提示弹窗 -->
+		<view class="modal-mask" wx:if="{{showSuccessModal}}">
+			<view class="modal-container">
+				<view class="success-icon">
+					<icon type="success" size="60" color="#4CAF50"></icon>
+				</view>
+				<view class="modal-title">提交成功</view>
+				<view class="modal-content">感谢您的反馈，我们会尽快处理</view>
+				<button class="button" bindtap="closeModal">确定</button>
+			</view>
+		</view>
+
+	</view>
+</view>

@@ -1,0 +1,31 @@
+/* pages/listen/text.wxss */
+.header{background-color: #f29ec2;height:226rpx;}
+.listennav{margin-top:20rpx;}
+.listennav .flex-item{ padding: 0 20rpx;}
+.listennav text{border:1px solid rgb(94, 94, 94);border-radius: 32rpx;font-size:13px;padding:6rpx 12rpx;color:rgb(94, 94, 94);}
+.listennav .dir{ font-size: 13px;}
+.listennav text.active{ color: white;background: #2fc6a6;border-color: #2fc6a6;}
+
+.listen-content{padding: 0 20rpx; padding-top: 20rpx;  background-color: white;}
+.listen-list text{margin-right:10rpx;display: inline-block;}
+.listen-list text.undis{ display: none;}
+.listen-list .listen-item{white-space: pre-wrap;white-space: pre-wrap;
+	word-break: break-all;line-height: 36rpx; margin-top:10rpx;}
+.listen-list .active{ color:#2fc6a6;}
+.listen-list .translate{ color: #919090; margin-bottom: 10px;}
+
+.playlist{width:100%;}
+.playcontrol{padding:10rpx 0;}
+.playcontrol image{width:88rpx; height: 88rpx;}
+
+.categoryShadow{ position: fixed;top:0;left:0; z-index:11;width:100%;height:100%;background-color: rgba(12, 12, 12, 0.349); }
+.categoryDir{ position: fixed; z-index:12; width: 90%; height: 60%; left: 5%; top: 20%; background-color: white;border-radius: 32rpx;}
+.categoryDir-main{position: relative; border-radius: 32rpx; height: 100%;}
+.categoryDir-main .categoryDir-title{position: absolute;width:100%;top:0;left:0; line-height: 64rpx;height:64rpx;background-color: white;z-index:13; border-radius: 32rpx;}
+.categoryDir-main .dirClose{font-size:18px;padding-right:20rpx;}
+.categoryDir .category-item{line-height: 40rpx; font-weight: bold;}
+.categoryDir .category-item.active{color:#2fc6a6;}
+.category-item-page{padding-bottom: 6rpx;padding-top:5rpx;}
+.category-item-page .category-item-page-item{ width:50rpx; height:50rpx; border:1px solid #2fc6a6; border-radius: 50%; display: inline-block; text-align: center;font-size: 12px; line-height: 50rpx;}
+.category-item-page .category-item-page-item.active{background-color:#2fc6a6;color: white;}
+.playprogress{ width:100%; margin-bottom: 16rpx;}

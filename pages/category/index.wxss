@@ -1,0 +1,10 @@
+/* pages/category/index.wxss */
+.header{background-color: #6ad7fe;}
+.header.header1{background-color: #f29ec2;}
+.header.header2{background-color: #8ad932;}
+.header.header3,.header.header4,.header.header5{background-color: #6ad7fe;}
+.header.header6,.header.header7,.header.header8{background-color: #7d9afe;}
+.category-list{padding-bottom: 30rpx;}
+.category-item{padding:20rpx 10rpx;margin-top:30rpx;line-height: 50rpx;border:1px solid #efeeee;border-radius:20rpx;background-color:white;
+	box-shadow: 2px 6px 10px 3px rgba(190, 190, 190, 0.5);
+}

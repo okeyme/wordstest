@@ -1,0 +1,52 @@
+<view class="flex-container" bindtap="closePopup">
+	<header headerName="学习计划"></header>
+	<view class="bottom-section-flex">
+		<scroll-view scroll-y class="scrollview" style="width: 100%; height:100%;" type="custom" scroll-with-animation="true" scroll-into-view="{{activeTabId}}">
+			<view class="container">
+				<view class="panel">
+					<!-- 标题 -->
+					<view class="panel-head flex flex-between">
+						<text class="title flex-item flex-left">{{taskTitle}}</text>
+						<text class="ratio-text flex-item flex-right" catchtap="showPopup">当前新词复习词比例 <text class="rage">1:{{rage[rageIndex]}}</text><text class="iconfont icon-jiantou"></text></text>
+						<view class="pop {{isShowPopup ? '' : 'undis'}}" bindtap="noop">
+							<view class="grid">
+								<text class="{{index==rageIndex ? 'active' : ''}}" wx:for="{{rage}}" wx:key="unique" catchtap="changeRage" data-index="{{index}}">1:{{item}}</text>
+							</view>
+						</view>
+					</view>
+					
+					<!-- 可滚动选择器 -->
+					<view class="picker-container">
+						<picker-view class="picker-view" indicator-style="height: 40px;" value="{{currentIndex}}"	bindchange="onPickerChange">
+							<picker-view-column>
+								<block wx:for="{{taskOptions}}" wx:key="index">
+									<view class="option-item">
+										<view class="word-count">
+											<text>新词</text>
+											<text class="value">{{item.newWord}}</text>
+										</view>
+										<view class="word-count">
+											<text>复习</text>
+											<text class="value">{{item.reviewWord}}</text>
+										</view>
+										<view class="word-count">
+											<text>需要</text>
+											<text class="value">{{item.needDay}}天</text>
+										</view>
+									</view>
+								</block>
+							</picker-view-column>
+						</picker-view>
+					</view>
+					
+					<!-- 预计完成日期 -->
+					<view class="panel-foot text-center">
+						<text>预计完成日期：</text>
+						<text class="date-value">{{expectedDate}}</text>
+					</view>
+				</view>
+				<view class="margin-top"><button class="button" catchtap="saveplan">保存计划</button></view>
+			</view>
+		</scroll-view>
+	</view>
+</view>

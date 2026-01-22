@@ -1,0 +1,15 @@
+.search-input {
+  flex: 1;
+  font-size: 14px;
+  height: 38px; color:#2fc6a6;
+  line-height: 38px; border-radius: 16px; border: 1px solid #ccc; padding-left: 20px;
+}
+.covert-info{margin-top:20rpx; width: 100%;}
+.covert-info .height-big{ line-height: 70rpx;}
+.covert-info .button{ background: linear-gradient(135deg, rgb(255, 157, 92), #f60);}
+
+
+.myinvite{width:100%; box-sizing: border-box; padding:20rpx;}
+.myinvite-title{ font-weight: bold;}
+.myinvite-title .guide-symbol {width:5px;height:13px; border-radius: 25px;background-color:#2fc6a6;margin-right: 5px; display: inline-block;}
+.invitelist{margin:10rpx 0;}

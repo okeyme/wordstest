@@ -1,0 +1,106 @@
+.calendar-container {
+	padding: 10rpx;
+	margin:10px;
+	font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
+	border: 1px solid #ccc; border-radius: 16px;
+}
+
+/* 头部 */
+.calendar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20rpx;
+}
+.current-date {
+  font-size: 32rpx;
+  font-weight: bold;
+}
+.prev-month, .next-month {
+  font-size: 50rpx;
+  cursor: pointer;
+  padding: 0 20rpx;
+}
+.today-btn {
+  font-size: 28rpx;
+  color: #2fc6a6;
+	cursor: pointer;
+	margin-right: 10rpx;
+}
+
+/* 星期标题 */
+.week-days {
+  display: flex;
+  margin-bottom: 10rpx;
+}
+.week-day {
+  flex: 1;
+  text-align: center;
+  font-size: 24rpx;
+  color: #999;
+}
+
+/* 日期网格 */
+.days-grid {
+  display: flex;
+  flex-wrap: wrap;
+}
+.day-item {
+  width: 14.28%; /* 7列均分 */
+  text-align: center;
+  margin-bottom: 20rpx;
+  position: relative;
+}
+.day-text {
+  display: inline-block;
+  width: 60rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  border-radius: 50%;
+  font-size: 28rpx;
+}
+
+/* 上月/下月日期（灰色占位） */
+.prev-month-day .day-text,
+.next-month-day .day-text {
+  color: #ccc;
+  background: #f5f5f5;
+}
+
+/* 当月日期 */
+.current-month-day .day-text {
+  color: #333;
+}
+/* 今日标记 */
+.today .day-text {
+  background: #2fc6a6;
+  color: #fff;
+}
+/* 选中标记 */
+.selected .day-text {
+  background: #c0e0cf;
+  color: #fff;
+}
+.today.selected .day-text{
+	background-color: #2fc6a6;
+}
+
+/* 标记点（示例） */
+.dot {
+  width: 10rpx;
+  height: 10rpx;
+  background: #ff4d4f;
+  border-radius: 50%;
+  position: absolute;
+  bottom: -15rpx;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.mytoday{ padding:0 10px; font-weight: bold;}
+.guide-symbol {display: inline-block;width:5px;height:13px; border-radius: 25px;background-color:#2fc6a6;margin-right: 5px; /* 与后面“例句”保持间距 */}
+.dayrecord.grid{grid-template-columns: repeat(2, 1fr); /* 创建3列，平均分配空间 */
+  gap: 10px; /* 列间距 */}
+.dayrecord .grid-item{ border: 1px solid #ccc; border-radius: 16px; padding: 10px;}
+.dayrecord .grid-item .title,.dayrecord .grid-item .txts{ display:flex; width: 100%;}
+.dayrecord .grid-item text{ color:#2fc6a6;}

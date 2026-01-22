@@ -1,0 +1,66 @@
+<wxs src="../../utils/array.wxs" module="array" />
+<view class="flex-container gradient-background">
+	<header headerName="{{listenObj.title}}"></header>
+	<!--//内容区-->
+	<view class="bottom-section-flex">
+		<scroll-view scroll-y style="width: 100%; height: 100%" type="custom">
+			<view class="listen-content">
+				<view class="listen-list">
+					<block wx:for="{{textArr}}" wx:for-index="index" wx:for-item="item" wx:key="unique">
+						<view class="listen-item" data-timer="{{timeArr[(index>0 ? textLenArr[index-1] : index)]}}" data-endtimer="{{timeArr[(index<textLenArr.length-1 ? textLenArr[index] : 0)]}}" bindtap="playThisRow">
+						<block wx:for="{{item}}" wx:for-index="idx" wx:for-item="itemName" wx:key="unique">
+							<text data-index="{{index>0 ? (textLenArr[index-1]+idx) : idx}}" class="{{timeArr[(index>0 ? (textLenArr[index-1]+idx) : idx)]<currentTime*1000 ? 'active' : ''}}" data-timer="{{timeArr[(index>0 ? (textLenArr[index-1]+idx) : idx)]}}">{{itemName}}</text>
+						</block>
+						<text class="playthisrow iconfont icon-yinliang-L {{showPlayThisRow ? '' : 'undis'}}"></text></view>
+						<view class="translate">{{tranArr[index]}}</view>
+					</block>
+				</view>
+			</view>
+		</scroll-view>
+	</view>
+	<!--//播放器-->
+	<view class="playlist foot-section">
+		<view class="flex flex-between listennav margin-bottom">
+				<view class="flex-item"><text class="icon-play {{showPlayThisRow ? 'active' : ''}}" bindtap="showPlayThisRow"> 点播</text></view>
+				<view class="flex-item dir"><text class="icon-bars {{categoryDirShow ? 'active' : ''}}" catchtap="getCategoryDir"> 目录</text></view>
+		 </view>
+		<view class="playprogress"><progress class="music-progress" percent="{{currentTime / duration * 100}}" activeColor="#99f3c3" bindchange="onProgressChange" /></view>
+		<view style="box-sizing: border-box;width:100%;padding:0 20rpx;">
+			<view class="flex flex-between playcontrol">
+				<view class="flex-item autopage">
+					<image src="/static/images/{{autopage ? 'autopage-auto.png' : 'autopage.png'}}" mode="scaleToFill" bindtap="autoPage"></image>
+				</view>
+				<view class="flex-item"><image src="/static/images/24gl-previousCircle.png" bindtap="prevAudio" mode="scaleToFill"></image></view>
+				<view class="flex-item">
+					<image src="/static/images/{{isPlaying ? '24gl-pauseCircle.png' : '24gl-playCircle.png'}}" bindtap="togglePlay" mode="scaleToFill"></image>
+				</view>
+				<view class="flex-item"><image src="/static/images/24gl-nextCircle.png" bindtap="nextAudio" mode="scaleToFill"></image></view>
+			</view>
+		</view>
+	</view>
+</view>
+<!--//目录弹窗-->
+<view class="categoryShadow {{categoryDirShow ? '' : 'undis'}}"></view>
+<view class="categoryDir {{categoryDirShow ? '' : 'undis'}}">
+	<view class="categoryDir-main">
+		<view class="flex flex-between categoryDir-title">
+				<view class="flex-item"></view>
+				<view class="flex-item">目录</view>
+				<view class="flex-item"><text class="dirClose iconfont icon-shanchu" bindtap="closeCategoryDir"></text></view>
+		</view>
+		<scroll-view scroll-y class="categoryDir-content" style="width: 100%; height: 100%;" type="custom">
+			<view style="height:60rpx"></view>
+			<view class="category-list container" wx:for="{{unitList}}" wx:key="unique">
+				<view class="category-item" catchtap="gotoCategory">{{item.category_name}}</view>
+				<view class="category-item-page">
+					<view class="flex" style="gap:10rpx;">
+					<block wx:for="{{item.list}}" wx:for-index="idx" wx:for-item="itx" wx:key="unique">
+						<text data-idx="{{idx}}" data-index="{{index}}" class="flex-item category-item-page-item {{unitIndex==index && idx==listenIndex ? 'active' : ''}}" catchtap="gotoListen">{{list[itx].title}}</text>
+					</block>
+					</view>
+				</view>
+			</view>
+			<view style="height:30rpx"></view>
+		</scroll-view>
+	</view>
+</view>

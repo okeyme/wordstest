@@ -1,0 +1,142 @@
+<view class="page-background flex-container">
+	<view class="profile-header top-section">
+			<text class="profile-title">个人中心</text>
+	</view>
+	<view class="bottom-section" style="width: 100%;">
+		<view class="container" style="width: 100%;box-sizing: border-box;">
+			<view class="model userinfo">
+				<view class="flex">
+					<view class="flex-item"><image class="avatar" src="{{userInfo.avatarUrl}}"></image></view>
+					<view class="flex-item flex-direction-column">
+						<view class="flex padding-big-left headname">{{userInfo.nickName}}</view>
+						<view class="flex padding-big-left uid">ID：{{userInfo.user_no}}</view>
+					</view>
+				</view>
+				<view class="vipbase"><image src="https://w.360e.cn/miniapi/Public/images/VIP5.png?t=1" class="vip-img" style="height: 20px;" mode="heightFix"></image><text class="expire-text">会员到期时间：{{member_status.expire_date}}</text><text class="vipbuy" bind:tap="govip2">续费</text></view>
+				<view class="vipinfo">
+				</view>
+			</view>
+			
+			<view class="model-flex flex margin-top">
+				<view class="model flex-item flex-average">
+					<view class="flex flex-between" bindtap="gotest">
+						<text class="flex-item model-txt">会员权益</text>
+						<image class="flex-item" src="https://w.360e.cn/miniapi/Public/images/member-quanyi.png" mode="heightFix" style="height: 32px;"></image>
+					</view>
+				</view>
+				<view class="model flex-item flex-average">
+					<view class="flex flex-between" bindtap="goinvite">
+						<text class="flex-item model-txt">邀请好友</text>
+						<image class="flex-item" src="https://w.360e.cn/miniapi/Public/images/weixin-share.png" mode="heightFix" style="height: 32px;"></image>
+					</view>
+				</view>
+			</view>
+
+			<view class="model margin-top">
+				<view class="model-title">我的学习</view>
+				<view class="model-content grid">
+					<view class="model-item" bindtap="gowordError">
+						<view class="iconfont icon-cuotiben"></view>
+						<text class="model-txt">错词本</text>
+					</view>
+					<view class="model-item" bindtap="gowordCollect">
+						<view class="iconfont icon-shouzhang"></view>
+						<text class="model-txt">收藏本</text>
+					</view>
+					<view class="model-item" bindtap="gowordDatetime">
+						<view class="iconfont icon-xunlianjilu"></view>
+						<text class="model-txt">学习记录</text>
+					</view>
+				</view>
+			</view>
+
+			<view class="vip flex margin-top" wx:if="{{!is_member_valid}}">
+				<view class="vip-left flex-item flex-average flex-direction-column">
+					<view class=""><image src="https://w.360e.cn/miniapi/Public/images/VIP2.png" mode="heightFix" style="height: 20px;"></image></view>
+					<view class="vip-txt">开通会员<text class="warn">解锁所有功能</text></view>
+				</view>
+				<view class="vip-right flex-item" bind:tap="govip"><view class="flex flex-right"><button class="button">开通VIP</button></view></view>
+			</view>
+			<view class="model others margin-top">
+				<view class="model-title">其它服务</view>
+				<view class="model-content grid">
+					<view class="model-item" bindtap="gomemberConvert">
+						<view class="iconfont icon-duihuanma"></view>
+						<text class="model-txt">会员兑换码</text>
+					</view>
+					<view class="model-item">
+						<view class="iconfont icon-yijianfankui" bindtap="goFeedback"></view>
+						<text class="model-txt">意见反馈</text>
+					</view>
+					<view class="model-item" bindtap="showAddTip">
+						<view class="iconfont icon-tianjiazhuomian"></view>
+						<text class="model-txt">添加至桌面</text>
+					</view>
+					<view class="model-item" bindtap="showKefuTip">
+						<view class="iconfont icon-erji"></view>
+						<text class="model-txt">联系客服</text>
+					</view>
+				</view>
+			</view>
+
+			<view class="vip flex margin-top" style="background-color: #f7c847;">
+				<view class="vip-left flex-item flex-average flex-direction-column">
+					<view><image src="https://w.360e.cn/miniapi/Public/images/share-friend.png" mode="heightFix" style="height:30px;"></image></view>
+					<view class="vip-txt">邀请好友<text class="warn">奖励会员时长</text><text class="iconfont icon-a1"></text></view>
+				</view>
+				<view class="vip-right flex-item"><view class="flex flex-right"><button class="button" bindtap="goinvite">邀请好友</button></view></view>
+			</view>
+		</view>
+	</view>
+</view>
+
+<!-- 添加提醒浮层（默认隐藏） -->
+<view class="page-container">
+  <!-- 触发按钮 -->
+  <button 
+    class="add-btn" 
+    bindtap="showAddTip"
+    hover-class="add-btn_hover"
+  >
+    添加至桌面
+  </button>
+
+  <!-- 背景遮罩（默认隐藏） -->
+  <view class="mask" wx:if="{{showTipModal || showKefuModal}}" bindtap="hideAddTip"></view>
+
+  <!-- 添加提醒浮层（默认隐藏） -->
+  <view class="add-tip-modal" wx:if="{{showTipModal}}">
+    <!-- 指向箭头（指向右上角） -->
+    <view class="tip-arrow"></view>
+    
+    <!-- 提示文本框 -->
+    <view class="tip-content">
+      <text class="tip-text">请点击右上角</text>
+      <image class="tip-icon" src="https://w.360e.cn/miniapi/Public/images/menu-top.png" mode="widthFix"></image>
+      <text class="tip-text">选择「添加到桌面」</text>
+    </view>
+    
+    <!-- 关闭按钮 -->
+    <button 
+      class="close-btn" 
+      bindtap="hideAddTip"
+      hover-class="close-btn_hover"
+    >
+      知道了
+    </button>
+  </view>
+
+	<!--//客服微信-->
+	<view class="add-tip-weixin" wx:if="{{showKefuModal}}">
+		<view><image class="weixin-kefu" src="https://w.360e.cn/public/images/weixin.jpg" mode="widthFix"></image></view>
+		<!-- 关闭按钮 -->
+    <button 
+      class="close-btn" 
+      bindtap="hideKefuTip"
+      hover-class="close-btn_hover"
+    >
+      关闭
+    </button>
+	</view>
+</view>
+

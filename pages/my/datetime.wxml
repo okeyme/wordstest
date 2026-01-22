@@ -1,0 +1,66 @@
+<view class="flex-container">
+	<header headerName="学习日历"></header>
+	<view class="bottom-section-flex">
+		<scroll-view scroll-y class="scrollview" style="width: 100%; height:100%;" type="custom" scroll-with-animation="true" scroll-into-view="{{activeTabId}}">
+			<!--//word-->
+			<view class="calendar-container">
+				<!-- 顶部年月切换 + 回到今天 -->
+				<view class="calendar-header">
+					<text class="prev-month" bindtap="handlePrevMonth">‹</text>
+					<view class="current-date">
+						{{currentYear}}年{{currentMonth}}月
+					</view>
+					<text class="next-month" bindtap="handleNextMonth">›</text>
+					<text class="today-btn" bindtap="handleToday">回到今天</text>
+				</view>
+
+				<!-- 星期标题 -->
+				<view class="week-days">
+					<view class="week-day" wx:for="{{weekDays}}" wx:key="index">
+						{{item}}
+					</view>
+				</view>
+
+				<!-- 日期列表 -->
+				<view class="days-grid">
+					<!-- 上月日期（灰色占位） -->
+					<view class="day-item prev-month-day" wx:for="{{prevMonthDays}}" 	wx:key="index">
+						{{item}}
+					</view>
+
+					<!-- 当月日期 -->
+					<view 
+						class="day-item current-month-day {{currentDay==item.day ? 'today' : ''}} {{item.isSelected ? 'selected' : ''}}" wx:for="{{currentMonthDays}}" wx:key="unique" bindtap="handleDayTap" data-index="{{index}}">
+						<view class="day-text">{{item.day}}</view>
+						<!-- 标记点（示例：可根据业务逻辑控制显隐） -->
+						<view class="dot" wx:if="{{item.hasDot}}"></view>
+					</view>
+
+					<!-- 下月日期（灰色占位） -->
+					<view 
+						class="day-item next-month-day" 
+						wx:for="{{nextMonthDays}}" 
+						wx:key="index"
+					>
+						{{item}}
+					</view>
+				</view>
+			</view>
+			<view class="mytoday"><text class="guide-symbol"></text> {{currentYear+'-'+currentMonth+'-'+currentDay}}</view>
+			<view class="dayrecord grid container">
+				<view class="grid-item" catchtap="gowordrecord">
+					<view class="title">单词学习记录</view>
+					<view class="txts">已学习<text> {{word_count[currentDay] ? word_count[currentDay] : 0}} </text>个</view>
+				</view>
+				<view class="grid-item" catchtap="goreviserecord">
+					<view class="title">单词复习记录</view>
+					<view class="txts">已复习<text> {{revise_count[currentDay] ? revise_count[currentDay] : 0}} </text>个</view>
+				</view>
+				<view class="grid-item" catchtap="goexecrecord">
+					<view class="title">单词训练记录</view>
+					<view class="txts">已训练<text> {{exec_count[currentDay] ? exec_count[currentDay] : 0}} </text>次</view>
+				</view>
+			</view>
+		</scroll-view>
+	</view>
+</view>

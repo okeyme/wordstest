@@ -1,0 +1,205 @@
+.page-background{
+	background: linear-gradient(180deg,#e6fbf1, #f2f5f3); /* 从浅绿到深绿的渐变 */
+}
+.profile-header {
+  /* 核心：渐变背景 + 底部弧度 */
+	height:162rpx;
+	font-size: 18px;
+	font-weight: 600;
+}
+.profile-header .profile-title{ margin-top:90rpx;}
+.userinfo{ position: relative;}
+.userinfo .headname{font-weight: bold; font-size: 15px;}
+.userinfo .uid{color:rgb(175, 175, 175); font-size: 11px;}
+.userinfo .vipinfo{ position: absolute;top:28px;right:15px; }
+.userinfo .vipinfo .button{  background: rgb(255, 157, 92); border-radius: 8px;
+	font-size: 14px; border: none;
+}
+.userinfo .vipbase{ margin-top: 10px;background-color: #f1f1f1;border: 1px solid #c9c7c7;
+	/* 启用Flex布局 */
+  display: flex;
+  /* 水平方向排列 */
+  flex-direction: row;
+  /* 垂直方向居中对齐（核心） */
+  align-items: center;
+  /* 可选：添加间距和样式 */
+  gap: 8px; /* 图片与文字之间的间距 */
+  padding: 4px 16px;
+  border-radius: 8px;
+}
+.userinfo .vipbase .vipbuy{ color:rgb(255, 134, 53);padding-left:3px;}
+/* 图片样式优化（可选） */
+.vip-img {
+  /* 保持图片比例 */
+  width: auto;
+  /* 移除默认样式（如有） */
+  vertical-align: middle;
+}
+
+/* 文字样式优化（可选） */
+.expire-text {
+  font-size: 13px;
+  color: #333;
+  /* 确保文字基线对齐 */
+  line-height: 1;
+}
+
+/* 顶部导航行（皇冠+标题+设置） */
+.header-top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+.page-title {
+	padding-top:140rpx;
+  font-size: 18px;
+  font-weight: 600;
+}
+.setting-icon {
+  width: 22px;
+  height: 22px;
+}
+
+/* 头像区域（可根据实际需求调整） */
+.avatar-wrap {
+  display: flex;
+  justify-content: center;
+}
+.avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+}
+
+
+.vip{
+	background-color:#59d8b2; border-radius: 16px; grid-template-columns: repeat(2, 1fr); /* 创建3列，平均分配空间 */
+}
+.vip .vip-left,.vip .vip-right{ padding: 10px;}
+.vip .button{  background: linear-gradient(135deg, rgb(255, 157, 92), #f60);}
+.vip .vip-txt{ font-weight: bold;}
+.vip .vip-txt .warn{color:#f60;}
+
+.model-flex{gap: 10px; /* 图片与文字之间的间距 */}
+
+.model {/*border: 1px solid #cccccc; */background-color: white; padding: 15px; border-radius: 16px; }
+.model .model-title{font-weight: bold; padding-top:5px; padding-bottom: 15px;}
+.model .model-content{gap: 15px; /* 列间距 */}
+.model .model-item{ text-align: center; background-color: #f1f1f1; padding: 10px; border-radius: 16px; }
+.model .model-item .iconfont{font-size: 25px;}
+.model .model-item .model-txt{font-size: 12px;}
+
+.model.others .model-content{ grid-template-columns: repeat(4, 1fr);  gap: 10px; /* 列间距 */}
+.model.others .model-item{background:none; padding: 0px;}
+
+
+/*===添加至桌面==*/
+/* 页面容器：让按钮垂直居中 */
+.page-container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #f5f5f5;
+  padding: 0 20rpx;
+  box-sizing: border-box;
+  position: relative;
+}
+
+/* 添加按钮样式 */
+.add-btn {
+  width: 100%;
+  height: 80rpx;
+  line-height: 80rpx;
+  background-color: #27ae60;
+  color: #fff;
+  font-size: 32rpx;
+  border-radius: 40rpx;
+  margin-bottom: 40rpx;
+}
+.add-btn_hover {
+  background-color: #219653; /* 按钮按压态深色 */
+}
+
+/* 背景遮罩 */
+.mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 998; /* 遮罩层在浮层下方 */
+  pointer-events: auto; /* 允许点击遮罩关闭 */
+}
+
+/* 提醒浮层：固定在右上角区域 */
+.add-tip-modal {
+  position: fixed;
+  top: 140rpx; /* 调整距离顶部的位置，使其在导航栏下方 */
+  right: 90rpx;
+  z-index: 999; /* 确保浮层在最上层 */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  pointer-events: auto; /* 浮层内部可点击 */
+}
+.add-tip-weixin{
+	position: fixed;
+	top:50%;left:50%; margin-top:-60px;margin-left:-60px;
+	z-index: 999; /* 确保浮层在最上层 */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  pointer-events: auto; /* 浮层内部可点击 */
+}
+.weixin-kefu{width: 120px; height: 120px;}
+
+/* 指向箭头（三角形，指向右上角） */
+.tip-arrow {
+  width: 0;
+  height: 0;
+  border-bottom: 16rpx solid #2fc6a6; /* 箭头底部（与文本框同色） */
+  border-left: 16rpx solid transparent; /* 左侧透明 */
+  border-right: 16rpx solid transparent; /* 右侧透明 */
+  margin-right: 40rpx; /* 调整箭头位置使其指向右上角 */
+}
+
+/* 提示文本框 */
+.tip-content {
+  background-color: #2fc6a6;
+  color: #fff;
+  font-size: 13px;
+  padding: 20rpx 25rpx;
+  border-radius: 16rpx;
+  display: flex;
+  align-items: center;
+  gap: 10rpx; /* 图标与文字间距 */
+  margin-top: -2rpx; /* 与箭头无缝衔接 */
+}
+
+/* 右上角菜单图标 */
+.tip-icon {
+  width: 48rpx;
+  height: 48rpx;
+}
+
+/* 关闭按钮 */
+.close-btn {
+  margin-top: 20rpx;
+  padding: 20rpx;
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #333;
+  font-size: 13px;
+  border-radius: 20rpx;
+  height: auto; /* 取消默认按钮高度 */
+  line-height: normal; /* 取消默认行高 */
+}
+.close-btn_hover {
+  background-color: #fff;
+}
+    

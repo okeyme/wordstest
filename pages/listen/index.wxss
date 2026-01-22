@@ -1,0 +1,42 @@
+.category-item {
+  display: flex;
+  align-items: center;
+  background-color: white; padding: 20rpx; border: 1px solid #e9ecf4; border-radius: 32rpx;margin-bottom: 20rpx;
+}
+/* 选中状态的样式，可根据实际需求调整颜色等 */
+.category-item.active {
+  border-color: #2fc6a6; /* 选中时的边框颜色，可换成你想要的主题色 */
+}
+.checkmark {
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+  border-radius: 50%;
+}
+/* 未选中状态的灰色背景 */
+.category-item .checkmark {
+	position: relative;
+  background-color: #e5e7eb; 
+}
+/* 选中状态的对勾背景及样式，这里用伪元素简单模拟，也可用图片等 */
+.category-item.active .checkmark {
+  background-color: #00b48a; 
+}
+.category-item .checkmark::after {
+  content: "✔";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 12px;
+  color: #fff;
+}
+.category-name {
+  color: #333;
+  margin-right: auto; /* 让单词数量靠右侧 */
+}
+.word-count {
+  color: #999999; font-size: 14px;
+}
+
+.tool{ padding:20rpx 0; background-color: white; border-top: 1px solid #e9ecf4;}

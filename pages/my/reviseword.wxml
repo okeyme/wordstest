@@ -1,0 +1,51 @@
+<!--pages/wordlist/index.wxml-->
+<view class="flex-container">
+	<header headerName="单词复习"></header>
+	<view class="bottom-section-flex">
+		<!--//tab滑动-->
+		<view class="tabcontainer nested-container">
+			<!-- 标签栏 -->
+			<scroll-view class="tab-scroll" scroll-x="true" show-scrollbar="false" scroll-left="{{scrollLeft}}" scroll-with-animation="true" scroll-with-animation="true">
+				<view class="tab-item-wrapper">
+					<view class="tab-item {{currentTab === index ? 'active' : ''}}" 
+						wx:for="{{MonthTime}}" 
+						wx:key="index" 
+						bindtap="switchTab" 
+						data-index="{{index}}"
+					>{{index==0 ? '今日' : item}}
+						<view class="indicator {{currentTab === index ? 'show' : ''}}"></view>
+					</view>
+				</view>
+			</scroll-view>
+			<!-- 内容区域 -->
+			<swiper class="content-swiper" current="{{currentTab}}" bindchange="swiperChange" duration="300">
+				<swiper-item wx:for="{{MonthTime}}" wx:key="unique" wx:for-index="idx" wx:for-item="val">
+					<scroll-view scroll-y class="scrollview" style="width: 100%; height:100%;" type="custom">
+						<view class="norecord" wx:if="{{!DateTimeList[val]}}">--暂无复习单词--</view>
+						<view class="recordlist-item" wx:for="{{DateTimeList[val]}}" wx:key="index">
+							<view class="wordlist-item flex {{audioIndex==index ? 'active' : ''}}" data-index="{{index}}">
+								<view class="item2 wordtext" bindtap="goThisWord"  data-index="{{index}}">
+									<view class="word {{showWord==false ? 'undis' : ''}}">{{list[item].word}} </view>
+									<view class="translate text-gray {{showTranslate==false ? 'undis' : ''}}">{{list[item].attribute}} {{list[item].translate}}</view>
+								</view>
+								<view class="item2 wordright">
+									<view class="wordaudio {{webAudioStatus ? 'play' : ''}}" catchtap="wordAudio" data-index="{{index}}"><view class="image"></view></view>
+								</view>
+							</view>
+						</view>
+					</scroll-view>
+				</swiper-item>
+			</swiper>
+		</view>
+		<!--//tab滑动-->
+		<!--//工具栏-->
+		<view class="tool"></view>
+		<view class="tool fixed-bottom grid-middle">
+			 <view class="flex">
+				<view class="flex-item"></view>
+				<view class="flex-item grid-middle"><button class="button-main" catchtap="{{modelList[model].url}}">{{modelList[model].txt}}</button></view>
+				<view class="flex-item"><label class="checkbox-item" wx:if="{{model=='wordWrite'}}"><checkbox value="1" /> 全选</label></view>
+			 </view>
+		</view>
+	</view>
+</view>

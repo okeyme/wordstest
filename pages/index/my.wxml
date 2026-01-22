@@ -1,0 +1,11 @@
+<view class="flex-container">
+	<header title="个人中心"></header>
+	<view class="bottom-section-flex">
+		<view class="container">
+			<view class="vip flex">
+				<view class="vip-left flex-item"></view>
+				<view class="vip-right flex-item"></view>
+			</view>
+		</view>
+	</view>
+</view>

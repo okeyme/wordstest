@@ -1,0 +1,13 @@
+var myFilter = function(text,a,b){
+  if(text){
+    console.log(text);
+    var pattern = a;
+    var target = b;
+    var reg = getRegExp(pattern, "g");
+    return text.replace(reg, target);
+
+  }
+}
+module.exports = {
+  myFilter:myFilter,
+}

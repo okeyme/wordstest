@@ -1,0 +1,176 @@
+/* pages/index/index.wxss */
+.header{
+	height: 150rpx; background-color: white;
+}
+.header .nickname{ font-size:38rpx;}
+.showversion{display: flex;          /* 启用 Flex 布局 */
+  align-items: center; }
+.headerImage{
+	width: 50rpx;  
+  height: 50rpx;
+  border-radius: 50%;
+	overflow: hidden; margin-right:10rpx;}
+.header.active{background-color: white;}
+.setversion-content{ position: relative; margin-top: 40rpx;}
+.setversion{ 
+	padding:20rpx; position: relative; 
+	background: linear-gradient(135deg, #99f3c3, #2fc6a6); /* 从浅绿到深绿的渐变 */
+	border-radius: 32rpx;
+  /* 关键属性：模糊渐变边框效果 */
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.02),  /* 内边框（可选） */
+              0 0 5px 3px rgba(0, 0, 0, 0.08);  /* 外模糊边框 */
+}
+.setversion .share-friend{position: absolute;right:0;top:0;z-index:0; width:100%;height:100%;background: url('http://bossbell.com/public/images/share-friend2.png') no-repeat right center; background-size: auto 100%;}
+.setversion .versionimg{width:25%;}
+.setversion .versionimg image{width:100%;border-radius: 16px;display:block; max-height: 112px;}
+.setversion .history{width:75%; height:100%;}
+.setversion .history .history-content{ height: 120rpx; }
+.setversion .history .history-content .jingdu{width: 100%;margin-top:20rpx;}
+.setversion .share-btn{ width:100%; height: 100%; display: block; background: transparent; border: none; box-shadow: none;outline: none;}
+.setversion button.share-btn::after{border: none;}
+.history .history-main{position: relative;margin-top:20px;}
+.history .history-main .item3{ font-size:12px;}
+.history button{background-color: #2bd9c5;border-radius: 16px;}
+
+.dayrecord .search-input{
+  flex: 1; width: 130px;
+  font-size: 13px;
+  height: 28px; color:rgb(194, 194, 194);
+  line-height: 28px; border-radius: 16px; border: 1px solid #ccc; text-indent: 5px;
+}
+/*===learn===*/
+.learen-content{ margin-top: 40rpx; }
+.learen-content .flex-item{
+	display: flex;
+	flex-direction: column; /* 子元素纵向排列 */
+  justify-content: flex-start; /* 子元素在垂直方向居中 */
+  align-items: flex-start; /* 子元素在水平方向 顶部对齐/居中 */
+}
+.learen-content .flex-item text{ width: 100%; display: block; text-align: center;}
+.learen-content .flex-item .text-nums{font-size: 25px; font-weight: bold;}
+.learen-content .startlearn button{padding:5px; background: #3dc6a0;width:200px;font-size:16px; color:white; background: linear-gradient(to right, #3dc6a0, #1494ad); margin-top:30px;}
+.learn-content .learn-main{
+	border-radius: 10px;
+  /* 关键属性：模糊渐变边框效果 */
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.02),  /* 内边框（可选） */
+              0 0 5px 3px rgba(0, 0, 0, 0.08);  /* 外模糊边框 */
+}
+.learen-content .button{padding:0 50rpx;}
+/*==main===*/
+.page-container{ border-top-left-radius: 32rpx;border-top-right-radius: 32rpx;}
+.swiper{ overflow: hidden; width: 100%;box-sizing: border-box; height: 100%;}
+.swiper-item{ 
+	display: block;
+}
+.swiper-item image{width:100%; border-radius:16px; height: 280rpx;}
+
+.model {border: 1px solid #cccccc; background-color: white; padding: 15px; border-radius: 16px; margin-top:60rpx; }
+.model .model-content{ grid-template-columns: repeat(4, 1fr); gap: 50rpx 10rpx;}
+.model .model-item{ text-align: center;}
+.model .model-item .iconfont{font-size: 25px;}
+.model .model-item .pic image{max-height:35px;}
+.model .model-item .model-txt{font-size: 12px;}
+
+button.share-btn{background: none; border:none; padding: 0; margin:0; line-height:normal;}
+button.share-btn::after,button.share-btn::before{border:none; line-height:normal;}
+
+/* 外层容器：带边框和背景，区分于其他内容 */
+.member-expire {
+	position: relative; /* 关键：让关闭按钮可绝对定位 */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+	padding: 16rpx 20rpx;
+	margin-bottom:20rpx;
+  border-radius: 32rpx;
+  background-color: #fdc; /* 浅黄底色突出提醒 */
+  border: 1px solid #fdc; /* 边框强化区域感 */
+}
+.member-expire.member-sent{
+	position: relative; /* 关键：让关闭按钮可绝对定位 */
+	background-color: #FFF8E6; /* 浅黄底色突出提醒 */
+  border: 1px solid #FFE0B2; /* 边框强化区域感 */
+}
+
+/* 关闭按钮：右上角定位 */
+.close-btn {
+  position: absolute;
+  top: 8rpx;
+  right: 8rpx;
+  width: 36rpx;
+  height: 36rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* 点击区域扩大，提升易用性 */
+  padding: 8rpx;
+  border-radius: 50%;
+}
+
+/* 关闭按钮hover效果（可选） */
+.close-btn:hover {
+  background-color: rgba(0,0,0,0.05);
+}
+
+/* 左侧内容区：图标+文字横向排列 */
+.member-expire .remind-content {
+  display: flex;
+  align-items: center;
+  gap: 12rpx; /* 图标与文字间距 */
+}
+
+/* 文字区域：标题+描述纵向排列 */
+.member-expire .text-area {
+  display: flex;
+  flex-direction: column;
+  gap: 4rpx;
+}
+
+.member-expire .title {
+  font-size: 32rpx;
+  font-weight: 600;
+	color:#e33; /* 标题用醒目的橙色 */
+}
+.member-expire.member-sent .title {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #E65100; /* 标题用醒目的橙色 */
+}
+
+.member-expire .desc {
+  font-size: 26rpx;
+  color:#e33; /* 描述用稍浅的橙色 */
+}
+
+.member-expire.member-sent .desc {
+  font-size: 26rpx;
+  color: #F57C00; /* 描述用稍浅的橙色 */
+}
+
+.member-expire .expire-time {
+  font-weight: 600; font-size: 32rpx;
+  color:black /* 到期时间加粗强调 */
+}
+
+.member-expire.member-sent .expire-time {
+  font-weight: 600; font-size: 32rpx;
+  color: red; /* 到期时间加粗强调 */
+}
+
+/* 立即续费按钮：突出且易点击 */
+.member-expire .button.renew-btn {
+  min-width: 180rpx;
+ /* height: 60rpx;
+  line-height: 60rpx;*/
+  background: #FF7D00;
+  color: white;
+  /*font-size: 28rpx;
+  border-radius: 30rpx;
+  padding: 0 20rpx;*/
+}
+
+/* 去除按钮默认样式 */
+.member-expire .renew-btn::after {
+  border: none;
+}
+.member-expire .remind-right,.member-sent .remind-right{ width:40rpx;}

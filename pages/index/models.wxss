@@ -1,0 +1,55 @@
+
+.profile-header {
+  /* 核心：渐变背景 + 底部弧度 */
+  background: linear-gradient(135deg, #99f3c3, #2fc6a6); /* 从浅绿到深绿的渐变 */
+	height:162rpx;
+	font-size: 18px;
+	font-weight: 600;
+  color: #fff; 
+}
+.profile-header .profile-title{ margin-top:90rpx;}
+.models-main{ width: 100%;}
+/* 顶部导航行（皇冠+标题+设置） */
+.models-main .models{ padding:20rpx; padding-bottom: 30rpx; padding-top: 15rpx;}
+.models .grid{
+	grid-template-columns: repeat(3, 1fr); /* 创建3列，平均分配空间 */
+	gap: 40rpx 20rpx; /* 间距 */
+  /* 关键属性：同时实现水平和垂直居中 */
+	place-items: center;
+}
+.models .grid .grid-item{ text-align: center; width:100%;height:100%; 
+	border-radius: 32rpx;
+	border: 1px solid rgba(0, 0, 0, 0.1);
+	box-shadow: 5rpx 2rpx 8rpx rgba(0, 0, 0, 0.1);
+	padding: 10rpx 0;
+	background-color: white;
+}
+.grid-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+.models .grid .grid-item .iconfont{ font-size: 25px;}
+.models .grid .grid-item .txts{ width:100%;display: flex; font-size: 13px; 
+	justify-content: center; /* 子元素在垂直方向居中 */
+	align-items: center; /* 子元素在水平方向 顶部对齐/居中 */
+}
+.iconfont{ /* 关键：将背景裁剪到文字区域 */
+  -webkit-background-clip: text;
+  background-clip: text;
+  /* 文字颜色设为透明，显示背景渐变 */
+  color: transparent;
+  /* 定义渐变颜色（可自定义） */
+	background-image: linear-gradient(135deg, #99f3c3, #2fc6a6);
+}
+.clip1{
+	background-image: linear-gradient(165deg, #5d61f0, #5d61f0);
+}
+.clip2{
+	background-image: linear-gradient(165deg, #25e8fa, #25e8fa);
+}
+.clip3{
+	background-image: linear-gradient(165deg, #f2ca22, #f2ca22);
+}
+
+button.share-btn{background: none; border:none;line-height:58rpx;}
+button.share-btn::after,button.share-btn::before{border:none; line-height:normal;}

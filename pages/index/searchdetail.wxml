@@ -1,0 +1,95 @@
+<wxs src="../../utils/array.wxs" module="array" />
+<view class="flex-container">
+	<header title="单词详解"></header>
+	<view class="bottom-section-flex">
+		<scroll-view scroll-y class="scrollview" style="width: 100%; height:100%;" type="custom" scroll-with-animation="true">
+			<view class="container">
+				<view class="word-info text-center">
+					<view class="spelling-book">
+						<view class="word-line">
+							<text class="word-text"><text wx:for="{{wordLetter}}" wx:key="unique" class="{{isPlaying && index==letterIndex ? 'active' : ''}}">{{item}}</text></text>
+						</view>
+					</view>
+				</view>
+				<!--//word-->
+				<!--//phonogram-->
+				<view class="margin-top yinbiao flex flex-between">
+					<view class="flex-item">
+						<text class="yinbiao-item" catchtap="wordAudio">/{{wordItem.phonogram_en || '--'}}/ <text class="iconfont {{letterIndex==-1 && isPlaying ? 'icon-yinliang-F' : 'icon-yinliang-L'}}"></text></text>
+					</view>
+				</view>
+				<!--//phonogram-->
+				<!--//translate-->
+				<view class="translate margin-top">
+					<view class="nav-title">
+						<text class="guide-symbol"></text>
+						<text class="nav-text">释义</text>
+					</view>
+					<view class="translate-main">
+						<rich-text nodes="{{wordItem.translate || ''}}"></rich-text>
+					</view>
+				</view>
+				<!--//translate-->
+				<!--//ying jie-->
+				<view wx:if="{{phonogram_letter.length}}" class="phonogram_item text-center border-top">
+						<view class="phonogram_letters {{phonogram_btngroup==0 ? '' : 'undis'}}">
+							<block wx:for="{{phonogram_letter}}" wx:key="unique">
+								<text class="letter {{isPlaying && index==letterIndex ? 'active' : ''}}" bindtap="letterPlay" data-index="{{index}}"><text class="pword">/{{phonogram_map[item]}}/</text><text class="pword">{{wordLetter[index]}}</text></text>
+							</block>
+						</view>
+						
+						<view class="syllable_letters {{phonogram_btngroup==1 ? '' : 'undis'}}">
+							<block wx:for="{{syllable_phonogram}}" wx:key="unique">
+								<text class="letter {{isPlaying && index==letterIndex ? 'active' : ''}}" bindtap="syllablePlay" data-index="{{index}}">/{{item}}/</text>
+							</block>
+						</view>
+						<view class="phonogram_btngroup dis text-center margin-big-top">
+							<view class="capsule-group-container">
+								<view class="capsule-group">
+									<view class="capsule-btn left-btn {{phonogram_btngroup==0 ? 'active' : ''}}" bindtap="letterPlayAll">自然拼读 <text class="iconfont {{phonogram_btngroup==0 && isPlaying ? 'icon-yinliang-F' : 'icon-yinliang-L'}}"></text></view>
+									<view class="capsule-btn right-btn {{phonogram_btngroup==1 ? 'active' : ''}}" bindtap="syllableAll">超级拼读 <text class="iconfont {{phonogram_btngroup==1 && isPlaying ? 'icon-yinliang-F' : 'icon-yinliang-L'}}"></text></view>
+								</view>
+							</view>
+						</view>
+					</view>
+					<!--//ying jie-->
+				<!--//example-->
+				<view class="translate margin-big-top" wx:if="{{wordItem.example_ids.length>0}}">
+					<view class="nav-title">
+						<text class="guide-symbol"></text>
+						<text class="nav-text">例句</text>
+					</view>
+					<view class="example-main">
+						<view class="example-list margin-bottom" wx:for="{{wordItem.example_ids}}" wx:key="unique">
+							<view class="example-title">{{item.example}} <text class="iconfont {{isPlaying && playid==index ? 'icon-yinliang-F' : 'icon-yinliang-L'}}" bindtap="playExample" data-index="{{index}}"></text></view>
+							<view class="example-tran">{{item.translate}}</view>
+						</view>
+					</view>
+				</view>
+				<!--//example-->
+
+				<!-- 派生词 -->
+				<view id="affix" class="content-section" wx:if="{{cffyAffix}}">
+					<view class="nav-title">
+					<text class="guide-symbol"></text>
+					<text class="nav-text">派生词</text>
+					</view>
+					<view class="affix-container">
+					<view class="affix-main" wx:for="{{cffyAffix}}" wx:key="index">
+						<view class="word-wrap"><text class="words-txt" bindtap="onWordClick" data-word="{{item[0]}}">{{item[0]}}</text><text class="translate-txt">{{item[1]}}</text></view>
+					</view>
+					</view>
+				</view>
+				
+			</view>
+		</scroll-view>
+	</view>
+</view>
+<!-- 单词弹窗组件 -->
+<word-search
+  id="wordSearch"
+  searchWord="{{selectedWord}}"
+  visible="{{showWordSearch}}"
+  userId="{{userId}}"
+  bind:close="onCloseWordSearch"
+/>

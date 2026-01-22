@@ -1,0 +1,124 @@
+ <!--pages/index/index.wxml-->
+ <scroll-view scroll-y class="scrollview" style="width: 100%; height:100%;" type="custom">
+ <view class="flex-container">
+	<view class="header top-section flex-left flex-valign-bottom" style="background: none;flex-direction:row;align-items:flex-end;">
+		<view class="header-center">
+				<view class="item showversion"><image class="headerImage" mode="aspectFill" src="https://w.360e.cn/miniapi/Public/images/logo-x-32-1.png"></image> <text class="nickname">云单词速记</text></view>
+		</view>
+	</view>
+	<view class="bottom-section-flex">
+		<view class="container" style="padding-top:20px;">
+			<!--//会员提醒-->
+			<view class="member-expire" wx:if="{{showMemberExpTip}}">
+				<view class="close-btn" bindtap="closeMemberExpTip">
+					<text class="iconfont icon-shanchu"></text>
+				</view>
+				<view class="remind-content flex-item">
+					<view class="text-area">
+						<text class="title">会员即将过期</text>
+						<text class="desc">您的会员将在 <text class="expire-time">{{member_status.expire_date}}</text> 到期，请及时续费。</text>
+					</view>
+				</view>
+				<view class="flex-item"><button class="button button-small renew-btn" bindtap="govip">立即续费</button></view>
+				<view class="flex-item remind-right"></view>
+			</view>
+			<!--//赠送会员提醒-->
+			<view class="member-expire member-sent" wx:if="{{showMemberGiftTip}}">
+				<view class="close-btn" bindtap="closeMemberGiftTip">
+					<text class="iconfont icon-shanchu"></text>
+				</view>
+				<view class="remind-content flex-item">
+					<view class="text-area">
+						<text class="title">会员赠送提醒</text>
+						<text class="desc">新用户您好，我们已赠送您<text class="expire-time"> 7 </text>天免费会员。</text>
+					</view>
+				</view>
+				<view class="flex-item"><button class="button button-small renew-btn" bindtap="govip">续费会员</button></view>
+				<view class="flex-item remind-right"></view>
+			</view>
+			<!--//查单词-->
+			<view class="dayrecord flex flex-between">
+				<view class="flex-item"><text class="search-input iconfont icon-sousuo" catchtap="gosearch"> 查单词</text></view>
+				<view class="flex-item card flex-valign-center"><button class="button button-small" catchtap="goDatetime"><text class="iconfont icon-rili text-yellow"></text> 学习日历</button></view>
+			</view>
+			<!--//教材-->
+			<view class="setversion-content">
+				<view class="setversion">
+					<view class="flex" style="gap: 20rpx;">
+						<view class="item2 versionimg text-left">
+							<image src="{{cdnHost+userVersion.picurl}}" mode="widthFix" bindtap="goVersion"></image>
+						</view>
+						<view class="item2 history"> 
+							<view class="nested-container">
+								<view class="nested-bottom-section">
+									<view class="text-left" bindtap="goVersion">{{userVersion.version_id==0 && userVersion.vg_id==0 ? '选择教材' : (userVersion.version_id>0 && userVersion.vg_id==0 ? userVersion.version_name : (userVersion.version_name+gradeArr[userVersion.grade_id]+partArr[userVersion.part_id]))}} <text class="icon-exchange"></text></view>
+									<view class="margin-small-top"><button class="button button-small accent iconfont icon-a-1_qiehuan" catchtap="goVersion"> 切换教材</button></view>
+								</view>
+								<view class="nested-top-section history-content">
+									<view class="margin-top jingdu text-center">
+										<view class="flex flex-between text-small">
+											<view class="flex-item">已学{{word_count}}词</view>
+											<view class="flex-item">总计{{userVersion.wordscount}}词</view>
+										</view>
+										<progress percent="{{50}}" stroke-width="3" color="#1494ad" />
+									</view>
+								</view>
+							</view>
+
+						</view>
+					</view>
+				</view>
+				<view class="learen-content">
+					<view class="height-large text-center text-gray" bindtap="gotoPlan">- 今日学习计划 -  <text class="iconfont icon-lianxi margin-left" style="color: #f60; font-size: 18px; font-weight: bold;"></text></view>
+					<view class="text-little flex flex-center">
+						<view class="flex-item flex-average"><text class="text-nums">{{day_word_count || 0}}/{{userVersion.plan_word_count}}</text><text class="text-small">需新学</text></view>
+						<view class="flex-item flex-average"><text class="text-nums">{{day_revise_count || 0}}/{{userVersion.plan_revise_count}}</text><text class="text-small">需复习</text></view>
+					</view>
+					<view class="flex flex-center margin-big-top">
+						<view class="flex-item flex-average" bindtap="goWordlist"><button class="button">开始学习</button></view>
+						<view class="flex-item flex-average" bindtap="goReviselist"><button class="button accent">开始复习</button></view>
+					</view>
+				</view>
+				
+			</view>
+
+      <view class="model">
+        <view class="model-content grid">
+          <view class="model-item" catchtap="golisten">
+            <view class="pic"><image src="https://w.360e.cn/miniapi/Public/images/listen-2.png" mode="heightFix"></image></view>
+            <text class="model-txt">听课文</text>
+          </view>
+          <view class="model-item" bindtap="gopindu">
+            <view class="pic"><image src="https://w.360e.cn/miniapi/Public/images/pindu-2.png" mode="heightFix"></image></view>
+            <text class="model-txt">自然拼读</text>
+          </view>
+          <view class="model-item" bindtap="goyinbiao">
+            <view class="pic"><image src="https://w.360e.cn/miniapi/Public/images/yinbiao.png" mode="heightFix"></image></view>
+            <text class="model-txt">国际音标</text>
+          </view>
+          <view class="model-item" bindtap="goWordWrite">
+            <view class="pic"><image src="https://w.360e.cn/miniapi/Public/images/write-2.png" mode="heightFix"></image></view>
+            <text class="model-txt">报听写</text>
+          </view>
+          <view class="model-item" bindtap="gotraslate">
+            <view class="pic"><image src="https://w.360e.cn/miniapi/Public/images/fanyi.png" mode="heightFix"></image></view>
+            <text class="model-txt">翻译</text>
+          </view>
+          <view class="model-item" bindtap="goToTargetMiniProgram">
+            <view class="pic"><image src="https://w.360e.cn/miniapi/Public/images/class-3.png" mode="heightFix"></image></view>
+            <text class="model-txt">语法课堂</text>
+          </view>
+          <view class="model-item">
+						<button class="share-btn" bindtap="btnShare" open-type="share">
+            <view class="pic"><image src="https://w.360e.cn/miniapi/Public/images/weixin.png" mode="heightFix"></image></view>
+            <text class="model-txt">分享班群</text>
+						</button>
+          </view>
+        </view>
+      </view>
+
+		</view>  
+	</view>
+</view>
+</scroll-view>
+

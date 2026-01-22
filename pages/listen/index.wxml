@@ -1,0 +1,15 @@
+<wxs src="../../utils/array.wxs" module="array" />
+<view class="flex-container page-background">
+	<header headerName="课文听力"></header>
+	<view class="bottom-section-flex">
+		<scroll-view scroll-y class="scrollview" style="width: 100%; height:100%;" type="custom">
+			<view class="tabcontainer container">
+				<view class="category-item {{array.includes(selectList, index) ? 'active' : ''}}" wx:for="{{unitList}}"  wx:key="index" data-index="{{index}}" catchtap="goListen">
+					<view class="checkmark"></view>
+					<text class="category-name">{{item.category_name}}</text>
+					<text class="word-count">{{item.list.length}}页</text>
+				</view>
+			</view>
+		</scroll-view>
+	</view>
+</view>
