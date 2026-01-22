@@ -1,0 +1,67 @@
+.custom-keyboard-container{ padding: 0 10rpx;background: #f5f5f5;}
+.custom-keyboard {
+  width: 100%;
+	background: #f5f5f5;
+}
+.keyboard-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding: 10rpx 0;
+}
+.key {
+  width: 80rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 10rpx;
+  font-size: 32rpx;
+}
+.func-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10rpx 20rpx;
+}
+.func-key {
+  width: 120rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  background: #ddd;
+  border-radius: 10rpx;
+  font-size: 32rpx;
+}
+.space-key {
+  flex: 1;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 10rpx;
+  margin: 0 20rpx;
+  font-size: 32rpx;
+}
+.keyClose{margin-right:20rpx;}
+.key.func-key {
+  background: #e6e6e6;
+  font-size: 28rpx;
+}
+.keyboard-row .key:first-child,
+.keyboard-row .key:last-child {
+  width: 100rpx;  /* 调整大小写键和退格键宽度 */
+}
+
+/* 符号键盘样式优化 */
+.custom-keyboard:last-child .keyboard-row .key {
+  width: 85rpx;  /* 符号键稍宽一点 */
+}
+.key:active,.func-key:active,.space-key:active {
+  background-color: #e4fdfa;  /* 所有功能键的按压效果 */
+  transform: scale(0.95);
+  transition: all 0.01s;
+}

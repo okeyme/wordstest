@@ -1,0 +1,30 @@
+<!--components/example-display/example-display.wxml-->
+<view class="example-display">
+  <view class="nav-title">
+    <text class="guide-symbol"></text>
+    <text class="nav-text">例句</text>
+    <view class="operate-group" bindtap="onOpenSpeak" wx:if="{{examples.length}}">
+      <text class="iconfont icon-maikefeng-XDY"></text> 跟读
+    </view>
+  </view>
+  
+  <view class="example-swiper-container" wx:if="{{examples.length}}">
+    <swiper class="swiper" indicator-dots="{{examples.length > 1}}" 
+      indicator-color="#ccc" 
+      indicator-active-color="#333" 
+      bindchange="onSwiperChange"
+      autoplay="true"
+			interval="10000"
+			circular="true"
+      duration="500">
+      <swiper-item class="swiper-items" wx:for="{{examples}}" wx:key="index">
+        <view class="swiper-item-box">
+          <view class="example-content">
+            <text class="iconfont {{isPlaying && activeAudioIndex==-2 ? 'icon-yinliang-F' : 'icon-yinliang-L'}}"  bindtap="onPlayExample" data-index="{{index}}"></text>{{item.example}}
+						</view>
+          <view class="translation-content">{{item.translate}}</view>
+        </view>
+      </swiper-item>
+    </swiper>
+  </view>
+</view>

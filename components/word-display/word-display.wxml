@@ -1,0 +1,36 @@
+<view class="word-display">
+  <!-- 单词拼写本 -->
+  <view class="word-info text-center">
+    <view class="spelling-book">
+      <view class="word-line">
+        <text class="word-text">
+          <text wx:for="{{wordLetter}}" wx:key="index" class="{{isPlaying && index==activeIndex ? 'active' : ''}}">{{item}}</text>
+        </text>
+      </view>
+    </view>
+  </view>
+  
+  <!-- 音标和操作按钮 -->
+  <view class="phonogram-section margin-top flex flex-between">
+    <view class="phonogram-left flex-item">
+      <text class="phonogram-text" catch:tap="onPlayAudio">/{{phonogram || '--'}}/ <text class="iconfont {{isPlaying && activeIndex==-1 ? 'icon-yinliang-F' : 'icon-yinliang-L'}}"></text>
+      </text>
+    </view>
+    
+    <view class="phonogram-right flex-item word-btn" wx:if="{{showCollect || showDetail}}">
+      <view class="word-shoucang {{isCollect ? 'hasCollect' : ''}}" catchtap="onCollect" wx:if="{{showCollect}}">收藏 <text class="iconfont {{isCollect ? 'icon-shoucang-copy' : 'icon-shoucang'}}"></text>
+			</view>
+      <view class="word-detail" catchtap="onDetail" wx:if="{{showDetail}}">详解 <text class="iconfont icon-buzhou1"></text>
+      </view>
+    </view>
+  </view>
+  
+  <!-- 释义 -->
+  <view class="translation-section" wx:if="{{showTranslation && translation}}">
+    <view class="nav-title">
+      <text class="guide-symbol"></text>
+      <text class="nav-text">释义</text>
+    </view>
+    <view class="translation-main">{{translation}}</view>
+  </view>
+</view>

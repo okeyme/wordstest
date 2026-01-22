@@ -1,0 +1,42 @@
+<view class="phonogram-practice">
+  <!-- 自然拼读 -->
+  <view class="phonogram-section {{activeGroup==0 ? 'active' : 'hidden'}}">
+    <view class="phonogram-letters">
+      <block wx:for="{{phonogram}}" wx:key="index">
+        <view class="phonogram-item {{isPlaying && index==activeIndex ? 'active' : ''}}" wx:if="{{item !== '#'}}" bindtap="onPhonogramTap" data-index="{{index}}">
+          <view class="phonogram-symbol">/{{phonogramMap[item]}}/</view>
+          <view class="phonogram-letter">{{wordLetters[index] || ''}}</view>
+        </view>
+        <!-- 分隔符 -->
+        <view class="separator" wx:if="{{item === '#'}}"><text>|</text></view>
+      </block>
+    </view>
+  </view>
+
+  <!-- 音节拼读 -->
+  <view class="syllable-section {{activeGroup==1 ? 'active' : 'hidden'}}">
+    <view class="syllable-items">
+      <block wx:for="{{syllablePhonogram}}" wx:key="index">
+        <view class="syllable-item {{isPlaying && index==activeIndex ? 'active' : ''}}" bindtap="onSyllableTap" data-index="{{index}}">
+          <view class="syllable-symbol">/{{item}}/</view>
+          <view class="syllable-text">{{syllableLetters[index] || ''}}</view>
+        </view>
+      </block>
+    </view>
+  </view>
+
+  <!-- 控制按钮 -->
+  <view class="control-buttons">
+    <view class="capsule-group-container">
+      <view class="capsule-group">
+        <!-- 自然拼读按钮 -->
+        <view class="capsule-btn left-btn {{activeGroup==0 ? 'active' : ''}}" bindtap="onPhonogramAllTap">自然拼读 <text class="iconfont {{activeGroup==0 && isPlaying ? 'icon-yinliang-F' : 'icon-yinliang-L'}}"></text>
+        </view>
+        
+        <!-- 音节拼读按钮 -->
+        <view class="capsule-btn right-btn {{activeGroup==1 ? 'active' : ''}}" bindtap="onSyllableAllTap">超级拼读 <text class="iconfont {{activeGroup==1 && isPlaying ? 'icon-yinliang-F' : 'icon-yinliang-L'}}"></text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

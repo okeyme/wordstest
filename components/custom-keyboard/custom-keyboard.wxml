@@ -1,0 +1,95 @@
+<!-- 字母键盘 -->
+<view class="custom-keyboard-container">
+<view class="custom-keyboard" wx:if="{{isLetterMode}}">
+  <!-- 第一行字母 -->
+  <view class="keyboard-row">
+    <view 
+      wx:for="{{isUpperCase ? upperLetterKeysRow1 : letterKeysRow1}}" 
+      wx:key="index" 
+      class="key" 
+      bindtap="handleKeyClick"
+      data-key="{{item}}"
+    >
+      {{item}}
+    </view>
+  </view>
+  
+  <!-- 第二行字母 -->
+  <view class="keyboard-row">
+    <view 
+      wx:for="{{isUpperCase ? upperLetterKeysRow2 : letterKeysRow2}}" 
+      wx:key="index" 
+      class="key" 
+      bindtap="handleKeyClick"
+      data-key="{{item}}"
+    >
+      {{item}}
+    </view>
+  </view>
+  
+  <!-- 第三行 -->
+  <view class="keyboard-row">
+    <view class="key func-key" bindtap="toggleCase">
+      {{isUpperCase ? '⇧' : '⇪'}}
+    </view>
+    <view 
+      wx:for="{{isUpperCase ? upperLetterKeysRow3 : letterKeysRow3}}" 
+      wx:key="index" 
+      class="key" 
+      bindtap="handleKeyClick"
+      data-key="{{item}}"
+    >
+      {{item}}
+    </view>
+    <view class="key func-key" bindtap="handleBackspace">
+      ←
+    </view>
+  </view>
+  
+  <!-- 功能行 -->
+  <view class="func-row">
+    <view class="func-key" bindtap="toggleMode">符</view>
+    <view class="space-key" bindtap="handleSpace">空格</view>
+    <view class="func-key" bindtap="handleComplete">完成</view>
+  </view>
+</view>
+
+<!-- 符号键盘（保持原结构，可按需扩展） -->
+<view class="custom-keyboard" wx:else>
+  <view class="keyboard-row">
+    <view 
+      wx:for="{{symbolKeysRow1}}" 
+      wx:key="index" 
+      class="key" 
+      bindtap="handleKeyClick"
+      data-key="{{item}}"
+    >{{item}}</view>
+  </view>
+  <view class="keyboard-row">
+    <view 
+      wx:for="{{symbolKeysRow2}}" 
+      wx:key="index" 
+      class="key" 
+      bindtap="handleKeyClick"
+      data-key="{{item}}"
+    >{{item}}</view>
+  </view>
+  <view class="keyboard-row">
+    <view 
+      wx:for="{{symbolKeysRow3}}" 
+      wx:key="index" 
+      class="key" 
+      bindtap="handleKeyClick"
+      data-key="{{item}}"
+    >{{item}}</view>
+  </view>
+  <view class="func-row">
+    <view class="func-key" bindtap="handleClose">关闭</view>
+    <view class="func-key" bindtap="toggleMode">字</view>
+    <view class="space-key" bindtap="handleSpace">空格</view>
+    <view class="func-key" bindtap="handleBackspace">
+      ←
+    </view>
+  </view>
+</view>
+</view>

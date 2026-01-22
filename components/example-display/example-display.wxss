@@ -1,0 +1,73 @@
+.example-display {
+  margin-top: 40rpx;
+}
+
+.nav-title {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.nav-title .guide-symbol {
+  width: 5px;
+  height: 13px;
+  border-radius: 25px;
+  background-color: #2fc6a6;
+  margin-right: 5px;
+}
+
+.nav-title .nav-text {
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.nav-title .operate-group {
+  align-items: center;
+  margin-left: auto;
+  border: 1px solid #2fc6a6;
+  border-radius: 20px;
+  padding: 2px 8px;
+  font-size: 12px;
+  background-color: #e4fdfa;
+}
+
+.nav-title .operate-group text {
+  font-size: 15px;
+}
+
+.example-swiper-container {
+  margin-top: 10px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.example-swiper-container .swiper {
+  height: 80px;
+}
+
+.swiper-item-box {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  /*justify-content: center;*/
+}
+
+.example-content,
+.translation-content {
+  color: #666;
+  line-height: 1.5;
+  font-size: 15px;
+}
+.example-content{ vertical-align:text-top;}
+
+.translation-content {
+  padding-left: 19px;
+  color: #999;
+}
+
+.example-content .iconfont {
+  margin-right: 5px;
+	color: #2fc6a6;
+	font-size: 15px;
+}

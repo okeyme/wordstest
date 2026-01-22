@@ -1,0 +1,73 @@
+<!-- 半透明遮罩 -->
+<view class="modal-mask" wx:if="{{visible}}" catchtap="closeModal"></view>
+<!-- 弹窗内容 -->
+<view class="modal-container" wx:if="{{visible}}">
+  <view class="modal-content">
+    <!-- 关闭按钮 -->
+    <text class="modal-close iconfont icon-cuowu" bindtap="closeModal"></text>
+    
+    <!-- 加载状态 -->
+    <view wx:if="{{loading}}" class="loading-container">
+      <view class="loading"></view>
+      <text class="loading-text">加载中...</text>
+    </view>
+    
+    <!-- 单词内容 -->
+    <view wx:else class="word-content">
+      <!-- 单词标题区域 -->
+      <view class="word-header">
+        <view class="word-title">
+          <text class="word-text">{{wordDetail.word}}</text>
+          <text class="word-phonogram" wx:if="{{wordDetail.phonogram_en}}">
+            [{{wordDetail.phonogram_en}}]
+          </text>
+        </view>
+        <view class="word-actions">
+          <text class="iconfont icon-shengyin action-icon" bindtap="playWordAudio"></text>
+          <text class="iconfont icon-fuzhi action-icon" bindtap="copyWord"></text>
+        </view>
+      </view>
+      
+      <!-- 词根词缀 -->
+      <view wx:if="{{wordDetail.affix || wordDetail.affix_gz}}" class="affix-section">
+        <text class="section-title">词根词缀：</text>
+        <text wx:if="{{wordDetail.affix}}">{{wordDetail.affix}}</text>
+        <text wx:if="{{wordDetail.affix_gz}}" class="affix-rule">（{{wordDetail.affix_gz}}）</text>
+      </view>
+      
+      <!-- 翻译区域 -->
+      <view class="translate-section">
+        <view class="section-header">
+          <text class="section-title">翻译</text>
+          <text class="iconfont icon-fuzhi copy-translate" bindtap="copyTranslation"></text>
+        </view>
+        <text class="translate-text" decode="{{true}}">{{wordDetail.translate}}</text>
+      </view>
+      
+      <!-- 例句区域 -->
+      <view wx:if="{{wordDetail.example_ids && wordDetail.example_ids.length}}" class="examples-section">
+        <text class="section-title">例句</text>
+        <view class="examples-list">
+          <view wx:for="{{wordDetail.example_ids}}" wx:key="example_id" class="example-item">
+            <view class="example-content">
+              <view class="example-english">
+                {{index + 1}}. {{item.example}}
+                <text 
+                  class="iconfont icon-shengyin example-audio {{playingExampleIndex === index ? 'playing' : ''}}" 
+                  bindtap="playExampleAudio" 
+                  data-index="{{index}}"
+                ></text>
+              </view>
+              <view class="example-translate">{{item.translate}}</view>
+            </view>
+          </view>
+        </view>
+      </view>
+      
+      <!-- 操作按钮 -->
+      <view class="action-buttons">
+        <button class="detail-btn" bindtap="goToWordDetail">查看完整详情</button>
+      </view>
+    </view>
+  </view>
+</view>

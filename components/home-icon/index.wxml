@@ -1,0 +1,9 @@
+<!--components/home-icon/index.wxml-->
+<view class="header">
+		<view class="header-top"></view>
+		<view class="flex header-center header-nav">
+				<view class="item3 text-left"><text class="icon-chevron-left text-center" bindtap="goBack"></text><text class="icon-home text-center" bindtap="goHome"></text></view>
+				<view class="item3 text-center">{{headerName}}</view>
+				<view class="item3"></view>
+		</view>
+</view>

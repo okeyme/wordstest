@@ -1,0 +1,39 @@
+<view class="spell-practice">
+  <!-- 拼写结果区域 -->
+  <view class="result-section">
+    <view class="result-display">
+      <block wx:for="{{resultLetters}}" wx:key="index">
+        <view class="result-letter {{item.isFilled ? 'filled' : 'empty'}}">{{item.isFilled ? item.value : '_'}}</view>
+      </block>
+      
+      <!-- 删除按钮 -->
+      <view class="delete-btn" bindtap="onDelete" wx:if="{{showDeleteButton}}">
+        <text class="iconfont icon-tuige1"></text>
+      </view>
+    </view>
+    
+    <!-- 进度指示器 -->
+    <view class="progress-indicator" wx:if="{{showProgress}}">
+      <view class="progress-text">已拼写 {{filledCount}}/{{totalLetters}}
+      </view>
+    </view>
+  </view>
+
+  <!-- 字母选项区域 -->
+  <view class="options-section">
+    <view class="options-title" wx:if="{{showOptionsTitle}}">请选择字母拼出单词</view>
+    <view class="options-grid">
+      <block wx:for="{{practiceLetters}}" wx:key="index">
+        <view class="option-letter {{item.isSelected ? 'selected' : ''}}" data-index="{{index}}" bindtap="onOptionTap">{{item.letter}}
+        </view>
+      </block>
+    </view>
+  </view>
+
+  <!-- 完成状态显示 -->
+  <view class="completion-section" wx:if="{{isCompleted}}">
+    <view class="completion-message {{isCorrect ? 'correct' : 'incorrect'}}">
+      <text class="iconfont {{isCorrect ? 'icon-duicuo1' : 'icon-duicuo2'}}"></text> {{isCorrect ? '拼写正确！' : '拼写错误，再试一次！'}}
+    </view>
+  </view>
+</view>

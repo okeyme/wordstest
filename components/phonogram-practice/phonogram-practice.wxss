@@ -1,0 +1,141 @@
+.phonogram-practice {
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
+  padding: 20rpx 10rpx;
+  border: 1rpx solid #e4fdfa;
+  border-radius: 32rpx;
+  background-color: #f9f9f9;
+}
+
+.phonogram-section.hidden,
+.syllable-section.hidden {
+  display: none;
+}
+
+.phonogram-letters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10rpx;
+  margin-bottom: 20rpx;
+}
+
+.phonogram-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+	background-color: #e4fdfa;
+	padding: 8rpx 0;
+  border-radius: 8rpx;
+  min-width: 48rpx;
+  min-height: 60rpx;
+  transition: all 0.1s;
+}
+
+.phonogram-item.active {
+  background-color: #2fc6a6;
+  color: white;
+  transform: scale(1.05);
+}
+
+.phonogram-symbol {
+  font-size: 16px;
+  color: inherit;
+}
+
+.phonogram-letter {
+  font-size: 16px;
+  color: inherit;
+  margin-top: 4rpx;
+}
+
+.separator {
+  width: 20rpx;
+  height: 40rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ccc;
+}
+
+.syllable-items {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0 10rpx;
+  margin-bottom: 20rpx;
+}
+
+.syllable-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #e4fdfa;
+  padding: 8rpx 12rpx;
+  margin: 4rpx;
+  border-radius: 8rpx;
+  min-width: 50rpx;
+  min-height: 60rpx;
+  transition: all 0.1s;
+}
+
+.syllable-item.active {
+  background-color: #2fc6a6;
+  color: white;
+  transform: scale(1.05);
+}
+
+.syllable-symbol {
+  font-size: 16px;
+  color: inherit;
+}
+
+.syllable-text {
+  font-size: 16px;
+  color: inherit;
+  margin-top: 4rpx;
+}
+
+.control-buttons {
+  margin-top: 20rpx;
+  text-align: center;
+}
+
+.capsule-group-container {
+  display: inline-block;
+}
+
+.capsule-group {
+  display: flex;
+  background-color: #f0f0f0;
+  overflow: hidden;
+}
+
+.capsule-btn {
+	height: 34px;
+  line-height: 34px;
+  font-size: 12px;
+  color: #666;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4rpx;
+}
+
+.capsule-btn.left-btn {
+  border-right: 1rpx solid #ddd;
+}
+
+.capsule-btn.active {
+  background: linear-gradient(135deg, #99f3c3, #2fc6a6);
+  color: white;
+}
+
+.capsule-btn .iconfont {
+  font-size: 12px; margin-left:6rpx;
+}

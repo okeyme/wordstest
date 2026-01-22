@@ -1,0 +1,74 @@
+<!-- 半透明遮罩 -->
+<view class="modal-mask" wx:if="{{visible}}" catchtap="closeModal"></view>
+<!-- 弹窗内容 -->
+<view class="modal-container" wx:if="{{visible}}">
+  <view class="modal-content">
+		<!-- 关闭按钮 -->
+    <text class="modal-close iconfont icon-cuowu" bindtap="closeModal"></text>
+    <!-- 弹窗标题 -->
+    <view class="modal-title"> </view>
+    
+    <!-- 显示从A页面接收的参数 -->
+    <view class="speak-container">
+			<!--//word-->
+			<view class="speak-main">
+					<view class="dis text-center" style="margin:0 auto;">
+						<view class="spelling-book">
+							{{speakWord}}
+						</view>
+					</view>
+					<!--//word-->
+					<!-- 加载状态 -->
+					<view class="loading-container" wx:if="{{isRecording}}" style="margin:0 auto;">
+						<view class="wave-animation">
+							<view class="wave-bar bar1"></view>
+							<view class="wave-bar bar2"></view>
+							<view class="wave-bar bar3"></view>
+							<view class="wave-bar bar4"></view>
+							<view class="wave-bar bar5"></view>
+						</view>
+					</view>
+					<view class="loading-text">{{loadingText}}</view>
+					<!-- 评测结果 -->
+					<view class="result-container" wx:if="{{!isRecording && showLoading}}">
+						
+						<!-- 总分面板 -->
+						<view class="panel">
+							<view class="panel-head">
+								总分
+								<view class="legend">
+									<text class="bg-green">优</text>
+									<text class="bg-blue">良</text>
+									<text class="bg-purple">中</text>
+									<text class="bg-red">差</text>
+								</view>
+							</view>
+							<view class="panel-body">
+								<view class="star-rating">
+									<block wx:for="{{evaluationResult.starRating.stars}}" wx:key="index">
+										<text class="iconfont {{item.type === 'full' ? 'icon-bankexingxing' : item.type === 'half' ? 'icon-bankexingxing1' : 'icon-bankexingxing-copy'}} {{item.color || 'bg-gray'}}"></text>
+									</block>
+									<text class="score-text {{evaluationResult.starRating.color}}">{{evaluationResult.starRating.score}}分
+									</text>
+								</view>
+							</view>
+						</view>
+					
+					</view>
+			</view>
+			<!--//translate-->
+			<!--//录音-->
+			<view class="record-content text-center margin-big-top">
+				<view class="record-btn" style="width: 100%;">
+					<view class="flex flex-center" style="width: 100%;align-items:flex-end;">
+						<view class="flex-item flex-average" bindtap="playAudio2"><text class="iconfont icon-a-24gl-playCircle"></text><text class="text-small">原音</text></view>
+						<view class="flex-item flex-average" bindlongpress="startRecord" bindtouchend="stopRecord"><text class="iconfont {{isRecording ? 'icon-app_yinpin_luyinzhong' : 'icon-luyin2'}} record"></text><text class="text-small">{{isRecording ? '松手测评' : '长按录音'}}</text></view>
+						<view class="flex-item flex-average" bindtap="playMyRecord"><text class="iconfont icon-pindu"></text><text class="text-small">我的录音</text></view>
+					</view>
+				</view>
+			</view>
+			<!--//录音-->
+		</view>
+    
+  </view>
+</view>

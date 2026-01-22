@@ -1,0 +1,2 @@
+/* components/header/index.wxss */
+@import "../../app.wxss";

@@ -1,0 +1,10 @@
+<!--components/header/index.wxml-->
+<view class="header top-section">
+	<view class="header-top"></view>
+	<view class="flex flex-between header-center header-nav">
+			<view class="flex-item flex-average"><text class="iconfont icon-fanhui text-center" bindtap="goBack"></text><text class="iconfont icon-shouye1 text-center" bindtap="goHome"></text></view>
+			<view class="flex-item flex-average" style="justify-content:center">{{headerName}}</view>
+			<view class="flex-item flex-average"></view>
+	</view>
+</view>
+
