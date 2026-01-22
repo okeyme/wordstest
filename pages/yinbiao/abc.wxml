@@ -1,0 +1,40 @@
+<!--pages/yinbiao/index.wxml-->
+<view class="flex-container">
+	<header headerName="字母学习"></header>
+	<view class="bottom-section-flex">
+		<view class="flex-row-wrap abcTitle">
+				<text class="flex-view-item7 {{currect==index ? 'active' : ''}}" wx:for="{{abcArr}}" wx:key="unique" data-index="{{index}}" bindtap="changeAbc"><text class="upper">{{item.letter}}</text>{{item.letter}}</text>
+		</view>
+		<view class="swipernav">
+				<block wx:for="{{swiperItem}}" wx:for-index="idx" wx:for-item="itm" wx:key="unique">
+					<text class="tli {{currentTab==idx ? 'active' : ''}}" bindtap="swiperChange2" data-index="{{idx}}"><text class="ta">{{itm}}</text></text>
+				</block>
+		</view>
+		<swiper current="{{currentTab}}" style="height: {{scrollHeight}}px;border-top:solid 1px #ca9f03;margin-top:-1px;" bindchange="swiperChange">
+			<block wx:for="{{swiperItem}}" wx:key="unique">
+				<swiper-item>
+					<view class="swiper container">
+						<view wx:if="{{index==0}}"><image src="https://bossbell.com/{{currentArr.yst_pic}}?v={{randimage}}"></image></view>
+						<view wx:elif="{{index==1}}"><image src="https://bossbell.com/{{currentArr.sxt_pic}}?v={{randimage}}"></image></view>
+						<view wx:elif="{{index==2}}"><image src="https://bossbell.com/{{currentArr.ph_pic}}?v={{randimage}}"></image></view>
+						<view wx:elif="{{index==3}}"><image src="https://bossbell.com/{{currentArr.kx_pic}}?v={{randimage}}"></image></view>
+						<view class="example" wx:else>
+							<view class="flex">
+								<view class="item2 examplepic"><image src="https://bossbell.com/{{currentArr.word_pic}}" mode="widthFix"></image></view>
+								<view class="item2 exampleitem">
+									<view class="height upper">{{currentArr.word}}<text class="iconfont {{playCurrect==1 ? 'icon-yinliang-F' : 'icon-yinliang-L'}} margin-left" catchtap="playAudio"></text></view>
+									<view class="height">{{currentArr.word}}</view>
+									<view class="height">{{currentArr.word_translate}}</view>
+								</view>
+							</view>
+							<view class="height examplelist">
+								<view class="height">{{currentArr.example}}<text class="iconfont margin-left {{playCurrect==2 ? 'icon-yinliang-F' : 'icon-yinliang-L'}}" catchtap="playAudio2"></text>  <text class="iconfont text-pink margin-left {{playCurrect==3 ? 'icon-yinliang-F' : 'icon-yinliang-L'}}" catchtap="playAudio3"></text></view>
+								<view class="height">{{currentArr.translate}}</view>
+							</view>
+						</view>
+					</view>
+				</swiper-item>
+			</block>
+		</swiper>
+	</view>
+</view>

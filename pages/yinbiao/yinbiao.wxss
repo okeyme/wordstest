@@ -1,0 +1,19 @@
+/* pages/yinbiao/yinbiao.wxss */
+.header{background-color: #fed025;}
+.yinbiaoContent{border-radius: 32rpx; background-color: white;}
+.titlecontent{ position: relative;}
+.titlecontent button{ position: absolute; right: 0;top:10px;}
+.yinbiaotitle{background: url(https://w.360e.cn/miniapi/Public/images/cirle-bg.png) no-repeat 20px 8px;
+	font-size: 17px;
+	background-size: auto 40%;
+	padding: 15px 30px;
+	font-weight: bold; display: inline-block;
+}
+.yinbiao_item{margin-bottom:15px;}
+.flex-view-item5 .item{
+  border: 1px solid #ddd;
+  padding: 6px;
+}
+.flex-view-item5 .item.active{color:#2fc6a6;}
+.flex-view-item5 text{display:inline-block; width:100%;}
+.flex-view-item5 .item .link{ text-decoration: underline;}

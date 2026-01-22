@@ -1,0 +1,70 @@
+<!--pages/yinbiao/yinbiao.wxml-->
+<import src="../wordlearn/header.wxml"/>
+<template is="wordlearn_header" data="{{headerName:headerName}}"/>
+<wxs module="modeJS">
+	function resplace(str){
+		str = str.replace('<span>','<span style="color:red">'); 
+		return str;
+	}
+	module.exports = {
+		resplace:resplace
+	}
+	</wxs>
+<view style="height: {{scrollTop}}px;"></view>
+<scroll-view scroll-into-view="{{toViewID}}" scroll-with-animation="true" scroll-y="true" style="width: 100%; height:{{scrollHeight}}px;" type="custom">
+	<view class="pdlist" wx:for="{{currentArr}}" wx:for-index="idx" wx:for-item="itm" wx:key="unique">
+		<view id="view_{{idx}}" class="text-bold title"><text class="icon-bookmark"></text> 字母 {{idx}} 有时可以发 /{{yb}}/</view>
+		<view class="itm flex-row-wrap">
+			<view class="flex-view-item3" wx:for="{{itm}}" wx:key="unique">
+				<view class="itemcontent">
+					<view class="word"><rich-text nodes="{{modeJS.resplace(item.word)}}"></rich-text
+></view>
+					<view class="phonogram"><rich-text nodes="/{{modeJS.resplace(item.phonogram)}}/"></rich-text
+></view>
+					<view class="flex itm-btn text-center">
+						<view class="item2" catchtap="playAudio" data-zm="{{idx}}" data-index="{{index}}"><text class="icon-volume-up {{(zmabc==idx && zmindex==index && playCurrect) ? 'active' : ''}}"></text></view>
+						<view class="item2 sitemap" catchtap="showPopup" data-zm="{{idx}}" data-index="{{index}}"><text class="icon-sitemap"></text></view>
+					</view>
+				</view>
+			</view>
+		</view>
+	</view>
+</scroll-view>
+
+<view class="categoryShadow {{popupStatus ? '' : 'undis'}}"></view>
+<view class="popup {{popupStatus ? 'active' : ''}}">
+		<view class="popup-content">
+			<view class="container">
+				<view class="popup-title flex">
+					<view class="item3 text-left text-small">{{zmindex+1}}/{{currentArr[zmabc].length}}</view>
+					<view class="item3 title">
+						<rich-text nodes="{{modeJS.resplace(currentArr[zmabc][zmindex].word)}}"></rich-text>
+					</view>
+					<view class="item3"></view>
+					<view class="popup-close icon-times" catchtap="popupClose"></view>
+				</view>
+			</view>
+			<view class="popup-main">
+				<view class="height text-center">
+					<rich-text nodes="/{{modeJS.resplace(currentArr[zmabc][zmindex].phonogram)}}/"></rich-text>
+				</view>
+				<view class="flex-row-wrap zmletter">
+					<view class="flex-column-wrap">
+						<rich-text nodes="{{modeJS.resplace(currentArr[zmabc][zmindex].word)}}"></rich-text>
+						<rich-text nodes="/{{modeJS.resplace(currentArr[zmabc][zmindex].phonogram)}}/"></rich-text>
+						<view><text class="icon-volume-up {{playCurrect ? 'active' : ''}}" catchtap="popupAudio"></text></view>
+					</view>
+					<view class="flex-column-wrap" wx:for="{{currentArr[zmabc][zmindex].zmletter}}" wx:key="unique">
+						<rich-text nodes="{{modeJS.resplace(item)}}"></rich-text>
+						<rich-text nodes="/{{modeJS.resplace(currentArr[zmabc][zmindex].ybletter[index])}}/"></rich-text>
+						<view><text class="icon-volume-up {{ybstr==currentArr[zmabc][zmindex].ybletter[index] ? 'active' : ''}}" catchtap="playYinbiao" data-yinbiao="{{currentArr[zmabc][zmindex].ybletter[index]}}"></text></view>
+					</view>
+				</view>
+				<view class="flex popup-control text-center">
+						<view class="item3"><text class="icon-arrow-circle-left" catchtap="popupPrev"></text></view>
+						<view class="item3"><text class="icon-volume-up {{playCurrect ? 'active' : ''}}" catchtap="popupAudio"></text></view>
+						<view class="item3"><text class="icon-arrow-circle-right" catchtap="popupNext"></text></view>
+					</view>
+			</view>
+		</view>
+</view>

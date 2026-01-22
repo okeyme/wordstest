@@ -1,0 +1,6 @@
+/* pages/yinbiao/index.wxss */
+.header{background-color: #fed025;}
+.pic{ border: 2px solid #fed025; border-radius: 32rpx; margin-top:20px; padding:10px;}
+.pic image{border-radius: 32rpx; width: 100%;}
+.pic .title{ font-size: 18px; font-weight: bold; text-align: center; padding:6px 0; border-bottom: 4px solid #6ad7fe; color:#6ad7fe; display:inline-block; margin:0 auto; margin-bottom: 15px;}
+.pic .bg-main{background-color: #f5c20a; border-color: #ecbc0e;}

@@ -1,0 +1,24 @@
+<!--pages/yinbiao/yinbiao.wxml-->
+<import src="../wordlearn/header.wxml"/>
+<template is="wordlearn_header" data="{{headerName:headerName}}"/>
+<view style="height: {{scrollTop}}px;"></view>
+<scroll-view scroll-into-view="{{toViewID}}" scroll-with-animation="true" scroll-y="true" style="width: 100%; height:{{scrollHeight}}px;" type="custom">
+	<view class="text-center margin-top text-bold">音标导航</view>
+	<view class="container">
+		<view class="flex-row-wrap pindunav">
+			<view class="flex-view-item8" wx:for="{{yinbiaoArr['abc']}}" wx:key="unique" catchtap="gotoView" data-viewid="{{index}}">
+				<text>/{{item}}/</text>
+			</view>
+		</view>
+	</view>
+	<view class="container margin-top margin-bottom list">
+		<view class="flex text-center" style="border-top: 1px solid #ddd;">
+			<view class="item2 yb" style="color: black;">音标</view>
+			<view class="item2 zm text-bold">关联字母组合</view>
+		</view>
+		<view class="flex" wx:for="{{yinbiaoArr['abc']}}" wx:for-index="idx" wx:for-item="itm" wx:key="unique">
+			<view class="item2 yb text-center" id="view_{{idx}}">/{{itm}}/</view>
+			<view class="item2 zm"><text wx:for="{{yinbiaoArr['pindu'][itm]}}" wx:key="unique" catchtap="gotoDetail" data-yb="{{itm}}" data-zm="{{item}}">{{item}}</text></view>
+		</view>
+	</view>
+</scroll-view>

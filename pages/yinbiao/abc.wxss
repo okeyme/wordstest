@@ -1,0 +1,32 @@
+/* pages/yinbiao/abc.wxss */
+.header{background-color: #fb0;}
+.upper{text-transform:Uppercase;}
+.abcTitle{ padding-top:20rpx; padding-bottom: 20rpx;}
+.flex-view-item7{	width: 14.28%; text-align: center;}
+.flex-view-item7.active{background-color:#fb0;}
+.flex-view-item7 .upper{text-transform:Uppercase;}
+
+.swipernav{ padding-left: 5px;}
+.swipernav .tli{
+	display: inline-block;
+	margin-left: 4px;
+	background-color: #fb0;
+	border: solid 1px #fb0; border-bottom: none;
+	border-radius: 4px 4px 0 0;
+}
+.swipernav .tli.active{background-color: white;}
+.swipernav .tli .ta {
+	color: #333;
+	padding: 4px 5px;
+	display: block;
+	line-height: 20px;
+}
+.tab .tab-nav .tli.active ta {
+	color: #333;
+}
+.swiper{ padding-top:20rpx;}
+.example .icon-volume-up.text-pink{ color:pink;}
+.example .icon-volume-up.active{ color:#fed025;}
+.example .examplepic{width:30%;}
+.example .exampleitem{width:70%;}
+.example .examplepic image{width:100%;}

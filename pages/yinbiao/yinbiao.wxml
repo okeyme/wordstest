@@ -1,0 +1,36 @@
+<!--pages/yinbiao/yinbiao.wxml-->
+<view class="flex-container">
+	<header headerName="国际音标"></header>
+	<view class="bottom-section-flex">
+		<scroll-view scroll-y="true" style="width: 100%; height:100vh;" type="custom">
+			<view style="height: {{scrollTop}}px;"></view>
+			<view class="margin-top">
+				<view class="yinbiaoContent padding-big">
+					<view class="text-center titlecontent">
+						<text class="yinbiaotitle">20个元音</text>
+						<button class="button button-little iconfont icon-yinliang-L" bindtap="soundYuan"> 连读</button>
+					</view>
+					<block wx:for="{{yinbiaoArr['names']}}" wx:key="unique">
+						<view class="text-center titlecontent" style="margin-top:50rpx;" wx:if="{{index==3}}">
+							<text class="yinbiaotitle">28个辅音</text>
+							<button class="button button-little iconfont icon-yinliang-L" bindtap="soundYuan2"> 连读</button>
+						</view>
+						<view class="yinbiao_item">
+							<view class="item_title text-bold">{{item}}</view>
+							<view class="flex-row-wrap text-center">
+								<block wx:for="{{yinbiaoArr['yinbiao'][index]}}" wx:key="unique" wx:for-index="idx" wx:for-item="itm">
+									<view class="flex-view-item5">
+										<view class="item {{playCurrect==itm[0] ? 'active' : ''}}">
+											<text class="link" catchtap="goDetail" data-yinbiao="{{itm[0]}}">{{itm[0]}}</text>
+											<text class="iconfont icon-yinliang-L" data-yindex="{{index}}" data-index="{{idx}}" catchtap="playAudio"></text>
+										</view>
+									</view>
+								</block>
+							</view>
+						</view>
+					</block>
+				</view>
+			</view>
+		</scroll-view>
+	</view>
+</view>

@@ -1,0 +1,114 @@
+<!--pages/yinbiao/yinbiao.wxml-->
+<wxs module="richTextHandler">
+// 处理rich-text内部点击事件
+function handleTap(event, ownerInstance) {
+  var dataset = event.currentTarget.dataset;
+	var target = event.target;
+	ownerInstance.callMethod('debugEvent', {target: target});
+  
+  // 检查点击的是否是horn图标
+  if (target && target.dataset && target.dataset.word) {
+    var word = target.dataset.word;
+    
+    // 调用页面方法播放发音
+    ownerInstance.callMethod('playWordSound', {
+      word: word
+    });
+    
+    // 阻止事件冒泡
+    return false;
+  }
+  
+  // 允许其他事件正常冒泡
+  return true;
+}
+
+module.exports = {
+  handleTap: handleTap
+}
+</wxs>
+<view class="flex-container page-background">
+	<header headerName="{{headerName}}"></header>
+	<view class="bottom-section-flex">
+		<scroll-view scroll-y="true" style="width: 100%; height:100vh;" type="custom">
+			<view class="container">
+				<view class="panel">
+					<view class="panel-head"><text>发音示范</text></view>
+					<view class="panel-body text-center fysf">
+						<view class="flex">
+							<view class="item2">发音器官示范</view>
+							<view class="item2">发音口型示范</view>
+						</view>
+						<view class="flex flex-center">
+							<view class="flex-item flex-average">
+								<view class="kouxing">
+									<image src="https://w.360e.cn/yinbiao/kouxing/{{rename}}.gif" mode="widthFix"></image>
+								</view>
+							</view>
+							<view class="flex-item flex-average">
+								<view class="zhengren">
+									<image src="https://w.360e.cn/yinbiao/zhengren/{{rename}}.gif" mode="widthFix"></image>
+								</view>
+							</view>
+						</view>	
+					</view>
+				</view>
+
+				<view class="panel">
+					<view class="panel-head"><text>发音技巧</text></view>
+					<view class="panel-body">
+						<rich-text nodes="{{currectDetailArr['fyff']}}"></rich-text
+		>
+					</view>
+				</view>
+
+				<view class="panel">
+					<view class="panel-head"><text>发音规则</text></view>
+					<view class="panel-body">
+						<rich-text nodes="{{currectDetailArr['jdlx']}}"></rich-text
+		>
+					</view>
+				</view>
+
+				<view class="panel">
+					<view class="panel-head"><text>句子示例</text></view>
+					<view class="panel-body">
+						<rich-text nodes="{{currectDetailArr['jzlx']}}"></rich-text
+		>
+					</view>
+				</view>
+
+				<view class="panel">
+					<view class="panel-head"><text>短文示例</text></view>
+					<view class="panel-body">
+						<rich-text nodes="{{currectDetailArr['dwlx']}}"></rich-text
+		>
+					</view>
+				</view>
+
+				<view class="panel">
+					<view class="panel-head"><text>绕口令</text></view>
+					<view class="panel-body">
+						<rich-text nodes="{{currectDetailArr['rkl']}}"></rich-text
+		>
+					</view>
+				</view>
+
+				<view style="height: {{playlistTop}}px;"></view>
+			</view>
+		</scroll-view>
+		<!--//播放器-->
+		<view class="playlist padding-top padding-bottom">
+			<view class="flex flex-center flex-valign-center playcontrol">
+						<view class="flex-item flex-average flex-center" bindtap="gotoYinbiao">
+							<image src="/static/images/24gl-list.png" mode="scaleToFill"></image>
+						</view>
+						<view class="flex-item flex-average flex-center"><image src="/static/images/24gl-previousCircle.png" catchtap="prev" mode="scaleToFill"></image></view>
+						<view class="flex-item flex-average flex-center">
+							<image src="/static/images/{{isPlaying ? '24gl-pauseCircle.png' : '24gl-playCircle.png'}}" catchtap="audioPlay" mode="scaleToFill"></image>
+						</view>
+						<view class="flex-item flex-average flex-center"><image src="/static/images/24gl-nextCircle.png" catchtap="next" mode="scaleToFill"></image></view>
+			</view>
+		</view>
+	</view>
+</view>

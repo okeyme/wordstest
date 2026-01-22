@@ -1,0 +1,23 @@
+<!--pages/yinbiao/index.wxml-->
+<import src="../wordlearn/header.wxml"/>
+<template is="wordlearn_header" data="{{headerName:headerName}}"/>
+<scroll-view scroll-y="true" style="width: 100%; height:100vh;" type="custom">
+<view style="height: {{scrollTop}}px;"></view>
+<view style="padding: 10rpx;">
+	<view class="pic" bindtap="goabc">
+		<view class="text-center"><view class="height-big title"><text class="icon-tags"></text> 字母学习</view></view>
+		<image src="http://bossbell.com/public/images/zmabc.jpg" mode="widthFix"></image>
+		<view class="height-big text-center margin-top"><button class="button bg-main">去学习</button></view>
+	</view>
+	<view class="pic" bindtap="goyinbiao">
+		<view class="text-center"><view class="height-big title"><text class="icon-tags"></text> 国际音标</view></view>
+		<image src="http://bossbell.com/public/images/yinbiao.jpg" mode="widthFix"></image>
+		<view class="height-big text-center margin-top"><button class="button bg-main">去学习</button></view>
+	</view>
+	<view class="pic" bindtap="gopingdu">
+		<view class="text-center"><view class="height-big title"><text class="icon-tags"></text> 超级拼读</view></view>
+		<image src="http://bossbell.com/public/images/pingdu.jpg" mode="widthFix"></image>
+		<view class="height-big text-center margin-top"><button class="button bg-main">去学习</button></view>
+	</view>
+</view>
+</scroll-view>
